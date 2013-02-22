@@ -7,7 +7,9 @@ Enter any open-source github project to map data
 
 1. Github API
 go to a repo
+
 view commit history
+
 obtain user ids of commiters
 get location of commiters (from profile page)
 Handle when people don't have location
