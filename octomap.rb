@@ -9,8 +9,13 @@ require 'json'
 #2. If the user has no location key, the following error is returned:
 #KeyError: key not found: "location"
 
+#Ideas rescue key error
 def user_loc(name)
   id = Octokit.user(name)
+  begin
   location = id.fetch("location")
+  rescue
+    puts "User has no location"
+  end
   location
 end
