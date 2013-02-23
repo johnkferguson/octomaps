@@ -15,7 +15,7 @@ def user_loc(name)
   begin
   location = id.fetch("location")
   rescue
-    puts "User has no location"
+    location = "No location found"
   end
   location
 end
