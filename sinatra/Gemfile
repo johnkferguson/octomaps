@@ -2,4 +2,5 @@ source :rubygems
 
 gem 'heroku'
 gem 'sinatra'
-gem 'thin'
+gem 'sinatra-reloader'
+gem 'pry'

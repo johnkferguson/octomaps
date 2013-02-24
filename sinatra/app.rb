@@ -1,5 +1,9 @@
+require 'heroku'
 require 'sinatra'
+require 'thin'
+require 'sinatra/reloader'
+require 'pry'
 
 get '/' do
-  "Octomaps! Coming soon once we figure stuff out"
+  erb :form 
 end
