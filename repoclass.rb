@@ -30,43 +30,38 @@
 # 2. create a gets prompt that takes input and creates a new instance of the 
 # Repo class and sets the repo name = to the input
 
-require 'rubygems'
+#require 'rubygems'
+#require './getsprompt.rb'
 require 'octokit'
 require 'pp'
 require 'json'
-require './getsprompt.rb'
 
 class Repo
   include Octokit
 
-  attr_accessor :name, :owner, :locations
+  attr_accessor :owner, :name, :locations, :contributors
 
-  def initialize(name, owner)
-    @name = name
-    @owner = owner
+  def initialize
     @locations = []
   end
 
   def combined_name
-    @complete_name = self.owner + "/" + self.name 
-    @complete_name
+    self.owner + "/" + self.name 
   end
 
   def list_contributors
     repo_contribs = Octokit.contribs(self.combined_name)
     @contributors = repo_contribs.collect { |user| user.fetch("login") }
-    @contributors
   end
 
-  def contributor_locations
+  def find_contributor_locations
     self.list_contributors.each do |name|
       id = Octokit.user(name)
       begin
-      @locations << id.fetch("location")
+        @locations << id.fetch("location")
       rescue
-      @locations << "Whereabouts Unknown"
+        @locations << "Whereabouts Unknown"
       end
-      @locations
     end
   end
 end
