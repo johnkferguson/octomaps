@@ -5,5 +5,5 @@ require 'sinatra/reloader'
 require 'pry'
 
 get '/' do
-  erb :form 
+ erb :form 
 end
