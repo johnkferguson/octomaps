@@ -1,67 +1,64 @@
-#COMMENTS
-#Octokit is a gem and module. It has to be included in order to access
-#Octokit's methods.
-#
-#Here's how it works:
-#maps = Repo.new
-#maps.name = "githubmaps"
-#maps.owner = "johnkellyferguson"
-#
-#maps.combined_name
-# >>>will return "johnkellyferguson/githubmaps"
-# 
-# maps.list_contributors
-# >>>will return all contributors to a project
-# 
-# maps.contributor_locations
-# >>>should return all locations of contributors in an array
-# 
-# I didn't get to test the last part because when I tried running this 
-# on 'pengwynn/octocat', I got the following error:
-# Octokit::Forbidden: 
-# GET 
-# https://api.github.com/repos/johnkellyferguson/githubmaps/contributors?anon=false: 
-# 403: API Rate Limit Exceeded for 108.46.110.191
-# 
-# We will have to figure out the api token with octokit
-# 
-# To-do: 
-# 1. create a hash with a key-value pair of username and location
-# 2. create a gets prompt that takes input and creates a new instance of the 
-# Repo class and sets the repo name = to the input
-
 #require 'rubygems'
 #require './getsprompt.rb'
 require 'octokit'
 require 'pp'
 require 'json'
+require 'pry'
 
 class Repo
-  include Octokit
+  attr_accessor :owner, :name, :locations
 
-  attr_accessor :owner, :name, :locations, :contributors
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
 
-  def initialize
-    @locations = []
+  def initialize(owner, name)
+    @owner = owner
+    @name = name
   end
 
   def combined_name
     self.owner + "/" + self.name 
   end
 
-  def list_contributors
-    repo_contribs = Octokit.contribs(self.combined_name)
-    @contributors = repo_contribs.collect { |user| user.fetch("login") }
-  end
-
-  def find_contributor_locations
-    self.list_contributors.each do |name|
-      id = Octokit.user(name)
-      begin
-        @locations << id.fetch("location")
-      rescue
-        @locations << "Whereabouts Unknown"
-      end
+  def contributors
+    puts "looking up contributors for #{self.combined_name}"
+    @github_contributors ||= @@octokit_client.contribs(self.combined_name)
+    # delay = true if @github_contributors.size > 10
+ 
+    puts "...found #{@github_contributors.size} contributors"
+    @contributors ||= @github_contributors.collect do |u| 
+      # sleep 2 if delay
+      Contributor.new_from_github_login(u["login"])
     end
   end
+
+  def locations
+    delay = true if contributors.size > 20
+    @locations ||= contributors.collect{|c| sleep 1 if delay; c.location}
+  end
 end
+
+class Contributor
+  attr_accessor :login, :location
+
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
+
+  def self.new_from_github_login(login)
+    new_instance = self.new
+    new_instance.login = login
+    new_instance
+  end
+
+  def location
+    puts ".....looking up location for #{self.login}"
+    @location ||= @@octokit_client.user(login)["location"]
+    puts ".....found location #{@location} for #{self.login}"
+    @location 
+  end
+
+end
+
+maps = Repo.new('johnkellyferguson', 'githubmaps')
+maps.locations
+
+# octokit = Repo.new('pengwynn', 'octokit')
+# octokit.locations
