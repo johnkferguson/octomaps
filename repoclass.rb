@@ -34,7 +34,7 @@ require 'json'
 class Repo
   include Octokit
 
-  attr_accessor :name, :owner
+  attr_accessor :name, :owner, :locations
 
   def initialize
     @locations = []
@@ -46,11 +46,11 @@ class Repo
   end
 
 
-  def list_contributors
-    repo_contribs = Octokit.contribs(self.combined_name)
-    @contributors = repo_contribs.collect { |user| user.fetch("login") }
-    @contributors
-  end
+    def list_contributors
+      repo_contribs = Octokit.contribs(self.combined_name)
+      @contributors = repo_contribs.collect { |user| user.fetch("login") }
+      @contributors
+    end
 
   def contributor_locations
     self.list_contributors.each do |name|
