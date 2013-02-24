@@ -1,8 +1,3 @@
-require 'rubygems'
-require 'octokit'
-require 'pp'
-require 'json'
-
 #COMMENTS
 #Octokit is a gem and module. It has to be included in order to access
 #Octokit's methods.
@@ -29,7 +24,16 @@ require 'json'
 # 403: API Rate Limit Exceeded for 108.46.110.191
 # 
 # We will have to figure out the api token with octokit
+# 
+# To-do: 
+# 1. create a hash with a key-value pair of username and location
+# 2. create a gets prompt that takes input and creates a new instance of the 
+# Repo class and sets the repo name = to the input
 
+require 'rubygems'
+require 'octokit'
+require 'pp'
+require 'json'
 
 class Repo
   include Octokit
@@ -45,12 +49,11 @@ class Repo
     @complete_name
   end
 
-
-    def list_contributors
-      repo_contribs = Octokit.contribs(self.combined_name)
-      @contributors = repo_contribs.collect { |user| user.fetch("login") }
-      @contributors
-    end
+  def list_contributors
+    repo_contribs = Octokit.contribs(self.combined_name)
+    @contributors = repo_contribs.collect { |user| user.fetch("login") }
+    @contributors
+  end
 
   def contributor_locations
     self.list_contributors.each do |name|
