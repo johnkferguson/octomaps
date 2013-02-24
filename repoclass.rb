@@ -34,13 +34,16 @@ require 'rubygems'
 require 'octokit'
 require 'pp'
 require 'json'
+require './getsprompt.rb'
 
 class Repo
   include Octokit
 
   attr_accessor :name, :owner, :locations
 
-  def initialize
+  def initialize(name, owner)
+    @name = name
+    @owner = owner
     @locations = []
   end
 
