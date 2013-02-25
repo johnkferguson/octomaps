@@ -2,6 +2,12 @@ require 'octokit'
 require 'pp'
 require 'json'
 require 'pry'
+require 'data_mapper'
+
+#db location must be changed to reflect Mac username
+ENV['DATABASE_URL'] ||= 'postgres://jkestler:@localhost/octomaps'
+
+DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class Repo
   attr_accessor :owner, :name, :locations
@@ -43,7 +49,12 @@ class Repo
 end
 
 class Contributor
+  include DataMapper::Resource
   attr_accessor :login, :location
+
+  property :id, Serial            # Auto-increment integer id
+  property :login, Text           # Does this refer to the attr accessor defined here?
+  property :location, Text        # Does this refer to the attr accessor defined here?
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
 
