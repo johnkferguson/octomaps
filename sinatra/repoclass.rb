@@ -1,20 +1,5 @@
-require 'heroku'
-require 'sinatra'
-require 'thin'
-require 'sinatra/reloader'
-require 'pry'
-require 'net/http'
-require 'uri'
-require 'google_charts'
-require 'octokit'
-require 'pp'
-require 'json'
-require 'pry'
-require 'data_mapper'
-require 'dm-postgres-adapter'
-
 #db location must be changed to reflect Mac username
-ENV['DATABASE_URL'] ||= 'postgres://john:@localhost/octomaps'
+ENV['DATABASE_URL'] ||= 'postgres://John:@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
@@ -81,6 +66,9 @@ class Contributor
   end
 
 end
+
+DataMapper.finalize
+DataMapper.auto_migrate!
 
 maps = Repo.new('johnkellyferguson', 'githubmaps')
 maps.locations

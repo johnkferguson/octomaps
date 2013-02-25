@@ -15,4 +15,6 @@ require 'data_mapper'
 require './repoclass'
 require './app'
 
-run Sinatra::Application
+
+binding.pry
+# run Sinatra::Application
