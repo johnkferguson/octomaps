@@ -1,8 +1,3 @@
-require 'octokit'
-require 'pp'
-require 'json'
-require 'pry'
-require 'data_mapper'
 
 #db location must be changed to reflect Mac username
 ENV['DATABASE_URL'] ||= 'postgres://jkestler:@localhost/octomaps'
