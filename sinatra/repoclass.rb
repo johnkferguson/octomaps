@@ -67,7 +67,7 @@ class Contributor
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
 
-  def self.new_from_github_login(new_instance)
+  def self.new_from_github_login(login)
     new_instance = self.new
     new_instance.login = login
     new_instance
