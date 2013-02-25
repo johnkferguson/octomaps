@@ -1,5 +1,3 @@
-#require 'rubygems'
-#require './getsprompt.rb'
 require 'octokit'
 require 'pp'
 require 'json'
@@ -35,6 +33,13 @@ class Repo
     delay = true if contributors.size > 20
     @locations ||= contributors.collect{|c| sleep 1 if delay; c.location}
   end
+
+  def location_count
+    @locations.each_with_object(Hash.new(0)) do |location, hash|
+      hash[location] += 1
+    end
+  end
+
 end
 
 class Contributor

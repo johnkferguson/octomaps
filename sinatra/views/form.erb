@@ -1,13 +1,28 @@
-<p>Enter the name of a GitHub repo and repo owner below to generate a map of the locations of its contributors.</p>
+<html>
+  <head>
+    <script src='http://www.google.com/jsapi'></script> 
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <p>Enter the name of a GitHub repo and repo owner below to generate a map of the locations of its contributors.
+    </p>
 
 <form action="/" method="post">  
   Repo name: <input type="text" name="repo"><br>  
   Repo owner's GitHub username: <input type="text" name="owner">  
   <input type="submit">
   </form>  
-    
-<!--     <form method="post" action="/">
-      Repo: <input type="text" name="repo" /> <br/>
-      Owner: <input type="text" name="owner" /> <br/>
-      <button type="submit">Submit Request</button>
-</form>  --> 
+ 
+
+<!--  #In your view, use the to_js method to generate JavaScript, during rendering of the view.
+
+
+Markers Display Style
+<div id='chart_markers'></div>
+<#%= @chart_markers.to_js("chart_markers") %>
+
+  </body>
+</html> -->
