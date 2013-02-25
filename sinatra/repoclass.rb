@@ -16,10 +16,8 @@ require 'data_mapper'
 require 'dm-postgres-adapter'
 # run Sinatra::Application
 
-=======
->>>>>>> db_work
 #db location must be changed to reflect Mac username
-ENV['DATABASE_URL'] ||= 'postgres://John:@localhost/octomaps'
+ENV['DATABASE_URL'] ||= 'postgres://jkestler:@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
@@ -87,12 +85,9 @@ class Contributor
 
 end
 
-<<<<<<< HEAD
-=======
 DataMapper.finalize
 DataMapper.auto_migrate!
 
->>>>>>> db_work
 maps = Repo.new('johnkellyferguson', 'githubmaps')
 maps.locations
 
