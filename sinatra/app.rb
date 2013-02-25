@@ -3,7 +3,7 @@ require 'sinatra'
 require 'thin'
 require 'sinatra/reloader'
 require 'pry'
-require "net/http"
+require 'net/http'
 require 'uri'
 require './repoclass.rb'
 # require 'google_chart'

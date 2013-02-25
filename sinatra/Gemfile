@@ -1,7 +1,12 @@
 source :rubygems
 
-gem 'heroku'
-gem 'sinatra'
-gem 'sinatra-reloader'
-gem 'google_chart'
-gem 'pry'
+require 'heroku'
+require 'sinatra'
+require 'thin'
+require 'sinatra/reloader'
+require 'pry'
+require 'net/http'
+require 'uri'
+require 'google_chart'
+require 'google_visualr'
+require 'data_mapper'
