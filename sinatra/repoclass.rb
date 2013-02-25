@@ -49,14 +49,14 @@ class Repo
 
   def locations
     delay = true if contributors.size > 20
-    @locations ||= contributors.collect{|c| sleep 1 if delay; c.location}
+    @locations ||= contributors.collect{|c| sleep 1 if delay; c.location_lookup}
   end
 
-  def location_count
-    @locations.each_with_object(Hash.new(0)) do |location, hash|
-      hash[location] += 1
-    end
-  end
+  # def location_count
+  #   @locations.each_with_object(Hash.new(0)) do |location, hash|
+  #     hash[location] += 1
+  #   end
+  # end
 
 end
 
@@ -73,23 +73,26 @@ class Contributor
   def self.new_from_github_login(login)
     new_instance = self.new
     new_instance.login = login
+    # new_instance.save
     new_instance
+
   end
 
-  def location
+  def location_lookup
     puts ".....looking up location for #{self.login}"
-    @location ||= @@octokit_client.user(login)["location"]
+    self.location ||= @@octokit_client.user(login)["location"]
     puts ".....found location #{@location} for #{self.login}"
-    @location 
+    self.location
+    self.save
   end
 
 end
 
 DataMapper.finalize
-DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 
-maps = Repo.new('johnkellyferguson', 'githubmaps')
-maps.locations
+# maps = Repo.new('johnkellyferguson', 'githubmaps')
+# maps.locations
 
-# octokit = Repo.new('pengwynn', 'octokit')
-# octokit.locations
+octokit = Repo.new('pengwynn', 'octokit')
+octokit.locations
