@@ -1,0 +1,15 @@
+ #In your view, use the to_js method to generate JavaScript, during rendering of the view.
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+
+<!-- Markers Display Style -->
+<div id='chart_markers'></div>
+<%= render_chart @chart_markers, 'chart_markers' %>
+
+  </body>
+</html>

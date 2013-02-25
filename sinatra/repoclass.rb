@@ -57,8 +57,8 @@ class Contributor
 
 end
 
-maps = Repo.new('johnkellyferguson', 'githubmaps')
-maps.locations
+# maps = Repo.new('johnkellyferguson', 'githubmaps')
+# maps.locations
 
 # octokit = Repo.new('pengwynn', 'octokit')
 # octokit.locations
