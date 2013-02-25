@@ -1,3 +1,19 @@
+# take out these require statements once we hook up the database
+require 'heroku'
+require 'sinatra'
+require 'thin'
+require 'sinatra/reloader'
+require 'pry'
+require 'net/http'
+require 'uri'
+require 'google_charts'
+require 'octokit'
+require 'pp'
+require 'json'
+require 'pry'
+require 'data_mapper'
+require 'dm-postgres-adapter'
+# run Sinatra::Application
 
 #db location must be changed to reflect Mac username
 ENV['DATABASE_URL'] ||= 'postgres://jkestler:@localhost/octomaps'
@@ -45,7 +61,7 @@ end
 
 class Contributor
   include DataMapper::Resource
-  attr_accessor :login, :location
+  # attr_accessor :login, :location
 
   property :id, Serial            # Auto-increment integer id
   property :login, Text           # Does this refer to the attr accessor defined here?
@@ -68,8 +84,8 @@ class Contributor
 
 end
 
-# maps = Repo.new('johnkellyferguson', 'githubmaps')
-# maps.locations
+maps = Repo.new('johnkellyferguson', 'githubmaps')
+maps.locations
 
 # octokit = Repo.new('pengwynn', 'octokit')
 # octokit.locations
