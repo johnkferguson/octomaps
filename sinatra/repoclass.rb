@@ -1,6 +1,20 @@
+require 'heroku'
+require 'sinatra'
+require 'thin'
+require 'sinatra/reloader'
+require 'pry'
+require 'net/http'
+require 'uri'
+require 'google_charts'
+require 'octokit'
+require 'pp'
+require 'json'
+require 'pry'
+require 'data_mapper'
+require 'dm-postgres-adapter'
 
 #db location must be changed to reflect Mac username
-ENV['DATABASE_URL'] ||= 'postgres://jkestler:@localhost/octomaps'
+ENV['DATABASE_URL'] ||= 'postgres://john:@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
@@ -45,7 +59,7 @@ end
 
 class Contributor
   include DataMapper::Resource
-  attr_accessor :login, :location
+  # attr_accessor :login, :location
 
   property :id, Serial            # Auto-increment integer id
   property :login, Text           # Does this refer to the attr accessor defined here?
@@ -53,7 +67,7 @@ class Contributor
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
 
-  def self.new_from_github_login(login)
+  def self.new_from_github_login(new_instance)
     new_instance = self.new
     new_instance.login = login
     new_instance
@@ -68,8 +82,8 @@ class Contributor
 
 end
 
-# maps = Repo.new('johnkellyferguson', 'githubmaps')
-# maps.locations
+maps = Repo.new('johnkellyferguson', 'githubmaps')
+maps.locations
 
 # octokit = Repo.new('pengwynn', 'octokit')
 # octokit.locations
