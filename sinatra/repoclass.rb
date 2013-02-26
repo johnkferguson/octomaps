@@ -73,6 +73,11 @@ class Contributor
     new_instance = self.new
     new_instance.login = login
     new_instance
+
+    #self.new.tap do |contributor|      #returns the block
+    #  contributor.username = username
+    #  contributor.load_info_from_github
+    #end
   end
 
   def db_check
@@ -96,11 +101,13 @@ class Contributor
   end
 end
 
+
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
 # maps = Repo.new('johnkellyferguson', 'githubmaps')
 # maps.locations
+
 
 #rails = Repo.new('rails', 'rails')
 #rails.locations

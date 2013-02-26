@@ -1,17 +1,21 @@
 <html>
   <head>
-    <script src='http://www.google.com/jsapi'></script> 
     <meta charset="utf-8" />
     <title></title>
     <link href="style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
-    <p>Enter the name of a GitHub repo and repo owner below to generate a map of the locations of its contributors.
-    </p>
 
-<form action="/" method="post">  
-  Repo name: <input type="text" name="repo"><br>  
-  Repo owner's GitHub username: <input type="text" name="owner">  
-  <input type="submit">
-  </form>  
+    <h1>Welcome to the GitHub Repository Mapper!</h1>
+    <p>Please enter the name of a GitHub repository and the repository owner to generate a map of the locations of its contributors.</p>
+
+<!-- This post method indicated in the form, we are using it to get information from user  -->
+    <form action="/" method="post">  
+      Repo name: <input type="text" name="repo"><br><br>
+      Repo owner's GitHub username: <input type="text" name="owner">  
+      <input type="submit">
+    </form>  
+  </body>
+ </html>
