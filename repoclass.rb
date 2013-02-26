@@ -1,5 +1,5 @@
 #db location must be changed to reflect Mac username
-ENV['DATABASE_URL'] ||= 'postgres://masharikhter:@localhost/octomaps'
+ENV['DATABASE_URL'] ||= 'postgres://John:@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
@@ -21,12 +21,9 @@ class Repo
 
   def contributors
     puts "looking up contributors for #{self.combined_name}"
-    @github_contributors ||= @@octokit_client.contribs(self.combined_name)
-    # delay = true if @github_contributors.size > 10
- 
+    @github_contributors ||= @@octokit_client.contribs(self.combined_name) 
     puts "...found #{@github_contributors.size} contributors"
     @contributors ||= @github_contributors.collect do |u| 
-      # sleep 2 if delay
       Contributor.new_from_github_login(u["login"])
     end
   end
