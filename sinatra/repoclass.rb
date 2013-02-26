@@ -56,11 +56,11 @@ class Repo
   #delay = true if contributors.size > 20
   #sleep 1 if delay; 
 
-  # def location_count
-  #   @locations.each_with_object(Hash.new(0)) do |location, hash|
-  #     hash[location] += 1
-  #   end
-  # end
+  def location_count
+    @locations.each_with_object(Hash.new(0)) do |location, hash|
+      hash[location] += 1
+    end
+  end
 
 end
 
