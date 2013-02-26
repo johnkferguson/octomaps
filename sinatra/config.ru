@@ -11,10 +11,11 @@ require 'pp'
 require 'json'
 require 'pry'
 require 'data_mapper'
+require 'google_visualr'
 
 require './repoclass'
 require './app'
 
 
 # binding.pry
-# run Sinatra::Application
+run Sinatra::Application

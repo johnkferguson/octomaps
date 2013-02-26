@@ -35,8 +35,7 @@ get '/map' do
       i += 1
     end
   end
-  opts = { :displayMode => 'markers', :region => 'world', :legend => 'none', :width => 8  00, :keepAspectRatio => true,
-           :colors => ['FFFAF0', 'FAEBD7']}
+  opts = { :displayMode => 'markers', :region => 'world', :legend => 'none', :width => 800, :keepAspectRatio => true, :colors => ['FFFAF0', 'FAEBD7']}
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
   erb :map
 end

@@ -16,7 +16,7 @@ require 'dm-postgres-adapter'
 # run Sinatra::Application
 
 #db location must be changed to reflect Mac username
-ENV['DATABASE_URL'] ||= 'postgres://John:@localhost/octomaps'
+ENV['DATABASE_URL'] ||= 'postgres://masharikhter:@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
@@ -47,7 +47,7 @@ class Repo
     end
   end
 
-  def locations
+  def get_locations
     @locations ||= contributors.collect{|c| c.location_lookup}
   end
 
@@ -95,8 +95,13 @@ class Contributor
       puts ".....found location #{@location} for #{self.login}"
       self.location
       Contributor.first_or_create({:login => @login, :location => @location})
-    else 
-      puts "else"
+      @location
+      #needs to pass back the location
+    elsif db_check == false
+      person  = Contributor.first(:login => @login)
+      person.location
+      #puts "need to pull location from DB"
+      #grab the location from the database if the person already exists in the database
     end
   end
 end
@@ -112,8 +117,8 @@ DataMapper.auto_upgrade!
 #rails = Repo.new('rails', 'rails')
 #rails.locations
 
-wang = Repo.new('eewang', 'tickets')
-wang.locations
+# wang = Repo.new('eewang', 'tickets')
+# wang.locations
 
 # octokit = Repo.new('pengwynn', 'octokit')
 # octokit.locations
