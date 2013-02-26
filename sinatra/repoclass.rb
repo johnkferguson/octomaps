@@ -71,8 +71,9 @@ class Contributor
   property :login, Text           # Does this refer to the attr accessor defined here?
   property :location, Text        # Does this refer to the attr accessor defined here?
 
-  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
-
+  @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
+    :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
+  
   def self.new_from_github_login(login)
     new_instance = self.new
     new_instance.login = login
