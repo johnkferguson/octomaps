@@ -72,9 +72,7 @@ class Contributor
   def self.new_from_github_login(login)
     new_instance = self.new
     new_instance.login = login
-    # new_instance.save
     new_instance
-
   end
 
   def location_lookup
@@ -82,7 +80,7 @@ class Contributor
     self.location ||= @@octokit_client.user(login)["location"]
     puts ".....found location #{@location} for #{self.login}"
     self.location
-    self.save
+    Contributor.first_or_create({:login => @login, :location => @location})
   end
 
 end
