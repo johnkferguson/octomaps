@@ -76,9 +76,11 @@ class Contributor
   end
 
   def db_check
-    if Contributor.all(:login => @login).nil?
-      end 
+    if Contributor.count(:login => @login) == 0
+      true
+    else false
     end
+  end
 
   def location_lookup
     if db_check == true
@@ -87,9 +89,9 @@ class Contributor
       puts ".....found location #{@location} for #{self.login}"
       self.location
       Contributor.first_or_create({:login => @login, :location => @location})
+    else puts "else"
     end
   end
-
 end
 
 DataMapper.finalize
@@ -98,5 +100,8 @@ DataMapper.auto_upgrade!
 # maps = Repo.new('johnkellyferguson', 'githubmaps')
 # maps.locations
 
-octokit = Repo.new('pengwynn', 'octokit')
-octokit.locations
+maps = Repo.new('eewang', 'tickets')
+maps.locations
+
+# octokit = Repo.new('pengwynn', 'octokit')
+# octokit.locations
