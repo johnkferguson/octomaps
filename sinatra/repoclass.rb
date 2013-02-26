@@ -50,11 +50,6 @@ class Repo
   def locations
     @locations ||= contributors.collect{|c| c.location_lookup}
   end
-  
-  #Removed from locations method because sleep should be unnecessary with
-  #oauth token
-  #delay = true if contributors.size > 20
-  #sleep 1 if delay; 
 
   def location_count
     @locations.each_with_object(Hash.new(0)) do |location, hash|
@@ -81,21 +76,24 @@ class Contributor
   end
 
   def db_check
-    Contributor.all(:login => @login).nil?
+    if Contributor.count(:login => @login) == 0
+      true
+    else 
+      false
+    end
   end
 
   def location_lookup
-    # if db_check == true
+    if db_check == true
       self.location ||= @@octokit_client.user(login)["location"]
       puts ".....looking up location for #{self.login}"
       puts ".....found location #{@location} for #{self.login}"
       self.location
       Contributor.first_or_create({:login => @login, :location => @location})
-    # else
-    #    puts "else"
-    # end
+    else 
+      puts "else"
+    end
   end
-
 end
 
 DataMapper.finalize
@@ -104,8 +102,11 @@ DataMapper.auto_upgrade!
 # maps = Repo.new('johnkellyferguson', 'githubmaps')
 # maps.locations
 
+#rails = Repo.new('rails', 'rails')
+#rails.locations
+
+wang = Repo.new('eewang', 'tickets')
+wang.locations
+
 # octokit = Repo.new('pengwynn', 'octokit')
 # octokit.locations
-
-rails = Repo.new('rails', 'rails')
-rails.locations
