@@ -1,4 +1,3 @@
-
 #if the home, or root, URL '/' is requested, using the normal GET HTTP method, 
 #this renders views/form.erb
 #Requests data from a specified resource

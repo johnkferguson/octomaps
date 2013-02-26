@@ -1,20 +1,3 @@
-# take out these require statements once we hook up the database
-require 'heroku'
-require 'sinatra'
-require 'thin'
-require 'sinatra/reloader'
-require 'pry'
-require 'net/http'
-require 'uri'
-require 'google_charts'
-require 'octokit'
-require 'pp'
-require 'json'
-require 'pry'
-require 'data_mapper'
-require 'dm-postgres-adapter'
-# run Sinatra::Application
-
 #db location must be changed to reflect Mac username
 ENV['DATABASE_URL'] ||= 'postgres://masharikhter:@localhost/octomaps'
 
@@ -23,8 +6,9 @@ DataMapper.setup(:default, ENV['DATABASE_URL'])
 class Repo
   attr_accessor :owner, :name, :locations
 
-  @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
-    :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
+  # @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
+  #   :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
 
   def initialize(owner, name)
     @owner = owner
@@ -66,8 +50,10 @@ class Contributor
   property :login, Text           # Does this refer to the attr accessor defined here?
   property :location, Text        # Does this refer to the attr accessor defined here?
 
-  @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
-    :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
+  
+  # @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
+  #   :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
   
   def self.new_from_github_login(login)
     new_instance = self.new
