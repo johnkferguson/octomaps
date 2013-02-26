@@ -1,5 +1,5 @@
-#db location must be changed to reflect Mac username
-ENV['DATABASE_URL'] ||= 'postgres://masharikhter:@localhost/octomaps'
+
+ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
