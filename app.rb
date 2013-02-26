@@ -12,13 +12,17 @@ post '/' do
   redirect "/map?owner=#{params[:owner]}&repo=#{params[:repo]}"
 end
 
+get '/notfound' do
+  erb :notfound
+end
+
 
 get '/map' do
   @repo = Repo.new(params[:owner], params[:repo])
   begin
     @repo.get_locations
   rescue
-    redirect '/'
+    redirect '/notfound'
   end
   data_table_markers = GoogleVisualr::DataTable.new
   data_table_markers.new_column('string' , 'Location' )
@@ -42,4 +46,6 @@ get '/map' do
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
   erb :map
 end
+
+###Handle redirect
 
