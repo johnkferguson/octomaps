@@ -16,7 +16,7 @@ require 'dm-postgres-adapter'
 # run Sinatra::Application
 
 #db location must be changed to reflect Mac username
-ENV['DATABASE_URL'] ||= 'postgres://jkestler:@localhost/octomaps'
+ENV['DATABASE_URL'] ||= 'postgres://John:@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
@@ -76,9 +76,8 @@ class Contributor
   end
 
   def db_check
-    if Contributor.all(:login => @login).nil?
-      end 
-    end
+    Contributor.all(:login => @login).nil?
+  end
 
   def location_lookup
     if db_check == true
@@ -87,6 +86,8 @@ class Contributor
       puts ".....found location #{@location} for #{self.login}"
       self.location
       Contributor.first_or_create({:login => @login, :location => @location})
+    else
+       puts "else"
     end
   end
 
