@@ -77,13 +77,12 @@ class Contributor
 
   def db_check
     if Contributor.all(:login => @login).nil?
-      return true
       end 
     end
 
   def location_lookup
     if db_check = true
-      self.location ||= @@octokit_client.user(login)["location"] unless self.login.nil?
+      self.location ||= @@octokit_client.user(login)["location"]
       puts ".....looking up location for #{self.login}"
       puts ".....found location #{@location} for #{self.login}"
       self.location
