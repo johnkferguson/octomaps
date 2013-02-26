@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # take out these require statements once we hook up the database
 require 'heroku'
 require 'sinatra'
@@ -91,8 +90,8 @@ end
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-# maps = Repo.new('johnkellyferguson', 'githubmaps')
-# maps.locations
+maps = Repo.new('johnkellyferguson', 'githubmaps')
+maps.locations
 
-octokit = Repo.new('pengwynn', 'octokit')
-octokit.locations
+# octokit = Repo.new('pengwynn', 'octokit')
+# octokit.locations
