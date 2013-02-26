@@ -23,7 +23,8 @@ DataMapper.setup(:default, ENV['DATABASE_URL'])
 class Repo
   attr_accessor :owner, :name, :locations
 
-  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
+  @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
+    :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
 
   def initialize(owner, name)
     @owner = owner
@@ -47,9 +48,13 @@ class Repo
   end
 
   def locations
-    delay = true if contributors.size > 20
-    @locations ||= contributors.collect{|c| sleep 1 if delay; c.location_lookup}
+    @locations ||= contributors.collect{|c| c.location_lookup}
   end
+  
+  #Removed from locations method because sleep should be unnecessary with
+  #oauth token
+  #delay = true if contributors.size > 20
+  #sleep 1 if delay; 
 
   # def location_count
   #   @locations.each_with_object(Hash.new(0)) do |location, hash|
@@ -61,7 +66,6 @@ end
 
 class Contributor
   include DataMapper::Resource
-  # attr_accessor :login, :location
 
   property :id, Serial            # Auto-increment integer id
   property :login, Text           # Does this refer to the attr accessor defined here?
@@ -80,15 +84,15 @@ class Contributor
   end
 
   def location_lookup
-    if db_check == true
+    # if db_check == true
       self.location ||= @@octokit_client.user(login)["location"]
       puts ".....looking up location for #{self.login}"
       puts ".....found location #{@location} for #{self.login}"
       self.location
       Contributor.first_or_create({:login => @login, :location => @location})
-    else
-       puts "else"
-    end
+    # else
+    #    puts "else"
+    # end
   end
 
 end
@@ -99,5 +103,8 @@ DataMapper.auto_upgrade!
 # maps = Repo.new('johnkellyferguson', 'githubmaps')
 # maps.locations
 
-octokit = Repo.new('pengwynn', 'octokit')
-octokit.locations
+# octokit = Repo.new('pengwynn', 'octokit')
+# octokit.locations
+
+rails = Repo.new('rails', 'rails')
+rails.locations
