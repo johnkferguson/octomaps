@@ -81,7 +81,7 @@ class Contributor
     end
 
   def location_lookup
-    if db_check = true
+    if db_check == true
       self.location ||= @@octokit_client.user(login)["location"]
       puts ".....looking up location for #{self.login}"
       puts ".....found location #{@location} for #{self.login}"
@@ -95,8 +95,8 @@ end
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-maps = Repo.new('johnkellyferguson', 'githubmaps')
-maps.locations
+# maps = Repo.new('johnkellyferguson', 'githubmaps')
+# maps.locations
 
-# octokit = Repo.new('pengwynn', 'octokit')
-# octokit.locations
+octokit = Repo.new('pengwynn', 'octokit')
+octokit.locations
