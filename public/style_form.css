@@ -53,7 +53,7 @@ body {
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-position:center;
-  background-color: rgba(0,0,0, .4);
+  background-color: rgba(0,0,0, .3);
   font-size: 1em;
   line-height: 1.5em;
   font-weight:300px;
@@ -62,16 +62,42 @@ body {
 }
 
 h1 {
+  font-size: 5em;
+  color: #F2F2F2;
+  line-height: 1em;
+  background: rgba(64, 64, 64, 0.90);
+  text-align: left;
+}
+
+h3 {
+  font-size: 2em;
+  color: #F2F2F2;
+  line-height: 1em;;
+  background: rgba(64, 64, 64, 0.90);
+  text-align: left;
+
+}
+
+
+h2 {
   font-size: 2em;
 /*  margin-top: 7em;*/
   line-height: 1em;
   position: relative;
+  margin-bottom: 5px;
 }
 
 #query {
 /*  padding-top: 1em;*/
   line-height: 1.2em;
   position: relative;
+}
+
+#query-form {
+/*  padding-top: 1em;*/
+  line-height: 2em;
+  position: relative;
+  text-align: center;
 }
 
 #submit {
@@ -84,6 +110,7 @@ h1 {
     padding: 2px;*/
     width: 155px;
     position: relative;
+    margin-top: 1em;
 }
 
 
