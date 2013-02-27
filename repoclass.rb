@@ -1,7 +1,14 @@
-# ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
+#Heroku Database
+ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
+
+#John's Database
 # ENV['DATABASE_URL'] ||= 'postgres://John@localhost/octomaps'
+
+#Justin's Database
 # ENV['DATABASE_URL'] ||= 'postgres://jkestler@localhost/octomaps'
-ENV['DATABASE_URL'] ||= 'postgres://masharikhter@localhost/octomaps'
+
+#Masha's Database
+#ENV['DATABASE_URL'] ||= 'postgres://masharikhter@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
