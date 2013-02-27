@@ -2,20 +2,24 @@
   <head>
     <meta charset="utf-8" />
     <title></title>
-    <link href="style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+    <link href="style_form.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body>
 
-
-    <h1>Welcome to the GitHub Repository Mapper!</h1>
-    <p>Please enter the name of a GitHub repository and the repository owner to generate a map of the locations of its contributors.</p>
-
+    <div class = transbox>
+    <h1>Welcome to Octomaps,<br>the GitHub Repository Mapper!</h1>
+    <div id = "query"
+      <p>Please enter the name of a GitHub repository and the repository</br>
+        owner to generate a map of the locations of its contributors.</p></br>
 <!-- This post method indicated in the form, we are using it to get information from user  -->
-    <form action="/" method="post">  
-      Repo name: <input type="text" name="repo"><br><br>
-      Repo owner's GitHub username: <input type="text" name="owner">  
-      <input type="submit" value="Submit">
-    </form>  
+      <form action="/" method="post">  
+        Repository Owner: <input type="text" name="repo"><br>
+        Repository Name: <input type="text" name="owner"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+    </div>
+    </div>
+
   </body>
  </html>
