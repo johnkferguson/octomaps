@@ -6,8 +6,6 @@ class Repo
   attr_accessor :owner, :name, :locations
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
-  # @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
-  #   :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
 
   def initialize(owner, name)
     @owner = owner
@@ -42,24 +40,16 @@ end
 class Contributor
   include DataMapper::Resource
 
-  property :id, Serial            # Auto-increment integer id
-  property :login, Text           # Does this refer to the attr accessor defined here?
-  property :location, Text        # Does this refer to the attr accessor defined here?
+  property :id, Serial            
+  property :login, Text           
+  property :location, Text 
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
-  
-  # @@octokit_client = Octokit::Client.new(:login => "johnkellyferguson", 
-  #   :oauth_token => "a2ee8af1802be1417e4fcc79595fbcc16f67959c")
   
   def self.new_from_github_login(login)
     new_instance = self.new
     new_instance.login = login
     new_instance
-
-    #self.new.tap do |contributor|      #returns the block
-    #  contributor.username = username
-    #  contributor.load_info_from_github
-    #end
   end
 
   def db_check
@@ -78,29 +68,13 @@ class Contributor
       self.location
       Contributor.first_or_create({:login => @login, :location => @location})
       @location
-      #needs to pass back the location
     elsif db_check == false
       person  = Contributor.first(:login => @login)
       person.location
-      #puts "need to pull location from DB"
-      #grab the location from the database if the person already exists in the database
     end
   end
 end
 
-
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-# maps = Repo.new('johnkellyferguson', 'githubmaps')
-# maps.locations
-
-
-#rails = Repo.new('rails', 'rails')
-#rails.locations
-
-# wang = Repo.new('eewang', 'tickets')
-# wang.locations
-
-# octokit = Repo.new('pengwynn', 'octokit')
-# octokit.locations

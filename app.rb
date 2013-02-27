@@ -1,13 +1,7 @@
-#if the home, or root, URL '/' is requested, using the normal GET HTTP method, 
-#this renders views/form.erb
-#Requests data from a specified resource
-#retrieves a representation of a resource
 get '/' do
   erb :form     
 end
 
-#Submits data to be processed to a specified resource
-#sends data to the server, only use when you want to create a new record essentially
 post '/' do
   redirect "/map?owner=#{params[:owner]}&repo=#{params[:repo]}"
 end
@@ -15,7 +9,6 @@ end
 get '/notfound' do
   erb :notfound
 end
-
 
 get '/map' do
   @repo = Repo.new(params[:owner], params[:repo])
@@ -46,6 +39,3 @@ get '/map' do
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
   erb :map
 end
-
-###Handle redirect
-

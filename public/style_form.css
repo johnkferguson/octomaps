@@ -1,5 +1,4 @@
-
-
+/*Reset brower specfic CSS*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,6 +19,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -47,7 +47,7 @@ table {
   border-spacing: 0;
 }
 
-
+/*Start Form CSS*/
 body {
   background-image:url('octomaps-cats-logoless.jpg');
   background-repeat:no-repeat;
@@ -77,27 +77,23 @@ h3 {
   line-height: 1em;;
   background: rgba(64, 64, 64, 0.90);
   text-align: left;
-  font-family: 'Cutive Mono';
+  font-family: 'Cutive Mono', sans-serif;
   padding-left: 1em;
 }
 
-
 h2 {
   font-size: 2em;
-/*  margin-top: 7em;*/
   line-height: 1em;
   position: relative;
   margin-bottom: 5px;
 }
 
 #query {
-/*  padding-top: 1em;*/
   line-height: 1.2em;
   position: relative;
 }
 
 #query-form {
-/*  padding-top: 1em;*/
   line-height: 2em;
   position: relative;
   text-align: center;
@@ -109,41 +105,39 @@ h2 {
     border-radius: 5px 5px 5px 5px;
     color: #F2F2F2;
     font-size: 1em;
-/*    margin-top: 1em;
-    padding: 2px;*/
     width: 155px;
     position: relative;
     margin-top: 1em;
 }
 
-
 div.transbox {
   padding:30px;
   width:400px;
-  /*height:180px;*/
   margin:80px;
-  background-color:#ffffff;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
   border:1px solid black;
-  opacity:0.6;
-  filter:alpha(opacity=60); /* For IE8 and earlier */
   postion: relative;
   display: inline-block;
   vertical-align: center;
   }
-/*div.transbox {
-    background-color: #FFFFFF;
-    border: 1px solid black;
-    display: inline-block;
-    margin: 0;
-    opacity: 0.7;
-    padding: 30px;
-    position: relative;
-    top: 70px;
-    width: 400px;
-}*/
-div.transbox p
-  {
+
+div.transbox p {
   margin:30px 40px;
   font-weight:bold;
   color:#000000;
   }
+
+img {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  border: 0;
+  }  
+
+span {
+  font-weight: bold;
+  color: #C43512;
+  font-size: 2em;
+  line-height: 2em;
+}

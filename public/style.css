@@ -1,4 +1,4 @@
-Reset brower specfic CSS*/
+/*Reset brower specfic CSS*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -55,11 +55,11 @@ font-weight:300px;
 font-family: 'Quattrocento Sans', sans-serif;
 }
 
-header{
+header {
   margin-top: 1em;
 }
 
-h1{
+h1 {
 font-size: 2em;
 margin-bottom: .5em;
 line-height: 1em;
@@ -68,7 +68,7 @@ padding-right: 3px;
 /*text-shadow: 1px 1px 1px #555;*/
 }
 
-h2{
+h2 {
 font-size: 1em;
 line-height: 1.5em;
 margin-bottom: 1em;
@@ -86,7 +86,7 @@ margin-bottom: 1em;
   min-height: 100%;
 }
 
-strong{
+strong {
   font-weight: bold;
   color: #C43512;
 }
@@ -98,7 +98,7 @@ strong{
   border-bottom: 1px dotted;
 }
 
-#table li{
+#table li {
   list-style: none;
   font-size: .8em;
   margin-left: -30px;
@@ -133,5 +133,4 @@ strong{
   position: relative;
   padding-left: 140px;
   width: 80%;
-}
-/*determine a grid, 
+} 
