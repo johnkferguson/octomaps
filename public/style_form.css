@@ -47,10 +47,6 @@ table {
   border-spacing: 0;
 }
 
-jpg {
-opacity:0.4;
-filter:alpha(opacity=40); /* For IE8 and earlier */
-}
 
 body {
   background-image:url('octomaps-cats.jpg');
@@ -69,11 +65,13 @@ h1 {
   font-size: 2em;
   margin-top: 7em;
   line-height: 1em;
+  position: relative;
 }
 
 #query {
   padding-top: 1em;
   line-height: 1.2em;
+  position: relative;
 }
 
 #submit {
@@ -85,4 +83,23 @@ h1 {
     margin-top: 1em;
     padding: 2px;
     width: 155px;
+    position: relative;
 }
+
+
+div.transbox {
+  padding:30px;
+  width:400px;
+  /*height:180px;*/
+  margin:30px 50px;
+  background-color:#ffffff;
+  border:1px solid black;
+  opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
+  }
+div.transbox p
+  {
+  margin:30px 40px;
+  font-weight:bold;
+  color:#000000;
+  }
