@@ -1,6 +1,6 @@
 require_relative 'database' if development?
 
-DataMapper.setup(:default, ENV['DATABASE_URL'])gi
+DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class Repo
   attr_accessor :owner, :name, :locations
