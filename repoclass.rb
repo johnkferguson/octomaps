@@ -16,7 +16,7 @@ class Repo
     self.owner + "/" + self.name 
   end
 
-  def contributors
+  def find_contributors
     puts "looking up contributors for #{self.combined_name}"
     @github_contributors ||= @@octokit_client.contribs(self.combined_name) 
     puts "...found #{@github_contributors.size} contributors"
@@ -26,7 +26,7 @@ class Repo
   end
 
   def get_locations
-    @locations ||= contributors.collect{|c| c.location_lookup}
+    @locations ||= find_contributors.collect{|c| c.location_lookup}
   end
 
   def location_count
@@ -77,4 +77,3 @@ end
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
-
