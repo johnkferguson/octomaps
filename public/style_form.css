@@ -1,4 +1,5 @@
 
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -46,79 +47,33 @@ table {
   border-spacing: 0;
 }
 
-h1{
-font-size: 2em;
-margin-bottom: .5em;
-line-height: 1em;
-font-weight: bold;
-padding-right: 3px;
-/*text-shadow: 1px 1px 1px #555;*/
+jpg {
+opacity:0.4;
+filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 
-h2{
-font-size: 1em;
-line-height: 1.5em;
-margin-bottom: 1em;
+body {
+  background-image:url('octomaps-cats.jpg');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:center;
+  background-color: rgba(0,0,0, .4);
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight:300px;
+  font-family: 'Quattrocento Sans', sans-serif;
+  text-align: center;
 }
 
-header{
-  margin-top: 1em;
+h1 {
+  font-size: 2em;
+  margin-top: 7em;
+  line-height: 1em;
 }
 
-body{
-background-color:white;
-font-size: 1em;
-line-height: 1.5em;
-/*font-family: helvetica;*/
-font-weight:300px;
-font-family: 'Quattrocento Sans', sans-serif;
-}
-
-#table li{
-  list-style: none;
-  font-size: .8em;
-}
-
-#chart_markers {
-  position: relative;
-  padding-left: 140px;
-  width: 80%;
-}
-
-#left {
-  width: 200px;
-  padding: 1em 0 3em 2em;
-  float: left;
-  z-index: 2;
-  position: absolute;
-/*  background-color: #403E40;*/
-  color: #F2F2F2;
-  background: rgba(64, 64, 64, 0.95);
-  border-bottom-right-radius: 5px;
-  min-height: 100%;
-}
-
-#query_form {
-  margin-top: 1em;
-  height: 20%;
-} 
-
-#query_form p {
-  padding-bottom: 1em;
-  padding-right: 2em;
-  font-size: 1.1em
-} 
-
-#table {
-  max-height: 300px;
-  overflow: auto;
-  border-top: 1px dotted;
-  border-bottom: 1px dotted;
-}
-
-strong{
-  font-weight: bold;
-  color: #C43512;
+#query {
+  padding-top: 1em;
+  line-height: 1.2em;
 }
 
 #submit {
@@ -131,4 +86,3 @@ strong{
     padding: 2px;
     width: 155px;
 }
-/*determine a grid, */
