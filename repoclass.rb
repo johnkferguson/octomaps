@@ -1,4 +1,3 @@
-
 ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])

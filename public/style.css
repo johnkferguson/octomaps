@@ -1,4 +1,4 @@
-
+Reset brower specfic CSS*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -46,6 +46,19 @@ table {
   border-spacing: 0;
 }
 
+/*Start Map CSS*/
+body{
+background-color:white;
+font-size: 1em;
+line-height: 1.5em;
+font-weight:300px;
+font-family: 'Quattrocento Sans', sans-serif;
+}
+
+header{
+  margin-top: 1em;
+}
+
 h1{
 font-size: 2em;
 margin-bottom: .5em;
@@ -61,53 +74,22 @@ line-height: 1.5em;
 margin-bottom: 1em;
 }
 
-header{
-  margin-top: 1em;
-}
-
-body{
-background-color:white;
-font-size: 1em;
-line-height: 1.5em;
-/*font-family: helvetica;*/
-font-weight:300px;
-font-family: 'Quattrocento Sans', sans-serif;
-}
-
-#table li{
-  list-style: none;
-  font-size: .8em;
-}
-
-#chart_markers {
-  position: relative;
-  padding-left: 140px;
-  width: 80%;
-}
-
 #left {
   width: 200px;
   padding: 1em 0 3em 2em;
   float: left;
   z-index: 2;
   position: absolute;
-/*  background-color: #403E40;*/
   color: #F2F2F2;
   background: rgba(64, 64, 64, 0.95);
   border-bottom-right-radius: 5px;
   min-height: 100%;
 }
 
-#query_form {
-  margin-top: 1em;
-  height: 20%;
-} 
-
-#query_form p {
-  padding-bottom: 1em;
-  padding-right: 2em;
-  font-size: 1.1em
-} 
+strong{
+  font-weight: bold;
+  color: #C43512;
+}
 
 #table {
   max-height: 300px;
@@ -116,10 +98,25 @@ font-family: 'Quattrocento Sans', sans-serif;
   border-bottom: 1px dotted;
 }
 
-strong{
-  font-weight: bold;
-  color: #C43512;
+#table li{
+  list-style: none;
+  font-size: .8em;
+  margin-left: -30px;
 }
+
+#table li:hover {
+  font-weight:bold;
+}
+
+#query_form {
+  margin-top: 1em;
+  height: 20%;
+} 
+
+#query_form p {
+  padding-right: 2em;
+  font-size: 1.1em
+} 
 
 #submit {
     background-color: #C43512;
@@ -131,4 +128,10 @@ strong{
     padding: 2px;
     width: 155px;
 }
-/*determine a grid, */
+
+#chart_markers {
+  position: relative;
+  padding-left: 140px;
+  width: 80%;
+}
+/*determine a grid, 
