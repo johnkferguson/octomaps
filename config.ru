@@ -13,7 +13,7 @@ require 'pry'
 require 'data_mapper'
 require 'dm-postgres-adapter'
 require 'google_visualr'
-require './repoclass'
-require './app'
+require './repoclass.rb'
+require './app.rb'
 
 run Sinatra::Application
