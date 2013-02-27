@@ -96,6 +96,7 @@ strong {
   overflow: auto;
   border-top: 1px dotted;
   border-bottom: 1px dotted;
+  padding-left: 40px;
 }
 
 #table li {
