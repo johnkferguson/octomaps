@@ -1,4 +1,7 @@
-require_relative 'database' if development?
+if development?
+  require_relative 'database' 
+  DataMapper::Logger.new(STDOUT, :debug)
+end
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
