@@ -14,4 +14,4 @@ require './repoclass.rb'
 require './app.rb'
 
 run Sinatra::Application
-binding.pry
+# binding.pry
