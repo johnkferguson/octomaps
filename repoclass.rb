@@ -1,4 +1,7 @@
-ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
+# ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
+# ENV['DATABASE_URL'] ||= 'postgres://John@localhost/octomaps'
+# ENV['DATABASE_URL'] ||= 'postgres://jkestler@localhost/octomaps'
+ENV['DATABASE_URL'] ||= 'postgres://masharikhter@localhost/octomaps'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
