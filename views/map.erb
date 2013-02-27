@@ -1,34 +1,38 @@
 <html>
   <head>
     <script src='http://www.google.com/jsapi'></script> 
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
     <meta charset="utf-8" />
     <title></title>
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Great success!</h1>
-  <p> The <%= @repo.name %> repository owned by GitHub user <%= @repo.owner %> has <%= @repo.contributors.count %> contributors in <%= @repo.location_count.count %> locations.
-    <% @repo.location_count.each do |x| %>
+    <div id = "left">
+    <header><h1>Great success!</h1>
+  <h2> <strong><%= @repo.contributors.count %></strong> contributors in<br>
+    <strong><%= @repo.location_count.count %></strong> locations for<br>
+    <strong><%= @repo.owner %>/<%= @repo.name %></strong></h2></header>
+  
+    <div id = "table"><ul><% @repo.location_count.each do |x| %>
      <% if x[0] == nil
         key = "Location Unknown"
       else
         key = x[0]
       end
       value = x[1] %>
-      <li><%= "#{value}" %> contributor in <%= "#{key}" %></link>
-    <% end %>
-    </p>
-  <div id='chart_markers'></div>
-    <%= @chart_markers.to_js("chart_markers") %>
-    <p>Please enter another GitHub repo and repo owner below to generate another map.
-    </p>
-
+      <li><%= "#{value}" %> in <%= "#{key}" %></li>
+    <% end %></ul>
+    </div>
+    <div id = "query_form">
   <form action="/" method="post">  
-  Repo name: <input type="text" name="repo"><br>  
-  Repo owner's GitHub username: <input type="text" name="owner">  
-  <input type="submit">
-  </form>  
+  <p>Enter a GitHub repository owner and name to generate another map.</p>
+  Repository Owner: <input type="text" name="owner">  
+  Repository Name:<br> <input type="text" name="repo"><br>  
+  <input type="submit" value="Submit" id = "submit"></form>
+  </div> 
+  </div>  
+  <div id='chart_markers'>
+    <%= @chart_markers.to_js("chart_markers") %></div>
+    
   </body>
 </html>
-
-
