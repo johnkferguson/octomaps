@@ -1,5 +1,5 @@
 #Heroku Database
-ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
+# ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
 
 #John's Database
 # ENV['DATABASE_URL'] ||= 'postgres://John@localhost/octomaps'
@@ -9,8 +9,9 @@ ENV['DATABASE_URL'] ||= 'postgres://localhost/mydb'
 
 #Masha's Database
 #ENV['DATABASE_URL'] ||= 'postgres://masharikhter@localhost/octomaps'
+require_relative 'database' if development?
 
-DataMapper.setup(:default, ENV['DATABASE_URL'])
+DataMapper.setup(:default, ENV['DATABASE_URL'])gi
 
 class Repo
   attr_accessor :owner, :name, :locations
