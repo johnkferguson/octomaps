@@ -49,7 +49,7 @@ table {
 
 
 body {
-  background-image:url('octomaps-cats.jpg');
+  background-image:url('octomaps-cats-logoless.jpg');
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-position:center;
@@ -67,6 +67,8 @@ h1 {
   line-height: 1em;
   background: rgba(64, 64, 64, 0.90);
   text-align: left;
+  font-family: 'Cutive Mono';
+  padding-left: .3em;
 }
 
 h3 {
@@ -75,7 +77,8 @@ h3 {
   line-height: 1em;;
   background: rgba(64, 64, 64, 0.90);
   text-align: left;
-
+  font-family: 'Cutive Mono';
+  padding-left: 1em;
 }
 
 
@@ -118,7 +121,7 @@ div.transbox {
   padding:30px;
   width:400px;
   /*height:180px;*/
-  margin:200px;
+  margin:80px;
   background-color:#ffffff;
   border:1px solid black;
   opacity:0.6;
@@ -126,7 +129,6 @@ div.transbox {
   postion: relative;
   display: inline-block;
   vertical-align: center;
-  position: relative;
   }
 /*div.transbox {
     background-color: #FFFFFF;
