@@ -20,12 +20,37 @@ class Repo
   end
 
   def find_contributors
-    puts "looking up contributors for #{self.combined_name}"
+    return @contributors if @contributors
+
+    # puts "looking up contributors for #{self.combined_name}"
     @github_contributors ||= @@octokit_client.contribs(self.combined_name) 
-    puts "...found #{@github_contributors.size} contributors"
-    @contributors ||= @github_contributors.collect do |u| 
-      Contributor.new_from_github_login(u["login"])
+
+    github_logins = @github_contributors.collect{|g| g["login"]}
+
+    # take the github logins and split them into two arrays
+    # SELECT id, login FROM contributors WHERE login IN (array)
+    existing_contributors = Contributor.all(:login => github_logins)
+    
+
+    contributors_to_lookup = github_logins - existing_contributors.collect{|c| c.login}
+    
+
+    # puts contributors_to_lookup
+
+    # one where we know they already exist in our DB
+    # one where we know we need lookups
+    @contributors = existing_contributors
+
+    @contributors.inspect
+
+    @contributors << contributors_to_lookup.collect do |u|
+      Contributor.new_from_github_login(u)
     end
+
+    
+
+    @contributors.flatten
+    # puts "...found #{@github_contributors.size} contributors"
   end
 
   def get_locations
@@ -44,37 +69,21 @@ class Contributor
   include DataMapper::Resource
 
   property :id, Serial            
-  property :login, Text           
-  property :location, Text 
+  property :login, String           
+  property :location, String 
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
   
   def self.new_from_github_login(login)
     new_instance = self.new
     new_instance.login = login
+    new_instance.location = @@octokit_client.user(login)["location"]
+    new_instance.save
     new_instance
   end
 
-  def db_check
-    if Contributor.count(:login => @login) == 0
-      true
-    else 
-      false
-    end
-  end
-
   def location_lookup
-    if db_check == true
-      self.location ||= @@octokit_client.user(login)["location"]
-      puts ".....looking up location for #{self.login}"
-      puts ".....found location #{@location} for #{self.login}"
-      self.location
-      Contributor.first_or_create({:login => @login, :location => @location})
-      @location
-    elsif db_check == false
-      person  = Contributor.first(:login => @login)
-      person.location
-    end
+    self.location
   end
 end
 

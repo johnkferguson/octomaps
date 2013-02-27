@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'rack'
 gem 'heroku'
@@ -9,3 +9,7 @@ gem 'octokit'
 gem 'google_visualr'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
+
+group :development do
+  gem 'pry'
+end

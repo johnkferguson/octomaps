@@ -11,8 +11,8 @@
   <div id = "left">
     <header>
       <h1>Great success!</h1>
-      <h2><strong><%= @repo.find_contributors.count %></strong> contributors in<br>
-          <strong><%= @repo.location_count.count %></strong> locations for<br>
+      <h2><strong><%= @repo.find_contributors.size %></strong> contributors in<br>
+          <strong><%= @repo.location_count.size %></strong> locations for<br>
           <strong><%= @repo.owner %>/<%= @repo.name %></strong></h2>
     </header>
     <div id = "table">
