@@ -22,7 +22,7 @@ For a much more granular perspective on how Octomaps' code works, check out [A S
 
 ##Running Octomaps on Your Local Machine
 1. [Fork the repository.](https://github.com/JohnKellyFerguson/octomaps/fork_select)
-2. Use Bundler to make sure you have all the necessary gems.
+2. Bundle to make sure you have all the necessary gems.
 3. Set up a database to be used with Octomaps. Postgres is preferred.
 4. Create a database.rb file in your Octomaps home directory. Within the file you want to provide your datebase location. The syntax is as follows:
 `
