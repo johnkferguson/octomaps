@@ -31,6 +31,7 @@ class Repo
     # SELECT id, login FROM contributors WHERE login IN (array)
     existing_contributors = Contributor.all(:login => github_logins)
     
+    # binding.pry
 
     contributors_to_lookup = github_logins - existing_contributors.collect{|c| c.login}
     
@@ -39,15 +40,15 @@ class Repo
 
     # one where we know they already exist in our DB
     # one where we know we need lookups
-    @contributors = existing_contributors
-
-    @contributors.inspect
-
-    @contributors << contributors_to_lookup.collect do |u|
-      Contributor.new_from_github_login(u)
-    end
-
     
+    @contributors = existing_contributors
+# binding.pry
+    # @contributors.inspect
+    if contributors_to_lookup != []
+      @contributors << contributors_to_lookup.collect do |u|
+        Contributor.new_from_github_login(u)
+      end
+    end
 
     @contributors.flatten
     # puts "...found #{@github_contributors.size} contributors"
