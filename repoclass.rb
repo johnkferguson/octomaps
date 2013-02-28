@@ -16,29 +16,43 @@ class Repo
     @name = name
   end
 
+  def locations    
+    @locations ||= contributors.collect{|c| c.location_lookup}
+  end
+
   def combined_name
     self.owner + "/" + self.name 
   end
 
-  def find_contributors
-    # return @contributors if @contributors
-    @all_contributors_info ||= @@octokit_client.contribs(self.combined_name) 
-    all_contributor_names = @all_contributors_info.collect{|g| g["login"]}
-    contributors_in_database = Contributor.all(:login => all_contributor_names)
-    contributors_not_in_database = 
-      all_contributor_names - contributors_in_database.collect{|c| c.login}
-    @contributors = [contributors_in_database]
-    if contributors_not_in_database.size > 0
-      @contributors << contributors_not_in_database.collect do |u|
-        Contributor.save_new_contributor_to_db(u)
-        # binding.pry
-      end
-    end
-    @contributors.flatten
+  def github_contributors
+    @github_contributors ||= @@octokit_client.contribs(self.combined_name) 
   end
 
-  def get_locations
-    @locations ||= find_contributors.collect{|c| c.location_lookup}
+  def github_contributor_logins
+    @github_contributors_logins ||= github_contributors.collect{|g| g["login"]}
+  end
+
+  def existing_contributors
+    @existing_contributors ||= Contributor.all(:login => github_contributor_logins)
+  end
+
+  def existing_contributor_logins
+    @existing_contributor_logins ||= existing_contributors.collect{|c| c.login}
+  end
+
+
+  def non_existing_contributor_logins
+    @non_existing_contributor_logins ||= github_contributor_logins - existing_contributor_logins
+  end
+
+  def contributors 
+    if non_existing_contributor_logins.size > 0
+      new_contributors = non_existing_contributor_logins.collect do |u|
+        Contributor.save_new_contributor_to_db(u)
+      end
+    end
+
+    [existing_contributors, new_contributors].flatten.compact
   end
 
   def location_count
@@ -57,7 +71,7 @@ class Contributor
   include DataMapper::Resource
 
   property :id, Serial            
-  property :login, String           
+  property :login, String, :index => true    
   property :location, String 
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", 
