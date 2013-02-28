@@ -41,8 +41,8 @@ class Repo
   end
 
   def location_count
-    @locations.each_with_object(Hash.new(0)) do |location, hash|
-      hash[location] += 1
+    @locations.each_with_object(Hash.new(0)) do |location, loc_hash|
+      loc_hash[location] += 1
     end
   end
 

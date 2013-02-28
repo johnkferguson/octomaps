@@ -17,7 +17,8 @@
     </header>
     <div id = "table">
       <ul>
-        <% @repo.location_count.each do |x| %>
+        <% list = @repo.location_count.sort_by{|location, contributors| contributors}.reverse %>
+        <% list.each do |x| %>
           <% if x[0] == nil
                 key = "Location Unknown"
              else
