@@ -1,36 +1,35 @@
-GithubMaps
+Octomaps
 ==========
 
-**Basic Project Description:** Displays all contributors to an open-source project on a map based upon the contributor's location.	
+Octomaps plots the locations of contributors to any open-source project on a map. 
+
+Check out Octomaps in action here: [http://www.octomaps.com](http://www.octomaps.com)
+
 	
-##Main Components
+##Octomaps' Key Components
+Octomaps is built with [Ruby](http://www.ruby-lang.org/en/) and uses the [Sinatra](http://www.sinatrarb.com/) web framework.
 
-GithubMaps use the following main components:
+All information regarding contributors to a Github repository and those contributors' locations are retrieved using the [Github API](http://developer.github.com/). Github's API is very robust and its documentation is quite thorough. The relevant parts that Octomaps utilizes are: (1) [retrieving a list of contributors to a project](http://developer.github.com/v3/repos/#list-contributors) & (2) [getting a user's location](http://developer.github.com/v3/users/).
 
-####[Github API](http://developer.github.com/)
-The Github API allows for getting all sorts of information from Github. The two relevant pieces of data for this project are:
+Octomaps uses the [Octokit](https://github.com/pengwynn/octokit) gem to interact with the Github API. All data retrieved through the API is returned in [JSON](https://github.com/flori/json).
 
-1. [A list of contributors to a project.](http://developer.github.com/v3/repos/#list-contributors)
-2. [A user's location](http://developer.github.com/v3/users/)
+[Datamapper](http://datamapper.org/) is used to interact with the data that is stored in a Postgres database.
 
-####[Octokit](https://github.com/pengwynn/octokit)
-Octokit is a ruby gem that acts as a wrapper to the github api. Once again, the relevant data are project contributors and contributor's location. The appropriate methods for dealing with this data are [here](https://github.com/pengwynn/octokit/blob/master/lib/octokit/client/repositories.rb) and [here](https://github.com/pengwynn/octokit/blob/master/lib/octokit/client/users.rb). 
+Locations are plotted using the [Google Visualization API](https://developers.google.com/chart/interactive/docs/reference) and its corresponding ruby wrapper: [Google Visualr](https://github.com/winston/google_visualr).
 
-####[JSON](https://github.com/flori/json)
-All github api output is in json. 
+For a much more granular perspective on how Octomaps' code works, check out [A Step by Step Overview of How Octomaps Works](https://github.com/JohnKellyFerguson/octomaps/wiki/A-Step-by-Step-Overview-of-How-Octomaps-Works)
 
-####Maps API
-A maps api will display contributor's locations.
 
-####[Sinatra](http://www.sinatrarb.com/)
-Sinatra pulls everything all together.
+##Getting Started
+1. Clone or fork the repository
+2. Bundle
+3. Install postgres if you don't already have it
+3. Create a postgres database
+4. Create a database.rb file that links to Syntax is as follows:
+```ruby
+ENV['DATABASE_URL'] ||= 'postgres://your_host_name_here@localhost/'
+```
+5. Set up an authentication.rb file
 
-##Planned features
-* Obtain user ids of contributors to a project
-* Determine contributor's location
-* Validate and clean location data (ie handle users who don't have locations or who have vague locations (ie "USA"))
-* Make any valid locations intelligible to the Maps API protocol
-* Allow users to input and submit name of GitHub project via webform
-* Users should receive project contributor's locations plotted on a map
-* Map should only show relevant area (if all contribs are in USA, should not show entire world)
-
+##About Us
+Octomaps was built by [John Kelly Ferguson](https://github.com/JohnKellyFerguson), [Justin Kestler](https://github.com/meowist), [Masha Rikhter](https://github.com/mrikhter) while attending the [Flatiron School](http://flatironschool.com/).
