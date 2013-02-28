@@ -11,7 +11,7 @@ Octomaps is built with [Ruby](http://www.ruby-lang.org/en/) and uses the [Sinatr
 
 All information regarding contributors to a Github repository and those contributors' locations are retrieved using the [Github API](http://developer.github.com/). Github's API is very robust and its documentation is quite thorough. The relevant parts that Octomaps utilizes are: (1) [retrieving a list of contributors to a project](http://developer.github.com/v3/repos/#list-contributors) & (2) [getting a user's location](http://developer.github.com/v3/users/).
 
-Octomaps uses [Octokit](https://github.com/pengwynn/octokit), a GitHub API wrappter, to ineract with the Github API. All data retrieved through the API is returned in [JSON](https://github.com/flori/json).
+Octomaps uses [Octokit](https://github.com/pengwynn/octokit), a GitHub API wrapper, to ineract with the Github API. All data retrieved through the API is returned in [JSON](https://github.com/flori/json).
 
 [Datamapper](http://datamapper.org/) is used to interact with the data that is stored in a Postgres database.
 
@@ -20,16 +20,19 @@ Locations are plotted using the [Google Visualization API](https://developers.go
 For a much more granular perspective on how Octomaps' code works, check out [A Step by Step Overview of How Octomaps Works](https://github.com/JohnKellyFerguson/octomaps/wiki/A-Step-by-Step-Overview-of-How-Octomaps-Works)
 
 
-##Getting Started
-1. Clone or fork the repository
-2. Bundle
-3. Install postgres if you don't already have it
-3. Create a postgres database
-4. Create a database.rb file that links to Syntax is as follows:
-```ruby
-ENV['DATABASE_URL'] ||= 'postgres://your_host_name_here@localhost/'
-```
-5. Set up an authentication.rb file
+##Running Octomaps on Your Local Machine
+1. [Fork the repository.](https://github.com/JohnKellyFerguson/octomaps/fork_select)
+2. Use Bundler to make sure you have all the necessary gems.
+3. Set up a database to be used with Octomaps. Postgres is preferred.
+4. Create a database.rb file in your Octomaps home directory. Within the file you want to provide your datebase location. The syntax is as follows:
+`
+ENV['DATABASE_URL'] ||= 'postgres://your_host_name_here@localhost/name_of_your_db_here'
+`
+5. Within the repoclass.rb file, adjust the login and password for Octokit to reflect your information.
+6. Start playing with Octomaps!
+
+##Contributing to Octomaps
+If you'd like to contribute to octomaps, fork our repository and submit a pull request. Also, be sure to check out [our issues page](https://github.com/JohnKellyFerguson/octomaps/issues?state=open) for a list of things we are working on.
 
 ##About Us
 Octomaps was built by [John Kelly Ferguson](https://github.com/JohnKellyFerguson), [Justin Kestler](https://github.com/meowist), [Masha Rikhter](https://github.com/mrikhter) while attending the [Flatiron School](http://flatironschool.com/).
