@@ -14,11 +14,11 @@ end
 
 get '/map' do
   @repo = Repo.new(params[:owner], params[:repo])
-  # begin
+  begin
     @repo.get_locations
-  # rescue
-  #   redirect '/notfound'
-  # end
+  rescue
+    redirect '/notfound'
+  end
   data_table_markers = GoogleVisualr::DataTable.new
   data_table_markers.new_column('string' , 'Location' )
   data_table_markers.new_column('number' , 'Contributions')

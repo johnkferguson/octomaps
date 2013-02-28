@@ -8,7 +8,8 @@ DataMapper.setup(:default, ENV['DATABASE_URL'])
 class Repo
   attr_accessor :owner, :name, :locations
 
-  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", 
+                                         :password => "flatiron001")
 
   def initialize(owner, name)
     @owner = owner
@@ -20,38 +21,19 @@ class Repo
   end
 
   def find_contributors
-    return @contributors if @contributors
-
-    # puts "looking up contributors for #{self.combined_name}"
-    @github_contributors ||= @@octokit_client.contribs(self.combined_name) 
-
-    github_logins = @github_contributors.collect{|g| g["login"]}
-
-    # take the github logins and split them into two arrays
-    # SELECT id, login FROM contributors WHERE login IN (array)
-    existing_contributors = Contributor.all(:login => github_logins)
-    
-    # binding.pry
-
-    contributors_to_lookup = github_logins - existing_contributors.collect{|c| c.login}
-    
-
-    # puts contributors_to_lookup
-
-    # one where we know they already exist in our DB
-    # one where we know we need lookups
-    
-    @contributors = existing_contributors
-# binding.pry
-    # @contributors.inspect
-    if contributors_to_lookup != []
-      @contributors << contributors_to_lookup.collect do |u|
-        Contributor.new_from_github_login(u)
+    #return @contributors if @contributors
+    @all_contributors_info ||= @@octokit_client.contribs(self.combined_name) 
+    all_contributor_names = @all_contributors_info.collect{|g| g["login"]}
+    contributors_in_database = Contributor.all(:login => all_contributor_names)
+    contributors_not_in_database = 
+      all_contributor_names - contributors_in_database.collect{|c| c.login}
+    @contributors = contributors_in_database
+    if contributors_not_in_database.size > 0
+      @contributors << contributors_not_in_database.collect do |u|
+        Contributor.save_new_contributor_to_db(u)
       end
     end
-
     @contributors.flatten
-    # puts "...found #{@github_contributors.size} contributors"
   end
 
   def get_locations
@@ -73,9 +55,10 @@ class Contributor
   property :login, String           
   property :location, String 
 
-  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", :password => "flatiron001")
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", 
+                                         :password => "flatiron001")
   
-  def self.new_from_github_login(login)
+  def self.save_new_contributor_to_db(login)
     new_instance = self.new
     new_instance.login = login
     new_instance.location = @@octokit_client.user(login)["location"]
