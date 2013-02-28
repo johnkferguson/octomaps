@@ -21,16 +21,17 @@ class Repo
   end
 
   def find_contributors
-    #return @contributors if @contributors
+    # return @contributors if @contributors
     @all_contributors_info ||= @@octokit_client.contribs(self.combined_name) 
     all_contributor_names = @all_contributors_info.collect{|g| g["login"]}
     contributors_in_database = Contributor.all(:login => all_contributor_names)
     contributors_not_in_database = 
       all_contributor_names - contributors_in_database.collect{|c| c.login}
-    @contributors = contributors_in_database
+    @contributors = [contributors_in_database]
     if contributors_not_in_database.size > 0
       @contributors << contributors_not_in_database.collect do |u|
         Contributor.save_new_contributor_to_db(u)
+        # binding.pry
       end
     end
     @contributors.flatten
@@ -42,7 +43,11 @@ class Repo
 
   def location_count
     @locations.each_with_object(Hash.new(0)) do |location, loc_hash|
-      loc_hash[location] += 1
+      if location == "" || location == nil
+        loc_hash["Location Unkown"] += 1
+      else
+        loc_hash[location] += 1
+      end
     end
   end
 

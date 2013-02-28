@@ -15,7 +15,7 @@ end
 get '/map' do
   @repo = Repo.new(params[:owner], params[:repo])
   begin
-    @repo.get_locations
+  @repo.get_locations
   rescue
     redirect '/notfound'
   end
@@ -25,15 +25,9 @@ get '/map' do
   data_table_markers.add_rows(@repo.location_count.count)
   i = 0
   while i < @repo.location_count.count
-    @repo.location_count.each do |x|
-      if x[0] == nil
-        key = "Location Unknown"
-      else
-        key = x[0]
-      end
-      value = x[1]
-      data_table_markers.set_cell(i,0,key)
-      data_table_markers.set_cell(i,1,value)
+    @repo.location_count.each do |location, count|
+      data_table_markers.set_cell(i,0,location)
+      data_table_markers.set_cell(i,1, count)
       i += 1
     end
   end
@@ -41,3 +35,4 @@ get '/map' do
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
   erb :map
 end
+
