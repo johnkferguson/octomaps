@@ -11,11 +11,11 @@ Octomaps is built with [Ruby](http://www.ruby-lang.org/en/) and uses the [Sinatr
 
 All information regarding contributors to a Github repository and those contributors' locations are retrieved using the [Github API](http://developer.github.com/). Github's API is very robust and its documentation is quite thorough. The relevant parts that Octomaps utilizes are: (1) [retrieving a list of contributors to a project](http://developer.github.com/v3/repos/#list-contributors) & (2) [getting a user's location](http://developer.github.com/v3/users/).
 
-Octomaps uses the [Octokit](https://github.com/pengwynn/octokit) gem to interact with the Github API. All data retrieved through the API is returned in [JSON](https://github.com/flori/json).
+Octomaps uses [Octokit](https://github.com/pengwynn/octokit), a GitHub API wrappter, to ineract with the Github API. All data retrieved through the API is returned in [JSON](https://github.com/flori/json).
 
 [Datamapper](http://datamapper.org/) is used to interact with the data that is stored in a Postgres database.
 
-Locations are plotted using the [Google Visualization API](https://developers.google.com/chart/interactive/docs/reference) and its corresponding ruby wrapper: [Google Visualr](https://github.com/winston/google_visualr).
+Locations are plotted using the [Google Visualization API](https://developers.google.com/chart/interactive/docs/reference) and its corresponding Ruby wrapper, [Google Visualr](https://github.com/winston/google_visualr).
 
 For a much more granular perspective on how Octomaps' code works, check out [A Step by Step Overview of How Octomaps Works](https://github.com/JohnKellyFerguson/octomaps/wiki/A-Step-by-Step-Overview-of-How-Octomaps-Works)
 
