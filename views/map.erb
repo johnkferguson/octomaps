@@ -18,15 +18,9 @@
     <div id = "table">
       <ul>
         <% list = @repo.location_count.sort_by{|location, contributors| contributors}.reverse %>
-        <% list.each do |x| %>
-          <% if x[0] == nil
-                key = "Location Unknown"
-             else
-                key = x[0]
-             end
-                value = x[1] %>
-            <li><%= "#{value}" %> in <%= "#{key}" %></li>
-          <% end %>
+        <% list.each do |location, count| %>
+          <li><%= "#{count}" %> in <%= "#{location}" %></li>
+        <% end %>
       </ul>
     </div>
     <div id = "query_form">
