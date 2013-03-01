@@ -35,4 +35,4 @@ ENV['DATABASE_URL'] ||= 'postgres://your_host_name_here@localhost/name_of_your_d
 If you'd like to contribute to octomaps, fork our repository and submit a pull request. Also, be sure to check out [our issues page](https://github.com/JohnKellyFerguson/octomaps/issues?state=open) for a list of things we are working on.
 
 ##About Us
-Octomaps was built by [John Kelly Ferguson](https://github.com/JohnKellyFerguson), [Justin Kestler](https://github.com/meowist), [Masha Rikhter](https://github.com/mrikhter) while attending the [Flatiron School](http://flatironschool.com/).
+Octomaps was built by [John Kelly Ferguson](https://github.com/JohnKellyFerguson), [Justin Kestler](https://github.com/meowist), [Masha Rikhter](https://github.com/mrikhter) with design help from [Ana Asnes Becker](http://www.anabeckerdesign.com) while attending the [Flatiron School](http://flatironschool.com/).
