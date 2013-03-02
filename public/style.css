@@ -130,6 +130,25 @@ strong {
     width: 155px;
 }
 
+#credits {
+  max-height: 300px;
+  overflow: auto;
+  border-top: 1px dotted;
+  border-bottom: 1px dotted;
+  padding-left: 40px;
+  margin-top:20px;
+}
+
+#credits li {
+  list-style: none;
+  font-size: .8em;
+  margin-left: -30px;
+}
+
+#credits li a {
+  color: #fff;
+}
+
 #chart_markers {
   position: relative;
   padding-left: 140px;
