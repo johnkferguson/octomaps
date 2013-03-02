@@ -29,7 +29,15 @@
       Repository Owner: <input type="text" name="owner">  
       Repository Name:<br> <input type="text" name="repo"><br>  
       <input type="submit" value="Submit" id = "submit"></form>
-    </div> 
+    </div>
+    <div id = "credits">
+      <ul>
+          <li>Created by:</li>
+          <li><a href = "http://www.twitter.com/johnkferguson">John Kelly Ferguson</a>, <a href = "http://www.twitter.com/mrikhter">Masha Rikhter</a> & <a href = "http://www.twitter.com/jkestler">Justin Kestler</a></li>
+          <li>Students at the <a href = "http://www.flatironschool.com">Flatiron School</a>.</li>
+      </ul>
+    </div>
+
   </div>  
   <div id='chart_markers'>
     <%= @chart_markers.to_js("chart_markers") %>
