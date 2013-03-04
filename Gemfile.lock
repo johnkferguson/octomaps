@@ -59,6 +59,7 @@ GEM
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
     fastercsv (1.5.5)
+    geocoder (1.1.6)
     google_visualr (2.1.7)
     hashie (1.2.0)
     heroku (2.35.0)
@@ -124,6 +125,7 @@ PLATFORMS
 DEPENDENCIES
   data_mapper
   dm-postgres-adapter
+  geocoder
   google_visualr
   heroku
   octokit

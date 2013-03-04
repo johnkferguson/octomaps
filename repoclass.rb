@@ -73,6 +73,7 @@ class Contributor
   property :id, Serial            
   property :login, String, :index => true    
   property :location, String 
+  property :country, String 
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", 
                                          :password => "flatiron001")
@@ -81,13 +82,26 @@ class Contributor
     new_instance = self.new
     new_instance.login = login
     new_instance.location = @@octokit_client.user(login)["location"]
+    new_instance.country = country(new_instance.location)
     new_instance.save
     new_instance
   end
 
-  def location_lookup
-    self.location
+  def self.country(location)
+    if location.nil?
+      "Location Unknown"
+    else
+      results = Geocoder.search(location)
+      geo = results.first
+      geo.country
+    end
   end
+
+  def location_lookup
+    self.country
+  end
+
+
 end
 
 DataMapper.finalize
