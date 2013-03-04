@@ -48,6 +48,7 @@ class Repo
   def contributors 
     if non_existing_contributor_logins.size > 0
       new_contributors = non_existing_contributor_logins.collect do |u|
+        # binding.pry
         Contributor.save_new_contributor_to_db(u)
       end
     end

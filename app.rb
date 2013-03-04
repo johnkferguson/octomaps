@@ -25,7 +25,7 @@ get '/map' do
     data_table_markers.set_cell(i,1, count)
     i += 1
   end
-  opts = { :displayMode => 'markers', :region => 'world', :legend => 'none', 
+  opts = { :displayMode => 'region', :region => 'world', :legend => 'none', 
            :colors => ['FF8F86', 'C43512']}
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
   
