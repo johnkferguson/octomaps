@@ -48,16 +48,15 @@ class Repo
   def contributors 
     if non_existing_contributor_logins.size > 0
       new_contributors = non_existing_contributor_logins.collect do |u|
-        # binding.pry
         Contributor.save_new_contributor_to_db(u)
       end
     end
-
     [existing_contributors, new_contributors].flatten.compact
+    # binding.pry
   end
 
   def location_count
-    @locations.each_with_object(Hash.new(0)) do |location, loc_hash|
+    locations.each_with_object(Hash.new(0)) do |location, loc_hash|
       if location == "" || location == nil
         loc_hash["Location Unkown"] += 1
       else
@@ -78,7 +77,7 @@ class Contributor
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001", 
                                          :password => "flatiron001")
-  
+
   def self.save_new_contributor_to_db(login)
     new_instance = self.new
     new_instance.login = login
@@ -101,9 +100,7 @@ class Contributor
   def location_lookup
     self.country
   end
-
-
 end
 
-DataMapper.finalize
-DataMapper.auto_upgrade!
+# DataMapper.finalize
+# DataMapper.auto_upgrade!

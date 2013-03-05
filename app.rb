@@ -4,11 +4,11 @@ get '/' do
   erb :form     
 end
 
-get '/notfound' do
+post '/notfound' do
   erb :notfound
 end
 
-get '/map' do
+post '/map' do
   @repo = Repo.new(params[:owner], params[:repo])
   begin
     @repo.locations
@@ -19,6 +19,7 @@ get '/map' do
   data_table_markers.new_column('string' , 'Location' )
   data_table_markers.new_column('number' , 'Contributions')
   data_table_markers.add_rows(@repo.location_count.size)
+  # binding.pry
   i = 0
   @repo.location_count.each do |location, count|
     data_table_markers.set_cell(i,0,location)
@@ -30,6 +31,7 @@ get '/map' do
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
   
   erb :map
+
 end
 
 

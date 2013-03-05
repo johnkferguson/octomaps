@@ -11,8 +11,8 @@
   <div id = "left">
     <header>
       <h1>Great success!</h1>
-      <h2><strong><%= @repo.contributors.size %></strong> contributors in<br>
-          <strong><%= @repo.location_count.size %></strong> locations for<br>
+      <h2><strong><%= @repo.locations.size %></strong> contributors in<br>
+          <strong><%= @repo.location_count.size %></strong> countries for<br>
           <strong><%= @repo.owner %>/<%= @repo.name %></strong></h2>
     </header>
     <div id = "table">
@@ -24,7 +24,7 @@
       </ul>
     </div>
     <div id = "query_form">
-      <form action="/map" method="get">  
+      <form action="/map" method="post">  
       <p>Enter a GitHub repository owner and name to generate another map.</p>
       Repository Owner: <input type="text" name="owner">  
       Repository Name:<br> <input type="text" name="repo"><br>  
