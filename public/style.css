@@ -119,6 +119,12 @@ strong {
   font-size: 1.1em
 } 
 
+footer {
+  font-size:.8em;
+  line-height:1em;
+  margin-top: 7px;
+}
+
 #submit {
     background-color: #C43512;
     border: medium none;
@@ -128,6 +134,7 @@ strong {
     margin-top: 1em;
     padding: 2px;
     width: 155px;
+    text-align: left;
 }
 
 #credits {

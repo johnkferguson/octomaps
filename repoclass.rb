@@ -20,6 +20,10 @@ class Repo
     @locations ||= contributors.collect{|c| c.location_lookup}
   end
 
+    def country_locations    
+    @locations ||= contributors.collect{|c| c.location_lookup_countries}
+  end
+
   def combined_name
     self.owner + "/" + self.name 
   end
@@ -58,7 +62,7 @@ class Repo
   def location_count
     locations.each_with_object(Hash.new(0)) do |location, loc_hash|
       if location == "" || location == nil
-        loc_hash["Location Unkown"] += 1
+        loc_hash["Location Unknown"] += 1
       else
         loc_hash[location] += 1
       end
@@ -98,6 +102,10 @@ class Contributor
   end
 
   def location_lookup
+    self.location
+  end
+
+    def location_lookup_countries
     self.country
   end
 end
