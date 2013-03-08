@@ -20,11 +20,13 @@
            owner to generate a map of the locations of its contributors.</p>
       </div>
       <div id = "query-form">
-        <form action="/map" method="post">  
+        <form action="/map" method="get">  
         Repository Owner:<br> <input type="text" name="owner"><br>
         Repository Name:<br> <input type="text" name="repo"><br>
-        <input type="submit" value="Submit" id="submit">
+        <input type="submit" value="Map by City*" id="submit" name ="submit1">
+        <input type="submit" value="Map by Country" id="submit" name ="submit2">
         </form>
+        <footer>* Please note that this option maps contributors by the location they have specified on their GitHub account, which is not standardized.</footer>
       </div>
     </div>
 
