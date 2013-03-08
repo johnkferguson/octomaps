@@ -20,7 +20,7 @@ class Repo
     @locations ||= contributors.collect{|c| c.location_lookup}
   end
 
-    def country_locations    
+  def country_locations    
     @locations ||= contributors.collect{|c| c.location_lookup_countries}
   end
 
@@ -105,10 +105,10 @@ class Contributor
     self.location
   end
 
-    def location_lookup_countries
+  def location_lookup_countries
     self.country
   end
 end
 
-# DataMapper.finalize
-# DataMapper.auto_upgrade!
+DataMapper.finalize
+DataMapper.auto_upgrade!
