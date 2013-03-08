@@ -87,7 +87,7 @@ class Contributor
 
   def location_lookup
     self.location
-  end
+  end 
 end
 
 DataMapper.finalize
