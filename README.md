@@ -1,6 +1,8 @@
 Octomaps
 ==========
 
+[![Code Climate](https://codeclimate.com/github/JohnKellyFerguson/octomaps.png)](https://codeclimate.com/github/JohnKellyFerguson/octomaps)
+
 Octomaps plots the locations of contributors to any open-source project on a map. 
 
 Check out Octomaps in action here: [http://www.octomaps.com](http://www.octomaps.com)
