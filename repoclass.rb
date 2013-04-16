@@ -56,7 +56,6 @@ class Repo
       end
     end
     [existing_contributors, new_contributors].flatten.compact
-    # binding.pry
   end
 
   def location_count
@@ -86,7 +85,11 @@ class Contributor
     new_instance = self.new
     new_instance.login = login
     new_instance.location = @@octokit_client.user(login)["location"]
-    new_instance.country = country(new_instance.location)
+    if new_instance.location == "" || new_instance.location == nil
+      new_instance.country = "Location Unknown"
+    else
+      new_instance.country = country(new_instance.location)
+    end
     new_instance.save
     new_instance
   end
