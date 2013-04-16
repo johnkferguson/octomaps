@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src='http://www.google.com/jsapi'></script> 
+    <script src='http://www.google.com/jsapi'></script>
     <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
     <meta charset="utf-8" />
     <link href="style.css" rel="stylesheet" />
@@ -11,7 +11,6 @@
   <div id = "left">
     <header>
       <h1>Great success!</h1>
-<<<<<<< HEAD
       <% if params[:submit1] %>
         <h2><strong><%= @repo.locations.size %></strong> contributors in<br>
             <strong><%= @repo.location_count.size %></strong> locations for<br>
@@ -25,11 +24,6 @@
       <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
-=======
-      <h2><strong><%= @repo.locations.size %></strong> contributors in<br>
-          <strong><%= @repo.location_count.size %></strong> locations for<br>
-          <strong><%= @repo.owner %>/<%= @repo.name %></strong></h2>
->>>>>>> master
     </header>
 
     <div id = "table">
@@ -42,17 +36,17 @@
     </div>
 
     <div id = "query_form">
-      <form action="/map" method="get">  
+      <form action="/map" method="get">
       <p>Enter a GitHub repository owner and name to generate another map.</p>
-      Repository Owner: <input type="text" name="owner">  
-      Repository Name:<br> <input type="text" name="repo"><br>  
+      Repository Owner: <input type="text" name="owner">
+      Repository Name:<br> <input type="text" name="repo"><br>
         <input type="submit" value="Map by City*" id="submit" name ="submit1">
         <input type="submit" value="Map by Country" id="submit" name ="submit2">
       </form>
       <footer>* Please note that this option maps contributors by the location they have specified on their GitHub  account, which is not standardized.
       </footer>
     </div>
-    
+
     <div id = "credits">
       <ul>
           <li>Created by:</li>
@@ -61,7 +55,7 @@
       </ul>
     </div>
 
-  </div>  
+  </div>
   <div id='chart_markers'>
     <%= @chart_markers.to_js("chart_markers") %>
   </div>
