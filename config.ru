@@ -11,5 +11,7 @@ require 'dm-postgres-adapter'
 require 'google_visualr'
 require './repoclass.rb'
 require './app.rb'
+require 'geocoder'
+require 'pry'
 
 run Sinatra::Application

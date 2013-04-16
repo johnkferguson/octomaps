@@ -1,7 +1,7 @@
 also_reload 'repoclass.rb' if development?
 
 get '/' do
-  erb :form     
+  erb :form
 end
 
 get '/notfound' do
@@ -11,7 +11,11 @@ end
 get '/map' do
   @repo = Repo.new(params[:owner], params[:repo])
   begin
-    @repo.locations
+    if params[:submit1]
+      @repo.locations
+    elsif params[:submit2]
+      @repo.country_locations
+    end
   rescue
     redirect '/notfound'
   end
@@ -19,6 +23,7 @@ get '/map' do
   data_table_markers.new_column('string' , 'Location' )
   data_table_markers.new_column('number' , 'Contributions')
   data_table_markers.add_rows(@repo.location_count.size)
+
   i = 0
   @repo.location_count.each do |location, count|
     unless location == "Location Unknown"
@@ -27,11 +32,17 @@ get '/map' do
       i += 1
     end
   end
-  opts = { :displayMode => 'markers', :region => 'world', :legend => 'none', 
-           :colors => ['FF8F86', 'C43512']}
+  if params[:submit1]
+    opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',
+             :colors => ['FF8F86', 'C43512']}
+  elsif params[:submit2]
+    opts = { :displayMode => 'region', :region => 'world', :legend => 'none',
+             :colors => ['FF8F86', 'C43512']}
+  end
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
-  
+
   erb :map
+
 end
 
 

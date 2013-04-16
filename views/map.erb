@@ -11,10 +11,27 @@
   <div id = "left">
     <header>
       <h1>Great success!</h1>
+<<<<<<< HEAD
+      <% if params[:submit1] %>
+        <h2><strong><%= @repo.locations.size %></strong> contributors in<br>
+            <strong><%= @repo.location_count.size %></strong> locations for<br>
+            <strong><%= @repo.owner %>/<%= @repo.name %></strong></h2>
+      <% elsif params[:submit2] %>
+        <h2><strong><%= @repo.country_locations.size %></strong> contributors in<br>
+            <strong><%= @repo.location_count.size %></strong> countries for<br>
+            <strong><%= @repo.owner %>/<%= @repo.name %></strong></h2>
+      <% end %>
+      <div id = "twitter">
+      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+=======
       <h2><strong><%= @repo.locations.size %></strong> contributors in<br>
           <strong><%= @repo.location_count.size %></strong> locations for<br>
           <strong><%= @repo.owner %>/<%= @repo.name %></strong></h2>
+>>>>>>> master
     </header>
+
     <div id = "table">
       <ul>
         <% list = @repo.location_count.sort_by{|location, contributors| contributors}.reverse %>
@@ -23,13 +40,19 @@
         <% end %>
       </ul>
     </div>
+
     <div id = "query_form">
       <form action="/map" method="get">  
       <p>Enter a GitHub repository owner and name to generate another map.</p>
       Repository Owner: <input type="text" name="owner">  
       Repository Name:<br> <input type="text" name="repo"><br>  
-      <input type="submit" value="Submit" id = "submit"></form>
+        <input type="submit" value="Map by City*" id="submit" name ="submit1">
+        <input type="submit" value="Map by Country" id="submit" name ="submit2">
+      </form>
+      <footer>* Please note that this option maps contributors by the location they have specified on their GitHub  account, which is not standardized.
+      </footer>
     </div>
+    
     <div id = "credits">
       <ul>
           <li>Created by:</li>

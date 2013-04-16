@@ -71,7 +71,7 @@ padding-right: 3px;
 h2 {
 font-size: 1em;
 line-height: 1.5em;
-margin-bottom: 1em;
+/*margin-bottom: 1em;*/
 }
 
 #left {
@@ -119,6 +119,12 @@ strong {
   font-size: 1.1em
 } 
 
+footer {
+  font-size:.8em;
+  line-height:1em;
+  margin-top: 7px;
+}
+
 #submit {
     background-color: #C43512;
     border: medium none;
@@ -127,7 +133,9 @@ strong {
     font-size: 1em;
     margin-top: 1em;
     padding: 2px;
-    width: 155px;
+    width: 135px;
+    text-align: left;
+    line-height: 1em;
 }
 
 #credits {
@@ -154,3 +162,7 @@ strong {
   padding-left: 140px;
   width: 80%;
 } 
+
+#twitter {
+  margin-bottom: 5px;
+}
