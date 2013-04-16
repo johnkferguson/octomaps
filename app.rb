@@ -1,7 +1,7 @@
 also_reload 'repoclass.rb' if development?
 
 get '/' do
-  erb :form     
+  erb :form
 end
 
 get '/notfound' do
@@ -25,7 +25,7 @@ get '/map' do
   data_table_markers.add_rows(@repo.location_count.size)
 
   i = 0
-  @repo.location_count.each do |location, count| 
+  @repo.location_count.each do |location, count|
     unless location == "Location Unknown"
       data_table_markers.set_cell(i,0,location)
       data_table_markers.set_cell(i,1, count)
@@ -33,14 +33,14 @@ get '/map' do
     end
   end
   if params[:submit1]
-    opts = { :displayMode => 'markers', :region => 'world', :legend => 'none', 
+    opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',
              :colors => ['FF8F86', 'C43512']}
   elsif params[:submit2]
-    opts = { :displayMode => 'region', :region => 'world', :legend => 'none', 
+    opts = { :displayMode => 'region', :region => 'world', :legend => 'none',
              :colors => ['FF8F86', 'C43512']}
   end
   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
-  
+
   erb :map
 
 end

@@ -1,5 +1,5 @@
 if development?
-  require_relative 'database' 
+  require_relative 'database'
   DataMapper::Logger.new(STDOUT, :debug)
 end
 
@@ -8,7 +8,7 @@ DataMapper.setup(:default, ENV['DATABASE_URL'])
 class Repo
   attr_accessor :owner, :name, :locations
 
-  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", 
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001",
                                          :password => "flatiron001")
 
   def initialize(owner, name)
@@ -16,7 +16,7 @@ class Repo
     @name = name
   end
 
-  def locations    
+  def locations
     @locations ||= contributors.collect{|c| c.location_lookup}
   end
 
@@ -25,11 +25,11 @@ class Repo
   end
 
   def combined_name
-    self.owner + "/" + self.name 
+    self.owner + "/" + self.name
   end
 
   def github_contributors
-    @github_contributors ||= @@octokit_client.contribs(self.combined_name) 
+    @github_contributors ||= @@octokit_client.contribs(self.combined_name)
   end
 
   def github_contributor_logins
@@ -49,7 +49,7 @@ class Repo
     @non_existing_contributor_logins ||= github_contributor_logins - existing_contributor_logins
   end
 
-  def contributors 
+  def contributors
     if non_existing_contributor_logins.size > 0
       new_contributors = non_existing_contributor_logins.collect do |u|
         Contributor.save_new_contributor_to_db(u)
@@ -73,12 +73,12 @@ end
 class Contributor
   include DataMapper::Resource
 
-  property :id, Serial            
-  property :login, String, :index => true    
-  property :location, String 
-  property :country, String 
+  property :id, Serial
+  property :login, String, :index => true
+  property :location, String
+  property :country, String
 
-  @@octokit_client = Octokit::Client.new(:login => "flatiron-001", 
+  @@octokit_client = Octokit::Client.new(:login => "flatiron-001",
                                          :password => "flatiron001")
 
   def self.save_new_contributor_to_db(login)
@@ -111,6 +111,7 @@ class Contributor
   def location_lookup_countries
     self.country
   end
+
 end
 
 DataMapper.finalize
