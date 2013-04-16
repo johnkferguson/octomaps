@@ -9,6 +9,8 @@ gem 'octokit'
 gem 'google_visualr'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
+gem 'geocoder'
+gem 'pry'
 
 group :development do
   gem 'pry'
