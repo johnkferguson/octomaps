@@ -71,7 +71,7 @@ padding-right: 3px;
 h2 {
 font-size: 1em;
 line-height: 1.5em;
-margin-bottom: 1em;
+/*margin-bottom: 1em;*/
 }
 
 #left {
@@ -133,8 +133,9 @@ footer {
     font-size: 1em;
     margin-top: 1em;
     padding: 2px;
-    width: 155px;
+    width: 135px;
     text-align: left;
+    line-height: 1em;
 }
 
 #credits {
@@ -161,3 +162,7 @@ footer {
   padding-left: 140px;
   width: 80%;
 } 
+
+#twitter {
+  margin-bottom: 5px;
+}
