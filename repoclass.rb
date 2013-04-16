@@ -58,7 +58,7 @@ class Repo
   def location_count
     @locations.each_with_object(Hash.new(0)) do |location, loc_hash|
       if location == "" || location == nil
-        loc_hash["Location Unkown"] += 1
+        loc_hash["Location Unknown"] += 1
       else
         loc_hash[location] += 1
       end

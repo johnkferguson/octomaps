@@ -21,9 +21,11 @@ get '/map' do
   data_table_markers.add_rows(@repo.location_count.size)
   i = 0
   @repo.location_count.each do |location, count|
-    data_table_markers.set_cell(i,0,location)
-    data_table_markers.set_cell(i,1, count)
-    i += 1
+    unless location == "Location Unknown"
+      data_table_markers.set_cell(i,0,location)
+      data_table_markers.set_cell(i,1, count)
+      i += 1
+    end
   end
   opts = { :displayMode => 'markers', :region => 'world', :legend => 'none', 
            :colors => ['FF8F86', 'C43512']}
