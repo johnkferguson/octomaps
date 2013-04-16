@@ -20,7 +20,7 @@ class Repo
     @locations ||= contributors.collect{|c| c.location_lookup}
   end
 
-  def country_locations    
+  def country_locations
     @locations ||= contributors.collect{|c| c.location_lookup_countries}
   end
 
@@ -95,13 +95,13 @@ class Contributor
   end
 
   def self.country(location)
-    if location.nil?
-      "Location Unknown"
-    else
       results = Geocoder.search(location)
-      geo = results.first
-      geo.country
-    end
+      if results.empty?
+        "Location Unknown"
+      else
+        geo = results.first
+        geo.country
+      end
   end
 
   def location_lookup
