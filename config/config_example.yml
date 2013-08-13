@@ -1,0 +1,7 @@
+# To utilize your own settings, copy the config example yaml file to a new
+# config.yml file within the same directory. Enter in your settings. The config.yml
+# file will be ignored based upon the .gitignore file and its settings will be
+# loaded from boot.rb.
+
+development:
+  database_username: #place your database username here
