@@ -16,7 +16,7 @@
 ActiveRecord::Base.configurations[:development] = {
   :adapter   => 'postgresql',
   :database  => 'octomaps_development',
-  :username  => CONFIG["database_username"],
+  :username  => 'John',
   :password  => '',
   :host      => 'localhost',
   :port      => 5432
@@ -36,7 +36,7 @@ ActiveRecord::Base.configurations[:production] = {
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',
   :database  => 'octomaps_test',
-  :username  => 'root',
+  :username  => 'John',
   :password  => '',
   :host      => 'localhost',
   :port      => 5432
