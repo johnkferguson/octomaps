@@ -1,17 +1,36 @@
 source 'https://rubygems.org'
 
-gem 'rack'
-gem 'heroku'
-gem 'sinatra'
-gem 'thin'
-gem 'sinatra-reloader'
-gem 'octokit'
-gem 'google_visualr'
-gem 'data_mapper'
-gem 'dm-postgres-adapter'
-gem 'geocoder'
-gem 'pry'
+# Distribute your app as a gem
+# gemspec
 
-group :development do
-  gem 'pry'
-end
+# Server requirements
+# gem 'thin' # or mongrel
+# gem 'trinidad', :platform => 'jruby'
+
+# Optional JSON codec (faster performance)
+# gem 'oj'
+
+# Project requirements
+gem 'rake'
+
+# Component requirements
+gem 'sass'
+gem 'haml'
+gem 'activerecord', '>= 3.1', :require => 'active_record'
+gem 'pg'
+
+# Test requirements
+gem 'mocha', :group => 'test'
+gem 'rspec', :group => 'test'
+gem 'rack-test', :require => 'rack/test', :group => 'test'
+
+# Padrino Stable Gem
+gem 'padrino', '0.11.3'
+
+# Or Padrino Edge
+# gem 'padrino', :github => 'padrino/padrino-framework'
+
+# Or Individual Gems
+# %w(core gen helpers cache mailer admin).each do |g|
+#   gem 'padrino-' + g, '0.11.3'
+# end

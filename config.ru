@@ -1,17 +1,9 @@
-require 'heroku'
-require 'sinatra'
-require 'thin'
-require 'sinatra/reloader'
-require 'net/http'
-require 'uri'
-require 'octokit'
-require 'json'
-require 'data_mapper'
-require 'dm-postgres-adapter'
-require 'google_visualr'
-require './repoclass.rb'
-require './app.rb'
-require 'geocoder'
-require 'pry'
+#!/usr/bin/env rackup
+# encoding: utf-8
 
-run Sinatra::Application
+# This file can be used to start Padrino,
+# just execute it from the command line.
+
+require File.expand_path("../config/boot.rb", __FILE__)
+
+run Padrino.application
