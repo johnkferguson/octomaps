@@ -13,6 +13,8 @@ describe User do
   it { should respond_to(:avatar_url) }
   it { should respond_to(:gravatar_id) }
   it { should respond_to(:email) }
+  it { should have_many(:contributions) }
+  it { should have_many(:repositories).through(:contributions) }
 
   describe "when username is not present" do
     before { @user.username = "" }

@@ -33,6 +33,11 @@ group :development do
   gem 'debugger'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+end
+
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 

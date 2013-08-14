@@ -12,6 +12,9 @@ describe Repository do
   it { should respond_to(:full_name) }
   it { should respond_to(:description) }
   it { should respond_to(:html_url) }
+  it { should have_many(:contributions) }
+  it { should have_many(:users).through(:contributions) }
+
 
   describe "when full_name is not present" do
     before { @repository.full_name = "" }
