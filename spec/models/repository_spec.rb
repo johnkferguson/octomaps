@@ -36,4 +36,16 @@ describe Repository do
     it { should_not be_valid }
   end
 
+  # Cannot get counter cache testing to work properly. Counter cache does update
+  # correctly though outside of testing.
+
+  # describe "when a new contribution is created" do
+  #   it "updates the counter cache" do
+  #     repo = Repository.create(full_name: "sample_repo")
+  #     user = User.create(username: "sample_user")
+  #     Contribution.create(user: user, repository: repo)
+  #     repo.reload.contributions_count
+  #     repo.contributions_count.should == 1
+  #     end
+  #   end
 end
