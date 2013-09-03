@@ -1,5 +1,5 @@
 class GithubUserService
-  attr_reader :attributes, :db_user, :username, :gravatar_id, :email
+  attr_reader :attributes, :db_user, :username, :gravatar_id, :email, :location
 
   @@octokit_client = Octokit::Client.new(:login => "flatiron-001",
                                          :password => "flatiron001")
