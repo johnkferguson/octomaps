@@ -8,6 +8,7 @@ describe Location do
   subject { @location }
 
   it { should respond_to(:name) }
+  it { should belong_to(:geocoded_city) }
   it { should have_many(:users) }
 
   describe "when name is not present" do
@@ -29,7 +30,7 @@ describe Location do
     it { should_not be_valid }
   end
 
-  it "should downcase the location name"
+  # Possibly implement downcasing or use Postgres LIKE functionality
+  # it "should downcase the location name"
 
-  describe ""
 end
