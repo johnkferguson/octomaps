@@ -15,6 +15,8 @@ module Octomaps
     get "/notfound" do
       render 'public/notfound'
     end
+
+    
     ##
     # Caching support
     #

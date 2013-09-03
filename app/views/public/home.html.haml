@@ -1,9 +1,10 @@
 %html
   %head
-    %meta{:charset => "utf-8"}/
+    %meta{:charset => "utf-8"}
     %link{:href => "stylesheets/home.css", :rel => "stylesheet", :type => "text/css"}
-    %link{:href => "http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "http://fonts.googleapis.com/css?family=Cutive+Mono", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Cutive+Mono", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "/javascripts/application.js", :type => "text/javascript"}
     %title Octomaps
   %body
     %a{:href => "https://github.com/JohnKellyFerguson/octomaps"}
@@ -33,13 +34,3 @@
           %input#submit{:name => "submit1", :type => "submit", :value => "Map by City*"}/
           %input#submit{:name => "submit2", :type => "submit", :value => "Map by Country"}/
         %footer * Please note that this option maps contributors by the location they have specified on their GitHub account, which is not standardized.
-  :javascript
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-38965200-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();

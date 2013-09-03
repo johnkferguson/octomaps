@@ -26,6 +26,7 @@ gem 'padrino', '0.11.3'
 gem 'octokit'
 gem 'geocoder'
 gem 'json'
+gem 'google_visualr'
 
 group :development do
   gem 'pry'

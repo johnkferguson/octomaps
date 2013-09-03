@@ -26,6 +26,7 @@ GEM
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     geocoder (1.1.8)
+    google_visualr (2.1.9)
     haml (4.0.3)
       tilt
     http_router (0.11.0)
@@ -125,6 +126,7 @@ DEPENDENCIES
   activerecord (>= 3.1)
   debugger
   geocoder
+  google_visualr
   haml
   json
   mocha

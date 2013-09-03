@@ -1,0 +1,76 @@
+%html
+  %head
+    %script{:src => "http://www.google.com/jsapi"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    %meta{:charset => "utf-8"}/
+    %link{:href => "style.css", :rel => "stylesheet"}/
+    %script{:src => "/javascripts/application.js", :type => "text/javascript"}
+    %title
+      Octomaps: #{@repo.owner}/#{@repo.name}
+  %body/
+    #left
+    %header
+      %h1 Great success!
+      - if params[:submit1]
+        %h2
+          %strong= @repo.locations.size
+          contributors in
+          %br/
+          %strong= @repo.location_count.size
+          locations for
+          %br/
+          %strong
+            = @repo.owner
+            \/#{@repo.name}
+      - elsif params[:submit2]
+        %h2
+          %strong= @repo.country_locations.size
+          contributors in
+          %br/
+          %strong= @repo.location_count.size
+          countries for
+          %br/
+          %strong
+            = @repo.owner
+            \/#{@repo.name}
+      #twitter
+        %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
+        %script
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    #table
+      %ul
+        - list = @repo.location_count.sort_by{|location, contributors| contributors}.reverse
+        - list.each do |location, count|
+          %li
+            = "#{count}"
+            in #{"#{location}"}
+    #query_form
+      %form{:action => "/map", :method => "get"}
+        %p 
+          Enter a GitHub repository owner and name to generate another map.
+          Repository Owner:
+        %input{:name => "owner", :type => "text"}/
+        Repository Name:
+        %br/
+        %input{:name => "repo", :type => "text"}/
+        %br/
+        %input#submit{:name => "submit1", :type => "submit", :value => "Map by City*"}/
+        %input#submit{:name => "submit2", :type => "submit", :value => "Map by Country"}/
+      %footer
+        * Please note that this option maps contributors by the location they have specified on their GitHub  account, which is not standardized.
+
+    #credits
+      %ul
+        %li Created by:
+        %li
+          %a{:href => "http://www.twitter.com/johnkferguson"}> John Kelly Ferguson
+          ,
+          %a{:href => "http://www.twitter.com/mrikhter"} Masha Rikhter
+          \&
+          %a{:href => "http://www.twitter.com/jkestler"} Justin Kestler
+        %li
+          Students at the
+          = succeed "." do
+          %a{:href => "http://www.flatironschool.com"} Flatiron School
+    #chart_markers
+      = @chart_markers.to_js("chart_markers")
