@@ -24,6 +24,8 @@ gem 'padrino', '0.11.3'
 
 # Other Gems
 gem 'octokit'
+gem 'geocoder'
+gem 'json'
 
 group :development do
   gem 'pry'

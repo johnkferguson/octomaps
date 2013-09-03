@@ -3,7 +3,6 @@ require 'spec_helper'
 describe User do
   before(:each) do
     @user = User.new(username: "JohnKellyFerguson",
-      avatar_url: "https://secure.gravatar.com/avatar/b58b357a352eda178941fd2dfd5c6d5d",
       gravatar_id: "b58b357a352eda178941fd2dfd5c6d5d", email: "hello@johnkellyferguson.com")
   end
 
@@ -12,6 +11,7 @@ describe User do
   it { should respond_to(:username) }
   it { should respond_to(:gravatar_id) }
   it { should respond_to(:email) }
+  it { should belong_to(:location) }
   it { should have_many(:contributions) }
   it { should have_many(:repositories).through(:contributions) }
 

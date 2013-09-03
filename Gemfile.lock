@@ -25,12 +25,14 @@ GEM
     diff-lcs (1.2.4)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    geocoder (1.1.8)
     haml (4.0.3)
       tilt
     http_router (0.11.0)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
     i18n (0.6.5)
+    json (1.8.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -122,7 +124,9 @@ PLATFORMS
 DEPENDENCIES
   activerecord (>= 3.1)
   debugger
+  geocoder
   haml
+  json
   mocha
   octokit
   padrino (= 0.11.3)

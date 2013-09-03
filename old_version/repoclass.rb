@@ -1,4 +1,5 @@
-if development?
+
+ if development?
   require_relative 'database'
   DataMapper::Logger.new(STDOUT, :debug)
 end

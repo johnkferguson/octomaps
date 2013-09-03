@@ -12,11 +12,11 @@ class Contribution < ActiveRecord::Base
   private
 
     def increment_contributions_count
-      Repository.increment_counter(:contributions_count, self.repository.id)
+      Repository.increment_counter(:contributions_count, repository_id)
     end
 
     def decrement_contributions_count
-      Repository.decrement_counter(:contributions_count, self.repository.id)
+      Repository.decrement_counter(:contributions_count, repository_id)
     end
 
 end
