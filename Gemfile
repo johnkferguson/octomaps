@@ -19,14 +19,11 @@ gem 'haml'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'pg'
 
-# Test requirements
-gem 'mocha', :group => 'test'
-gem 'rspec', :group => 'test'
-gem 'rack-test', :require => 'rack/test', :group => 'test'
-
 # Padrino Stable Gem
 gem 'padrino', '0.11.3'
 
+# Other Gems
+gem 'octokit'
 
 group :development do
   gem 'pry'
@@ -34,7 +31,10 @@ group :development do
 end
 
 group :test do
+  gem 'rspec'
   gem 'rspec-rails'
+  gem 'mocha'
+  gem 'rack-test'
   gem 'shoulda-matchers'
 end
 

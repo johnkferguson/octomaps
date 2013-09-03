@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 7) do
 
   create_table "contributions", :force => true do |t|
     t.integer  "user_id"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 6) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
-    t.string   "avatar_url"
     t.string   "gravatar_id"
     t.string   "email"
     t.datetime "created_at",  :null => false

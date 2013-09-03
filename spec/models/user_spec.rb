@@ -10,7 +10,6 @@ describe User do
   subject { @user }
 
   it { should respond_to(:username) }
-  it { should respond_to(:avatar_url) }
   it { should respond_to(:gravatar_id) }
   it { should respond_to(:email) }
   it { should have_many(:contributions) }

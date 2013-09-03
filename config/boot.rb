@@ -32,6 +32,7 @@ Bundler.require(:default, PADRINO_ENV)
 #   include Padrino::Helpers::TranslationHelpers
 # end
 
+Padrino.require_dependencies(Padrino.root('services/*.rb'))
 ##
 # Add your before (RE)load hooks here
 #
@@ -42,7 +43,8 @@ end
 ##
 # Add your after (RE)load hooks here
 #
-Padrino.after_load do
-end
+# Padrino.after_load do
+#   Padrino.dependencies << Padrino.root('services/*.rb')
+# end
 
 Padrino.load!
