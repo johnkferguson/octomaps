@@ -8,6 +8,13 @@ module Octomaps
 
     enable :sessions
 
+    get "/" do
+      render 'public/home'
+    end
+
+    get "/notfound" do
+      render 'public/notfound'
+    end
     ##
     # Caching support
     #
