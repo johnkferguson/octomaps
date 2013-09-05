@@ -1,6 +1,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
+    %link{:href => "stylesheets/reset.css", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "stylesheets/home.css", :rel => "stylesheet"}
     %link{:href => "http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Cutive+Mono", :rel => "stylesheet", :type => "text/css"}
@@ -25,15 +26,5 @@
           enter the name of a GitHub repository and the repository
           owner to generate a map of the locations of its contributors.
       #query-form
-        %form{:action => "/map", :method => "get"}
-          Repository Owner:
-          %br/
-          %input{:name => "owner", :type => "text"}/
-          %br/
-          Repository Name:
-          %br/
-          %input{:name => "repo", :type => "text"}/
-          %br/
-          %input#submit{:name => "submit1", :type => "submit", :value => "Map by City*"}/
-          %input#submit{:name => "submit2", :type => "submit", :value => "Map by Country"}/
+        = partial 'form'
         %footer * Please note that this option maps contributors by the location they have specified on their GitHub account, which is not standardized.

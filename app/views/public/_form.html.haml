@@ -1,0 +1,11 @@
+%form{:action => "/map", :method => "get"}
+  Repository Owner:
+  %br/
+  %input{:name => "owner", :type => "text"}/
+  %br/
+  Repository Name:
+  %br/
+  %input{:name => "repo", :type => "text"}/
+  %br/
+  %input#submit{:name => "submit1", :type => "submit", :value => "Map by City*"}/
+  %input#submit{:name => "submit2", :type => "submit", :value => "Map by Country"}/
