@@ -13,13 +13,15 @@ class GithubUserService
     @db_user = create_user
   end
 
-
-  def create_user
-    User.create!(
-      username: username,
-      gravatar_id: gravatar_id,
-      email: email
-      )
-  end
+  private 
+    
+    def create_user
+      User.create!(
+        username: username,
+        gravatar_id: gravatar_id,
+        email: email,
+        location: Location.find_or_create_by_name(location)
+        )
+    end
 
 end

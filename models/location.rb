@@ -8,7 +8,7 @@ class Location < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   # Callbacks
-  after_create :geocode_location
+  before_create :geocode_location
 
   def geocode_location
     GeocoderService.new(self).geocode_location

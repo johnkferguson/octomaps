@@ -7,37 +7,33 @@
     %script{:src => "/javascripts/application.js", :type => "text/javascript"}
     %title
       Octomaps: #{@repo.owner}/#{@repo.name}
-  %body/
+  %body
     #left
-    %header
-      %h1 Great success!
-      - if params[:submit1]
-        %h2
-          %strong= @repo.locations.size
-          contributors in
-          %br/
-          %strong= @repo.location_count.size
-          locations for
-          %br/
-          %strong
-            = @repo.owner
-            \/#{@repo.name}
-      - elsif params[:submit2]
-        %h2
-          %strong= @repo.country_locations.size
-          contributors in
-          %br/
-          %strong= @repo.location_count.size
-          countries for
-          %br/
-          %strong
-            = @repo.owner
-            \/#{@repo.name}
-      #twitter
-        %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
-        %script
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    #table
+      %header
+        %h1 Great success!
+        - if params[:submit1]
+          %h2
+            %strong= @repo.locations.size
+            contributors in
+            %br/
+            %strong= @repo.location_count.size
+            locations for
+            %br/
+            %strong= @repo.full_name
+        - elsif params[:submit2]
+          %h2
+            %strong= @repo.country_locations.size
+            contributors in
+            %br/
+            %strong= @repo.location_count.size
+            countries for
+            %br/
+            %strong= @repo.full_name
+        #twitter
+          %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
+          %script
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+      #table
       %ul
         - list = @repo.location_count.sort_by{|location, contributors| contributors}.reverse
         - list.each do |location, count|
@@ -70,7 +66,6 @@
           %a{:href => "http://www.twitter.com/jkestler"} Justin Kestler
         %li
           Students at the
-          = succeed "." do
-          %a{:href => "http://www.flatironschool.com"} Flatiron School
+          %a{:href => "http://www.flatironschool.com"} Flatiron School.          
     #chart_markers
       = @chart_markers.to_js("chart_markers")
