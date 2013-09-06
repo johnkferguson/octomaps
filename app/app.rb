@@ -24,6 +24,7 @@ module Octomaps
 		if git_repo.github_repository
 			git_repo.update_database_based_upon_github
 			@repo = git_repo.db_repo
+			@repo.reload
 			if params[:city]
 				markers = Map.new(@repo.hash_of_cities_and_count).markers
 				opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',

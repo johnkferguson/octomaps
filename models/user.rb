@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def has_no_country?
-    location.geocoded_city == nil || location.geocoded_city.geocoded_country == nil
+    location.city == nil || location.city.country == nil
   end
 
   def city_name
