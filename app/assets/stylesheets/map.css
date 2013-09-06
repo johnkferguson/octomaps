@@ -100,7 +100,7 @@ line-height: 1.5em;
   color: #fff;
 }
 
-.map #chart_markers {
+#chart_markers {
   position: relative;
   padding-left: 140px;
   width: 80%;

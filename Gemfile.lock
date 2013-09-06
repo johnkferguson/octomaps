@@ -34,7 +34,7 @@ GEM
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     geocoder (1.1.8)
-    google_visualr (2.1.9)
+    google_visualr (2.1.7)
     haml (4.0.3)
       tilt
     hike (1.2.3)

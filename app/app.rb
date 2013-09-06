@@ -18,71 +18,27 @@ module Octomaps
 	  render 'public/notfound'
 	end
 
-	post :index do
-
-	end
-
 	get :map do
-		owner = params[:owner].strip.downcase
-		repo = params[:repo].strip.downcase
-		full_repo_name = "#{owner}/#{repo}"
-		if GithubRepositoryService.new(full_repo_name).update_database_based_upon_github
-			@repo = Repository.find_by_full_name(full_repo_name)
+		repo_name = "#{params[:owner]}/#{params[:repo]}".strip.downcase
+		git_repo = GithubRepositoryService.new(repo_name)
+		if git_repo.github_repository
+			git_repo.update_database_based_upon_github
+			@repo = git_repo.db_repo
+			if params[:city]
+				markers = Map.new(@repo.hash_of_cities_and_count).markers
+				opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',
+              :colors => ['FF8F86', 'C43512']}
+			elsif params[:country]
+				markers = Map.new(@repo.hash_of_countries_and_count).markers
+				opts = { :displayMode => 'region', :region => 'world', :legend => 'none',
+             :colors => ['FF8F86', 'C43512']}
+			end
+     	@chart_markers = GoogleVisualr::Interactive::GeoChart.new(markers, opts)
 			render 'public/map'
 		else 
 			redirect_to :notfound
 		end
-		
 	end
-
-
-# Original map route from old Sinatra app
-#
-# get '/map' do
-#   @repo = Repo.new(params[:owner], params[:repo])
-#   begin
-#     if params[:submit1]
-#       @repo.locations
-#     elsif params[:submit2]
-#       @repo.country_locations
-#     end
-#   rescue
-#     redirect '/notfound'
-#   end
-#   data_table_markers = GoogleVisualr::DataTable.new
-#   data_table_markers.new_column('string' , 'Location' )
-#   data_table_markers.new_column('number' , 'Contributions')
-#   data_table_markers.add_rows(@repo.location_count.size)
-#   i = 0
-#   @repo.location_count.each do |location, count|
-#     unless location == "Location Unknown"
-#       data_table_markers.set_cell(i,0,location)
-#       data_table_markers.set_cell(i,1, count)
-#       i += 1
-#     end
-#   end
-#   if params[:submit1]
-#     opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',
-#              :colors => ['FF8F86', 'C43512']}
-#   elsif params[:submit2]
-#     opts = { :displayMode => 'region', :region => 'world', :legend => 'none',
-#              :colors => ['FF8F86', 'C43512']}
-#   end
-#   @chart_markers = GoogleVisualr::Interactive::GeoChart.new(data_table_markers, opts)
-
-#   erb :map
-
-# end
-
-
-	# map show controller
-	# take the params
-	# @repo = Repository.find_by_full_name(params[:name])
-	# data_table_markers = GoogleVisualr::DataTable.new
-	# data_table_markers.new_column('string' , 'Location' )
-	# data_table_markers.new_column('number' , 'Contributions')
-	# data_table_markers.add_rows(@repo.location_count.size)
-
 
 
 	##

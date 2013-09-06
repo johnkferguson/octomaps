@@ -5,8 +5,10 @@ class GeocoderService
     @location = location
     @location_name = location.name
     @results = Geocoder.search(location_name)
-    @country = results.first.country
-    @city = results.first.formatted_address
+    if results.first
+      @country = results.first.country
+      @city = results.first.formatted_address
+    end
   end
 
   def geocode_location

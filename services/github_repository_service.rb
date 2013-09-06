@@ -9,13 +9,13 @@ class GithubRepositoryService
     @db_repo = Repository.find_by_full_name(repo_name)
   end
 
-  # Returns nil if the repository is not found on github, true if it is found
-  def update_database_based_upon_github
-    if github_repository
-      create_repository unless repository_in_database?
-      associate_or_create_contributors if missing_contributors?
-      true
-    end
+  def github_repository
+    @github_repository ||= @@octokit_client.repo(repo_name) rescue nil
+  end
+
+  def update_database_based_upon_github    
+    create_repository unless repository_in_database?
+    associate_or_create_contributors if missing_contributors?  
   end
 
   private
@@ -57,10 +57,6 @@ class GithubRepositoryService
 
     def database_contributors_usernames
       database_contributors.collect { |c| c.username }
-    end
-
-    def github_repository
-      @github_repository ||= @@octokit_client.repo(repo_name) rescue nil
     end
 
     def github_contributors

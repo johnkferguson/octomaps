@@ -2,9 +2,28 @@ class User < ActiveRecord::Base
 
   # Associations
   belongs_to :location
-  has_many :contributions
+  has_many :contributions, dependent: :destroy
   has_many :repositories, through: :contributions
 
   # Validations
   validates :username, presence: true, uniqueness: true
+
+  # Instance methods
+  def has_no_location?
+    location == nil
+  end
+
+  def has_no_country?
+    location.geocoded_city == nil || location.geocoded_city.geocoded_country == nil
+  end
+
+  def city_name
+    location.geocoded_city.name
+  end
+
+  def country_name
+    location.geocoded_city.geocoded_country.name
+  end
+
+
 end
