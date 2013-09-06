@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 15) do
+ActiveRecord::Schema.define(:version => 16) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(:version => 15) do
     t.string   "username"
     t.string   "gravatar_id"
     t.string   "email"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "location_id"
+    t.integer  "contributions_count", :default => 0
   end
 
 end
