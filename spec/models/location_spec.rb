@@ -30,7 +30,16 @@ describe Location do
     it { should_not be_valid }
   end
 
-  # Possibly implement downcasing or use Postgres LIKE functionality
-  # it "should downcase the location name"
+
+  # Not sure how to test a before_save filter properly
+  #
+  # describe "when the name is entered with capital letters" do
+  #   before do
+  #     @location.save
+  #   end
+  #   it "should save as lowercase" do
+  #     expect(@location.name).to eq("new york, ny")
+  #   end
+  # end
 
 end

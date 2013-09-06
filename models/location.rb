@@ -9,6 +9,7 @@ class Location < ActiveRecord::Base
 
   # Callbacks
   before_create :geocode_location
+  before_save { |location| location.name.downcase! }
 
   def geocode_location
     GeocoderService.new(self).geocode_location
