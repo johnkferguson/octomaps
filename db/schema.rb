@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 16) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "cities", ["name"], :name => "index_cities_on_name"
 
   create_table "contributions", :force => true do |t|
     t.integer  "user_id"
@@ -33,12 +35,16 @@ ActiveRecord::Schema.define(:version => 16) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "countries", ["name"], :name => "index_countries_on_name"
+
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.integer  "city_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "locations", ["name"], :name => "index_locations_on_name"
 
   create_table "repositories", :force => true do |t|
     t.string   "full_name"
@@ -49,6 +55,8 @@ ActiveRecord::Schema.define(:version => 16) do
     t.integer  "contributions_count", :default => 0
   end
 
+  add_index "repositories", ["full_name"], :name => "index_repositories_on_full_name"
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "gravatar_id"
@@ -58,5 +66,7 @@ ActiveRecord::Schema.define(:version => 16) do
     t.integer  "location_id"
     t.integer  "contributions_count", :default => 0
   end
+
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end
