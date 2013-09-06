@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
 
   # Associations
-  belongs_to :geocoded_city
+  belongs_to :city
   has_many :users
 
   # Validations

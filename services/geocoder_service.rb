@@ -12,10 +12,10 @@ class GeocoderService
   end
 
   def geocode_location
-    found_city = GeocodedCity.find_or_create_by_name(city)
-    found_country = GeocodedCountry.find_or_create_by_name(country)
-    location.geocoded_city = found_city
-    found_city.geocoded_country = found_country
+    found_city = City.find_or_create_by_name(city)
+    found_country = Country.find_or_create_by_name(country)
+    location.city = found_city
+    found_city.country = found_country
     found_city.save!
   end
 

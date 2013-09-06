@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
   end
 
   def city_name
-    location.geocoded_city.name
+    location.city.name
   end
 
   def country_name
-    location.geocoded_city.geocoded_country.name
+    location.city.country.name
   end
 
 

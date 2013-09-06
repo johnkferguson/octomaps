@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 15) do
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "contributions", :force => true do |t|
     t.integer  "user_id"
@@ -20,14 +27,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "geocoded_cities", :force => true do |t|
-    t.string   "name"
-    t.integer  "geocoded_country_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
-  create_table "geocoded_countries", :force => true do |t|
+  create_table "countries", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "locations", :force => true do |t|
     t.string   "name"
-    t.integer  "geocoded_city_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "city_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "repositories", :force => true do |t|

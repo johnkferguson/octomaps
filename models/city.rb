@@ -1,7 +1,8 @@
-class GeocodedCountry < ActiveRecord::Base
+class City < ActiveRecord::Base
 
   # Associations
-  has_many :geocoded_cities
+  belongs_to :country
+  has_many :locations
 
   # Validations
   validates :name, presence: true, uniqueness: true

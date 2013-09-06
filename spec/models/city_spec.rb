@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe GeocodedCity do
+describe City do
   before(:each) do
-    @city = GeocodedCity.new(name: "New York")
+    @city = City.new(name: "New York")
   end
 
   subject { @city }
 
   it { should respond_to(:name) }
   it { should have_many(:locations) }
-  it { should belong_to(:geocoded_country) }
+  it { should belong_to(:country) }
 
 
   describe "when name is not present" do

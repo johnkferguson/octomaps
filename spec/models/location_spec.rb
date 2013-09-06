@@ -8,7 +8,7 @@ describe Location do
   subject { @location }
 
   it { should respond_to(:name) }
-  it { should belong_to(:geocoded_city) }
+  it { should belong_to(:city) }
   it { should have_many(:users) }
 
   describe "when name is not present" do

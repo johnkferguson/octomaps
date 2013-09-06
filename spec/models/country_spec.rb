@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe GeocodedCountry do
+describe Country do
   before(:each) do
-    @country = GeocodedCountry.new(name: "United States")
+    @country = Country.new(name: "United States")
   end
 
   subject { @country }
 
   it { should respond_to(:name) }
-  it { should have_many(:geocoded_cities) }
+  it { should have_many(:cities) }
 
   describe "when name is not present" do
     before { @country.name = ""}
