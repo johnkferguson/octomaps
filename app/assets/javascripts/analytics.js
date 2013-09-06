@@ -1,5 +1,3 @@
-// Put your application scripts here
-
 // Google Analytics
 var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-38965200-1']);

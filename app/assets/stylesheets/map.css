@@ -1,5 +1,5 @@
 /*Start Map CSS*/
-body{
+body.map {
 background-color:white;
 font-size: 1em;
 line-height: 1.5em;
@@ -7,11 +7,11 @@ font-weight:300px;
 font-family: 'Quattrocento Sans', sans-serif;
 }
 
-header {
+.map header {
   margin-top: 1em;
 }
 
-h1 {
+.map h1 {
 font-size: 2em;
 margin-bottom: .5em;
 line-height: 1em;
@@ -19,12 +19,12 @@ font-weight: bold;
 padding-right: 3px;
 }
 
-h2 {
+.map h2 {
 font-size: 1em;
 line-height: 1.5em;
 }
 
-#left {
+.map #left {
   width: 200px;
   padding: 1em 0 3em 2em;
   float: left;
@@ -36,12 +36,12 @@ line-height: 1.5em;
   min-height: 100%;
 }
 
-strong {
+.map strong {
   font-weight: bold;
   color: #C43512;
 }
 
-#table {
+.map #table {
   max-height: 300px;
   overflow: auto;
   border-top: 1px dotted;
@@ -49,38 +49,31 @@ strong {
   padding-left: 40px;
 }
 
-#table li {
+.map #table li {
   list-style: none;
   font-size: .8em;
   margin-left: -30px;
 }
 
-#table li:hover {
+.map #table li:hover {
   font-weight:bold;
 }
 
-#query_form {
+.map #query_form {
   margin-top: 1em;
   height: 20%;
 } 
 
-#query_form p {
+.map #query_form p {
   padding-right: 2em;
   font-size: 1.1em
 } 
 
-footer {
-  font-size:.8em;
-  line-height:1em;
+.map footer {
   margin-top: 7px;
 }
 
-#submit {
-    background-color: #C43512;
-    border: medium none;
-    border-radius: 5px 5px 5px 5px;
-    color: #F2F2F2;
-    font-size: 1em;
+.map #submit {
     margin-top: 1em;
     padding: 2px;
     width: 135px;
@@ -88,7 +81,7 @@ footer {
     line-height: 1em;
 }
 
-#credits {
+.map #credits {
   max-height: 300px;
   overflow: auto;
   border-top: 1px dotted;
@@ -97,22 +90,22 @@ footer {
   margin-top:20px;
 }
 
-#credits li {
+.map #credits li {
   list-style: none;
   font-size: .8em;
   margin-left: -30px;
 }
 
-#credits li a {
+.map #credits li a {
   color: #fff;
 }
 
-#chart_markers {
+.map #chart_markers {
   position: relative;
   padding-left: 140px;
   width: 80%;
 } 
 
-#twitter {
+.map #twitter {
   margin-bottom: 5px;
 }

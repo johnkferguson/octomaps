@@ -27,6 +27,9 @@ gem 'octokit'
 gem 'geocoder'
 gem 'json'
 gem 'google_visualr'
+gem 'padrino-sprockets', :require => ['padrino/sprockets'], :git => 'git://github.com/nightsailer/padrino-sprockets.git'
+gem 'uglifier'
+gem 'yui-compressor'
 
 group :development do
   gem 'pry'

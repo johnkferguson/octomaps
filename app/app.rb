@@ -5,6 +5,8 @@ module Octomaps
 	register Padrino::Rendering
 	register Padrino::Mailer
 	register Padrino::Helpers
+	register Padrino::Sprockets
+  sprockets :minify => (Padrino.env == :production)
 
 	enable :sessions
 

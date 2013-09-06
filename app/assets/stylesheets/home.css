@@ -1,18 +1,14 @@
 /*Start Form CSS*/
-body {
-  background-image:url('../images/octomaps-cats-logoless.jpg');
+body.home {
+  background-image:url('octomaps-cats-logoless.jpg');
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-position:center;
   background-color: rgba(0,0,0, .3);
-  font-size: 1em;
-  line-height: 1.5em;
-  font-weight:300px;
-  font-family: 'Quattrocento Sans', sans-serif;
   text-align: center;
 }
 
-h1 {
+.home h1 {
   font-size: 5em;
   color: #F2F2F2;
   line-height: 1em;
@@ -22,7 +18,14 @@ h1 {
   padding-left: .3em;
 }
 
-h3 {
+.home h2 {
+  font-size: 2em;
+  line-height: 1em;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.home h3 {
   font-size: 2em;
   color: #F2F2F2;
   line-height: 1em;;
@@ -32,36 +35,24 @@ h3 {
   padding-left: 1em;
 }
 
-h2 {
-  font-size: 2em;
-  line-height: 1em;
-  position: relative;
-  margin-bottom: 5px;
-}
-
-#query {
+.home #query {
   line-height: 1.2em;
   position: relative;
 }
 
-#query-form {
+.home #query-form {
   line-height: 2em;
   position: relative;
   text-align: center;
 }
 
-#submit {
-    background-color: #C43512;
-    border: medium none;
-    border-radius: 5px 5px 5px 5px;
-    color: #F2F2F2;
-    font-size: 1em;
+.home #submit {
     width: 155px;
     position: relative;
     margin-top: 1em;
 }
 
-div.transbox {
+.home div.transbox {
   padding:30px;
   width:400px;
   margin:80px;
@@ -73,27 +64,22 @@ div.transbox {
   vertical-align: center;
   }
 
-div.transbox p {
+.home div.transbox p {
   margin:30px 40px;
   font-weight:bold;
   color:#000000;
   }
 
-img {
+.home img {
   position: absolute; 
   top: 0; 
   right: 0; 
   border: 0;
   }  
 
-span {
+.home span {
   font-weight: bold;
   color: #C43512;
   font-size: 2em;
   line-height: 2em;
-}
-
-footer {
-  font-size:.8em;
-  line-height:1em;
 }

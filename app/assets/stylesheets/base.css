@@ -1,0 +1,19 @@
+body {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight:300px;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+footer {
+  font-size:.8em;
+  line-height:1em;
+}
+
+#submit {
+  background-color: #C43512;
+  border: medium none;
+  border-radius: 5px 5px 5px 5px;
+  color: #F2F2F2;
+  font-size: 1em;
+}
