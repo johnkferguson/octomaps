@@ -3,7 +3,7 @@
   #left
     %header
       %h1 Great success!
-      - if params[:submit1]
+      - if params[:city]
         %h2
           %strong= @repo.locations.size
           contributors in
@@ -12,7 +12,7 @@
           locations for
           %br/
           %strong= @repo.full_name
-      - elsif params[:submit2]
+      - elsif params[:country]
         %h2
           %strong= @repo.country_locations.size
           contributors in
@@ -41,10 +41,10 @@
       %br/
       %input{:name => "repo", :type => "text"}/
       %br/
-      %input#submit{:name => "submit1", :type => "submit", :value => "Map by City*"}/
-      %input#submit{:name => "submit2", :type => "submit", :value => "Map by Country"}/
+      %input.submit{:name => "submit1", :type => "submit", :value => "Map by City*"}/
+      %input.submit{:name => "submit2", :type => "submit", :value => "Map by Country"}/
     %footer
-      * Please note that this option maps contributors by the location they have specified on their GitHub  account, which is not standardized.
+      * Please note that this option maps contributors by the location they have specified on their GitHub account, which is not standardized.
 
   #credits
     %ul

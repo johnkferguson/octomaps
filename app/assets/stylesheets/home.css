@@ -46,7 +46,7 @@ body.home {
   text-align: center;
 }
 
-.home #submit {
+.home .submit {
     width: 155px;
     position: relative;
     margin-top: 1em;

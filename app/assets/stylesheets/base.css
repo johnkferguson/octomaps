@@ -10,7 +10,7 @@ footer {
   line-height:1em;
 }
 
-#submit {
+.submit {
   background-color: #C43512;
   border: medium none;
   border-radius: 5px 5px 5px 5px;

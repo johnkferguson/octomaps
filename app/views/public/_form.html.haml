@@ -1,11 +1,11 @@
-%form{:action => "/map", :method => "get"}
+- form_tag '/map', :method => 'get' do
   Repository Owner:
-  %br/
-  %input{:name => "owner", :type => "text"}/
-  %br/
+  %br
+  = text_field_tag :owner, value: params[:owner]
+  %br
   Repository Name:
-  %br/
-  %input{:name => "repo", :type => "text"}/
-  %br/
-  %input#submit{:name => "submit1", :type => "submit", :value => "Map by City*"}/
-  %input#submit{:name => "submit2", :type => "submit", :value => "Map by Country"}/
+  %br
+  = text_field_tag :repo, value: params[:repo]
+  %br
+  = submit_tag "Map by City*", :class => "submit", name: "city"
+  = submit_tag "Map by Country", :class => "submit", name: "country"
