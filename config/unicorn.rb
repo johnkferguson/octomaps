@@ -5,8 +5,8 @@ stderr_path"#{root}/log/unicorn.log"
 stdout_path"#{root}/log/unicorn.log"
 
 listen"/tmp/unicorn.octomaps.sock"
-worker_processes2
-timeout30
+worker_processes 2
+timeout 30
 
 # Force the bundler gemfile environment variable to
 # reference the capistrano "current" symlink
