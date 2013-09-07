@@ -24,7 +24,6 @@ module Octomaps
 		if git_repo.github_repository
 			git_repo.update_database_based_upon_github
 			@repo = git_repo.db_repo
-			@repo.reload
 			if params[:city]
 				markers = Map.new(@repo.hash_of_cities_and_count).markers
 				opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',
@@ -34,6 +33,7 @@ module Octomaps
 				opts = { :displayMode => 'region', :region => 'world', :legend => 'none',
              :colors => ['FF8F86', 'C43512']}
 			end
+			@repo.reload
      	@chart_markers = GoogleVisualr::Interactive::GeoChart.new(markers, opts)
 			render 'public/map'
 		else 
