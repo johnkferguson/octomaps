@@ -36,9 +36,9 @@ Padrino.require_dependencies(Padrino.root('services/*.rb'))
 ##
 # Add your before (RE)load hooks here
 #
-Padrino.before_load do
-  CONFIG = YAML.load_file("#{Padrino.root}/config/config.yml")[PADRINO_ENV]
-end
+# Padrino.before_load do
+#   CONFIG = YAML.load_file("#{Padrino.root}/config/config.yml")[PADRINO_ENV]
+# end
 
 ##
 # Add your after (RE)load hooks here
