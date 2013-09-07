@@ -1,8 +1,11 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    = stylesheet_link_tag '/assets/application'
-    = javascript_include_tag '/assets/application'
+    = stylesheet_link_tag '/stylesheets/reset'
+    = stylesheet_link_tag '/stylesheets/base'
+    = stylesheet_link_tag '/stylesheets/home'
+    = stylesheet_link_tag '/stylesheets/map'
+    = javascript_include_tag '/javascripts/application'
     %script{:src => "http://www.google.com/jsapi", type: "text/javascript"}
     %link{:href => "http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Cutive+Mono", :rel => "stylesheet", :type => "text/css"}

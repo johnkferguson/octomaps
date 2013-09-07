@@ -5,8 +5,8 @@ module Octomaps
 	register Padrino::Rendering
 	register Padrino::Mailer
 	register Padrino::Helpers
-	register Padrino::Sprockets
-  sprockets :minify => (Padrino.env == :production)
+	# register Padrino::Sprockets
+ #  sprockets :minify => (Padrino.env == :production)
 
 	enable :sessions
 
@@ -19,22 +19,24 @@ module Octomaps
 	end
 
 	get :map do
-		repo_name = "#{params[:owner]}/#{params[:repo]}".strip.downcase
+		repo_name = "#{params[:owner]}/#{params[:repo]}".strip
 		git_repo = GithubRepositoryService.new(repo_name)
 		if git_repo.github_repository
 			git_repo.update_database_based_upon_github
 			@repo = git_repo.db_repo
 			if params[:city]
-				markers = Map.new(@repo.hash_of_cities_and_count).markers
+				@location_count_hash = @repo.hash_of_cities_and_count
 				opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',
               :colors => ['FF8F86', 'C43512']}
 			elsif params[:country]
-				markers = Map.new(@repo.hash_of_countries_and_count).markers
+				@location_count_hash = @repo.hash_of_countries_and_count
 				opts = { :displayMode => 'region', :region => 'world', :legend => 'none',
              :colors => ['FF8F86', 'C43512']}
 			end
-			@repo.reload
+			markers = Map.new(@location_count_hash).markers
      	@chart_markers = GoogleVisualr::Interactive::GeoChart.new(markers, opts)
+     	@list = @location_count_hash.sort_by{|location, contributors| contributors}.reverse
+			@repo.reload
 			render 'public/map'
 		else 
 			redirect_to :notfound

@@ -1,0 +1,111 @@
+/*Start Map CSS*/
+body.map {
+background-color:white;
+font-size: 1em;
+line-height: 1.5em;
+font-weight:300px;
+font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.map header {
+  margin-top: 1em;
+}
+
+.map h1 {
+font-size: 2em;
+margin-bottom: .5em;
+line-height: 1em;
+font-weight: bold;
+padding-right: 3px;
+}
+
+.map h2 {
+font-size: 1em;
+line-height: 1.5em;
+}
+
+.map #left {
+  width: 200px;
+  padding: 1em 0 3em 2em;
+  float: left;
+  z-index: 2;
+  position: absolute;
+  color: #F2F2F2;
+  background: rgba(64, 64, 64, 0.95);
+  border-bottom-right-radius: 5px;
+  min-height: 100%;
+}
+
+.map strong {
+  font-weight: bold;
+  color: #C43512;
+}
+
+.map #table {
+  max-height: 300px;
+  overflow: auto;
+  border-top: 1px dotted;
+  border-bottom: 1px dotted;
+  padding-left: 40px;
+}
+
+.map #table li {
+  list-style: none;
+  font-size: .8em;
+  margin-left: -30px;
+}
+
+.map #table li:hover {
+  font-weight:bold;
+}
+
+.map #query_form {
+  margin-top: 1em;
+  height: 20%;
+} 
+
+.map #query_form p {
+  padding-right: 2em;
+  font-size: 1.1em
+} 
+
+.map footer {
+  margin-top: 7px;
+}
+
+.map #submit {
+    margin-top: 1em;
+    padding: 2px;
+    width: 135px;
+    text-align: left;
+    line-height: 1em;
+}
+
+.map #credits {
+  max-height: 300px;
+  overflow: auto;
+  border-top: 1px dotted;
+  border-bottom: 1px dotted;
+  padding-left: 40px;
+  margin-top:20px;
+}
+
+.map #credits li {
+  list-style: none;
+  font-size: .8em;
+  margin-left: -30px;
+}
+
+.map #credits li a {
+  color: #fff;
+}
+
+#chart_markers {
+  position: relative;
+  padding-left: 140px;
+  width: 80%;
+} 
+
+.map #twitter {
+  margin-bottom: 5px;
+}

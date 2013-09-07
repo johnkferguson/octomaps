@@ -1,0 +1,85 @@
+/*Start Form CSS*/
+body.home {
+  background-image:url('../images/octomaps-cats-logoless.jpg');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:center;
+  background-color: rgba(0,0,0, .3);
+  text-align: center;
+}
+
+.home h1 {
+  font-size: 5em;
+  color: #F2F2F2;
+  line-height: 1em;
+  background: rgba(64, 64, 64, 0.90);
+  text-align: left;
+  font-family: 'Cutive Mono';
+  padding-left: .3em;
+}
+
+.home h2 {
+  font-size: 2em;
+  line-height: 1em;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.home h3 {
+  font-size: 2em;
+  color: #F2F2F2;
+  line-height: 1em;;
+  background: rgba(64, 64, 64, 0.90);
+  text-align: left;
+  font-family: 'Cutive Mono', sans-serif;
+  padding-left: 1em;
+}
+
+.home #query {
+  line-height: 1.2em;
+  position: relative;
+}
+
+.home #query-form {
+  line-height: 2em;
+  position: relative;
+  text-align: center;
+}
+
+.home .submit {
+    width: 155px;
+    position: relative;
+    margin-top: 1em;
+}
+
+.home div.transbox {
+  padding:30px;
+  width:400px;
+  margin:80px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  border:1px solid black;
+  postion: relative;
+  display: inline-block;
+  vertical-align: center;
+  }
+
+.home div.transbox p {
+  margin:30px 40px;
+  font-weight:bold;
+  color:#000000;
+  }
+
+.home img {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  border: 0;
+  }  
+
+.home span {
+  font-weight: bold;
+  color: #C43512;
+  font-size: 2em;
+  line-height: 2em;
+}
