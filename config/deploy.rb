@@ -49,6 +49,12 @@ namespace :deploy do
       puts "Run `git push` to sync changes." 
       exit 
     end 
-  end 
+  end
+
+  task :migrate do
+    run "cd #{current_path}; RACK_ENV=production bundle exec padrino rake ar:migrate"
+  end
+
+
   before "deploy", "deploy:check_revision"
 end
