@@ -1,0 +1,37 @@
+- error = @user.errors.include?(:username)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :username, :class => 'control-label'
+  .controls
+    =f.text_field :username, :class => 'input-xlarge input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:username, :class => 'text-error') : pat(:example)
+- error = @user.errors.include?(:gravatar_id)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :gravatar_id, :class => 'control-label'
+  .controls
+    =f.text_field :gravatar_id, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:gravatar_id, :class => 'text-error') : pat(:example)
+- error = @user.errors.include?(:email)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :email, :class => 'control-label'
+  .controls
+    =f.text_field :email, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:email, :class => 'text-error') : pat(:example)
+- error = @user.errors.include?(:location_id)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :location_id, :class => 'control-label'
+  .controls
+    =f.text_field :location_id, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:location_id, :class => 'text-error') : pat(:example)
+- error = @user.errors.include?(:contributions_count)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :contributions_count, :class => 'control-label'
+  .controls
+    =f.text_field :contributions_count, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:contributions_count, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:users, :index), :class => 'btn'

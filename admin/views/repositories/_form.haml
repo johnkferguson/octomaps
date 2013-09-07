@@ -1,0 +1,31 @@
+- error = @repository.errors.include?(:full_name)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :full_name, :class => 'control-label'
+  .controls
+    =f.text_field :full_name, :class => 'input-xlarge input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:full_name, :class => 'text-error') : pat(:example)
+- error = @repository.errors.include?(:description)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :description, :class => 'control-label'
+  .controls
+    =f.text_field :description, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:description, :class => 'text-error') : pat(:example)
+- error = @repository.errors.include?(:html_url)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :html_url, :class => 'control-label'
+  .controls
+    =f.text_field :html_url, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:html_url, :class => 'text-error') : pat(:example)
+- error = @repository.errors.include?(:contributions_count)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :contributions_count, :class => 'control-label'
+  .controls
+    =f.text_field :contributions_count, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:contributions_count, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:repositories, :index), :class => 'btn'

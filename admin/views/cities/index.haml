@@ -1,0 +1,56 @@
+%ul.nav.nav-tabs
+  %li.active=link_to tag_icon(:list, pat(:list)), url(:cities, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:cities, :new)
+
+.tabs-content
+  %table#list.table.table-striped.table-hover.table-condensed
+    %thead
+      %tr
+        %th.header.list-menu
+          .dropdown
+            %a.list-menu-toggle.dropdown-toggle{:href => '#', :'data-toggle' => :dropdown}
+              =tag_icon :magic
+              %span.caret
+            %ul.list-menu.dropdown-menu{:role => :menu}
+              %li.list-menu-wrapper=link_to tag_icon(:check, pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link'
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:'check-empty', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled'
+              %li.list-menu-divider.divider
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:trash, pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled'
+                .list-menu-popover-delete-selected.popover.right
+                  .arrow
+                  %h3.popover-title=pat(:delete_selected_title)
+                  .popover-content
+                    -form_tag url(:cities, :destroy_many), :method => :delete do
+                      =hidden_field_tag :city_ids, :'data-delete-many-ids' => true
+                      =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
+                      .btn.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:city, :id)
+        %th.header= mat(:city, :name)
+        %th.header= mat(:city, :country_id)
+        %th.header= mat(:city, :created_at)
+        %th.header= mat(:city, :updated_at)
+        %th.header.list-row-action-header
+
+    %tbody
+      -@cities.each do |city|
+        %tr.list-row
+          %td.list-column.list-selectable
+            =check_box_tag 'city_ids[]', :value => city.id, :class => 'list-selectable-checkbox'
+          %td.list-column=city.id
+          %td.list-column=city.name
+          %td.list-column=city.country_id
+          %td.list-column=time_ago_in_words city.created_at
+          %td.list-column=time_ago_in_words city.updated_at
+          %td.list-column.list-row-action
+            .list-row-action-wrapper
+              =link_to tag_icon(:edit), :href => url(:cities, :edit, :id => city.id), :rel => :tooltip, :title => "#{pat(:edit)} city", :class => 'list-row-action-wrapper-link'
+              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} city", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              .popover.list-row-action-popover-delete-one.left
+                .arrow
+                %h3.popover-title=pat(:delete, :model => "city")
+                .popover-content
+                  -form_tag url(:cities, :destroy, :id => city.id), :method => :delete do
+                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    .btn.btn-small.cancel=pat(:cancel)

@@ -1,0 +1,56 @@
+%ul.nav.nav-tabs
+  %li.active=link_to tag_icon(:list, pat(:list)), url(:contributions, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:contributions, :new)
+
+.tabs-content
+  %table#list.table.table-striped.table-hover.table-condensed
+    %thead
+      %tr
+        %th.header.list-menu
+          .dropdown
+            %a.list-menu-toggle.dropdown-toggle{:href => '#', :'data-toggle' => :dropdown}
+              =tag_icon :magic
+              %span.caret
+            %ul.list-menu.dropdown-menu{:role => :menu}
+              %li.list-menu-wrapper=link_to tag_icon(:check, pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link'
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:'check-empty', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled'
+              %li.list-menu-divider.divider
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:trash, pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled'
+                .list-menu-popover-delete-selected.popover.right
+                  .arrow
+                  %h3.popover-title=pat(:delete_selected_title)
+                  .popover-content
+                    -form_tag url(:contributions, :destroy_many), :method => :delete do
+                      =hidden_field_tag :contribution_ids, :'data-delete-many-ids' => true
+                      =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
+                      .btn.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:contribution, :id)
+        %th.header= mat(:contribution, :user_id)
+        %th.header= mat(:contribution, :repository_id)
+        %th.header= mat(:contribution, :created_at)
+        %th.header= mat(:contribution, :updated_at)
+        %th.header.list-row-action-header
+
+    %tbody
+      -@contributions.each do |contribution|
+        %tr.list-row
+          %td.list-column.list-selectable
+            =check_box_tag 'contribution_ids[]', :value => contribution.id, :class => 'list-selectable-checkbox'
+          %td.list-column=contribution.id
+          %td.list-column=contribution.user_id
+          %td.list-column=contribution.repository_id
+          %td.list-column=time_ago_in_words contribution.created_at
+          %td.list-column=time_ago_in_words contribution.updated_at
+          %td.list-column.list-row-action
+            .list-row-action-wrapper
+              =link_to tag_icon(:edit), :href => url(:contributions, :edit, :id => contribution.id), :rel => :tooltip, :title => "#{pat(:edit)} contribution", :class => 'list-row-action-wrapper-link'
+              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} contribution", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              .popover.list-row-action-popover-delete-one.left
+                .arrow
+                %h3.popover-title=pat(:delete, :model => "contribution")
+                .popover-content
+                  -form_tag url(:contributions, :destroy, :id => contribution.id), :method => :delete do
+                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    .btn.btn-small.cancel=pat(:cancel)

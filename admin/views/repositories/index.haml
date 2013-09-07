@@ -1,0 +1,60 @@
+%ul.nav.nav-tabs
+  %li.active=link_to tag_icon(:list, pat(:list)), url(:repositories, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:repositories, :new)
+
+.tabs-content
+  %table#list.table.table-striped.table-hover.table-condensed
+    %thead
+      %tr
+        %th.header.list-menu
+          .dropdown
+            %a.list-menu-toggle.dropdown-toggle{:href => '#', :'data-toggle' => :dropdown}
+              =tag_icon :magic
+              %span.caret
+            %ul.list-menu.dropdown-menu{:role => :menu}
+              %li.list-menu-wrapper=link_to tag_icon(:check, pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link'
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:'check-empty', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled'
+              %li.list-menu-divider.divider
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:trash, pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled'
+                .list-menu-popover-delete-selected.popover.right
+                  .arrow
+                  %h3.popover-title=pat(:delete_selected_title)
+                  .popover-content
+                    -form_tag url(:repositories, :destroy_many), :method => :delete do
+                      =hidden_field_tag :repository_ids, :'data-delete-many-ids' => true
+                      =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
+                      .btn.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:repository, :id)
+        %th.header= mat(:repository, :full_name)
+        %th.header= mat(:repository, :description)
+        %th.header= mat(:repository, :html_url)
+        %th.header= mat(:repository, :created_at)
+        %th.header= mat(:repository, :updated_at)
+        %th.header= mat(:repository, :contributions_count)
+        %th.header.list-row-action-header
+
+    %tbody
+      -@repositories.each do |repository|
+        %tr.list-row
+          %td.list-column.list-selectable
+            =check_box_tag 'repository_ids[]', :value => repository.id, :class => 'list-selectable-checkbox'
+          %td.list-column=repository.id
+          %td.list-column=repository.full_name
+          %td.list-column=repository.description
+          %td.list-column=repository.html_url
+          %td.list-column=time_ago_in_words repository.created_at
+          %td.list-column=time_ago_in_words repository.updated_at
+          %td.list-column=repository.contributions_count
+          %td.list-column.list-row-action
+            .list-row-action-wrapper
+              =link_to tag_icon(:edit), :href => url(:repositories, :edit, :id => repository.id), :rel => :tooltip, :title => "#{pat(:edit)} repository", :class => 'list-row-action-wrapper-link'
+              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} repository", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              .popover.list-row-action-popover-delete-one.left
+                .arrow
+                %h3.popover-title=pat(:delete, :model => "repository")
+                .popover-content
+                  -form_tag url(:repositories, :destroy, :id => repository.id), :method => :delete do
+                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    .btn.btn-small.cancel=pat(:cancel)

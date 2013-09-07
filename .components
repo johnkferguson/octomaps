@@ -7,3 +7,4 @@
 :stylesheet: sass
 :namespace: Octomaps
 :migration_format: number
+:admin_renderer: haml

@@ -1,0 +1,19 @@
+- error = @city.errors.include?(:name)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :name, :class => 'control-label'
+  .controls
+    =f.text_field :name, :class => 'input-xlarge input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+- error = @city.errors.include?(:country_id)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :country_id, :class => 'control-label'
+  .controls
+    =f.text_field :country_id, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:country_id, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:cities, :index), :class => 'btn'
