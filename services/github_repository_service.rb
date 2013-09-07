@@ -6,41 +6,32 @@ class GithubRepositoryService
 
   def initialize(repo_name)
     @repo_name = repo_name
-    @db_repo = Repository.find_by_full_name(repo_name)
+    @db_repo = Repository.find_by_full_name(repo_name) || create_repository
   end
 
   def github_repository
     @github_repository ||= @@octokit_client.repo(repo_name) rescue nil
   end
 
-  def update_database_based_upon_github    
-    create_repository unless repository_in_database?
+  def update_database_based_upon_github
     associate_or_create_contributors if missing_contributors?  
   end
 
   private
 
     def associate_or_create_contributors
-      contributor_usernames_not_associated_with_repository.each do |contrib_username|
-        if user = User.find_by_username(contrib_username)
-          Contribution.create(user: user, repository: db_repo)
-        else
-          db_user = GithubUserService.new(contrib_username).db_user
-          Contribution.create(user: db_user, repository: db_repo)
-        end
+      contributor_usernames_not_associated_with_repository.each do |contrib_name|
+        user = User.find_by_username(contrib_name) || GithubUserService.new(contrib_name).db_user
+        Contribution.create(user: user, repository: db_repo)          
       end
     end
 
     def create_repository
-      @db_repo = Repository.create(
+      Repository.create(
         full_name: github_repository["full_name"],
         description: github_repository["description"],
         html_url: github_repository["homepage"]
         )
-    end
-
-    def repository_in_database?
-      true if db_repo
     end
 
     def missing_contributors?
