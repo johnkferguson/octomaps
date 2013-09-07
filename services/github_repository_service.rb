@@ -6,7 +6,7 @@ class GithubRepositoryService
 
   def initialize(repo_name)
     @repo_name = repo_name
-    @db_repo = Repository.find_by_full_name(repo_name) || create_repository
+    @db_repo = Repository.where("full_name ILIKE ?", repo_name).first || create_repository
   end
 
   def github_repository
