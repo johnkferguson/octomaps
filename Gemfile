@@ -33,6 +33,7 @@ gem 'yui-compressor'
 gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'unicorn'
+gem 'therubyracer'
 
 group :development do
   gem 'pry'

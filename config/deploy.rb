@@ -52,7 +52,7 @@ namespace :deploy do
   end
 
   task :migrate do
-    run "cd #{current_path}; RACK_ENV=production bundle exec padrino rake ar:migrate"
+    run "cd #{current_path}; PADRINO_ENV=production bundle exec padrino rake ar:migrate"
   end
 
 
