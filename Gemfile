@@ -30,6 +30,9 @@ gem 'google_visualr'
 gem 'padrino-sprockets', :require => ['padrino/sprockets'], :git => 'git://github.com/nightsailer/padrino-sprockets.git'
 gem 'uglifier'
 gem 'yui-compressor'
+gem 'capistrano'
+gem 'rvm-capistrano'
+gem 'unicorn'
 
 group :development do
   gem 'pry'

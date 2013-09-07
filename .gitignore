@@ -8,3 +8,5 @@ vendor/gems/*
 db/*.db
 .*.sw*
 config/config.yml
+.ruby-gemset
+/config/database.rb

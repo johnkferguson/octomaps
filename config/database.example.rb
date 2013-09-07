@@ -1,4 +1,12 @@
 ##
+#
+# To configure your database setting, create a copy of this file as 'database.rb'
+# then edit all of the settings to work properly with your local database. For example, 
+# change 'username_goes_here' to your username and 'password_goes_here' to your database password.
+#
+
+
+
 # You can use other adapters like:
 #
 #   ActiveRecord::Base.configurations[:development] = {
@@ -16,8 +24,8 @@
 ActiveRecord::Base.configurations[:development] = {
   :adapter   => 'postgresql',
   :database  => 'octomaps_development',
-  :username  => 'John',
-  :password  => '',
+  :username  => 'username_goes_here',
+  :password  => 'password_goes_here',
   :host      => 'localhost',
   :port      => 5432
 
@@ -26,8 +34,8 @@ ActiveRecord::Base.configurations[:development] = {
 ActiveRecord::Base.configurations[:production] = {
   :adapter   => 'postgresql',
   :database  => 'octomaps_production',
-  :username  => 'deploy',
-  :password  => 'EeT2RhdCc3ho',
+  :username  => 'username_goes_here',
+  :password  => 'password_goes_here',
   :host      => 'localhost',
   :port      => 5432
 
@@ -36,8 +44,8 @@ ActiveRecord::Base.configurations[:production] = {
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',
   :database  => 'octomaps_test',
-  :username  => 'John',
-  :password  => '',
+  :username  => 'username_goes_here',
+  :password  => 'password_goes_here',
   :host      => 'localhost',
   :port      => 5432
 
