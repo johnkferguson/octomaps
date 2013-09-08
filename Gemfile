@@ -37,6 +37,10 @@ gem 'unicorn'
 gem 'therubyracer'
 
 group :development do
+  gem 'thin'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'awesome_print'
   gem 'pry'
   gem 'debugger'
 end
@@ -47,5 +51,6 @@ group :test do
   gem 'mocha'
   gem 'rack-test'
   gem 'shoulda-matchers'
-  gem "database_cleaner"
+  gem 'database_cleaner'
+  gem 'capybara'
 end
