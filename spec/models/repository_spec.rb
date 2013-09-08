@@ -36,8 +36,19 @@ describe Repository do
     it { should_not be_valid }
   end
 
-  # Cannot get counter cache testing to work properly. Counter cache does update
-  # correctly though outside of testing.
+  describe "#find_by_case_insensitve_name" do
+    it "should return the correct repository given a case insensitive match " do
+      repo = Repository.create(full_name: "Octokit/Octokit.rb")
+      downcase_name = repo.full_name.downcase
+      Repository.find_by_case_insensitve_name(downcase_name).should == repo
+    end
+
+    it "should return the correct repository given a case sensitive match" do
+      repo = Repository.create(full_name: "Octokit/Octokit.rb")
+      Repository.find_by_case_insensitve_name(repo.full_name).should == repo
+    end
+
+  end
 
   # describe "when a new contribution is created" do
   #   it "updates the counter cache" do

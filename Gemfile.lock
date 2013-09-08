@@ -23,6 +23,7 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     coderay (1.0.9)
     columnize (0.3.6)
+    database_cleaner (1.1.1)
     debugger (1.5.0)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -159,6 +160,7 @@ DEPENDENCIES
   activerecord (>= 3.1)
   bcrypt-ruby
   capistrano
+  database_cleaner
   debugger
   geocoder
   google_visualr

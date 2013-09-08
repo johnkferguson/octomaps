@@ -47,12 +47,5 @@ group :test do
   gem 'mocha'
   gem 'rack-test'
   gem 'shoulda-matchers'
+  gem "database_cleaner"
 end
-
-# Or Padrino Edge
-# gem 'padrino', :github => 'padrino/padrino-framework'
-
-# Or Individual Gems
-# %w(core gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.11.3'
-# end

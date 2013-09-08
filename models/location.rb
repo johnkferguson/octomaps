@@ -11,6 +11,7 @@ class Location < ActiveRecord::Base
   before_create :geocode_location
   before_save { |location| location.name.downcase! }
 
+  # Instance Methods
   def geocode_location
     GeocoderService.new(self).geocode_location
   end

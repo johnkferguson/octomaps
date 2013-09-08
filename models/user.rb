@@ -25,5 +25,4 @@ class User < ActiveRecord::Base
     location.city.country.name
   end
 
-
 end

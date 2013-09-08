@@ -4,6 +4,20 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
 RSpec.configure do |conf|
   conf.mock_with :mocha
   conf.include Rack::Test::Methods
+
+  conf.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  conf.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  conf.after(:each) do
+    DatabaseCleaner.clean
+  end
+
 end
 
 # You can use this method to custom specify a Rack app
@@ -19,3 +33,20 @@ def app(app = nil, &blk)
   @app ||= block_given? ? app.instance_eval(&blk) : app
   @app ||= Padrino.application
 end
+
+# Spec::Runner.configure do |config|
+
+#   config.before(:suite) do
+#     DatabaseCleaner.strategy = :transaction
+#     DatabaseCleaner.clean_with(:truncation)
+#   end
+
+#   config.before(:each) do
+#     DatabaseCleaner.start
+#   end
+
+#   config.after(:each) do
+#     DatabaseCleaner.clean
+#   end
+
+# end

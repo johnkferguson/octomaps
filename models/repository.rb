@@ -7,6 +7,10 @@ class Repository < ActiveRecord::Base
   # Validations
   validates :full_name, presence: true, uniqueness: true
 
+  # Class Methods
+  def self.find_by_case_insensitve_name(name)
+    where("full_name ILIKE ?", name).first
+  end
 
   # Instance Methods
   def hash_of_cities_and_count
