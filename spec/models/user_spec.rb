@@ -67,6 +67,18 @@ describe User do
     end
   end
 
+  describe "#country_name delegation" do
+    it "should return the name of the associated City object" do
+      test_location = Location.create(name: " ")
+      test_city = City.create(name: "Test City")
+      test_country = Country.create(name: "Test Country")
+      test_city.country = test_country
+      test_location.city = test_city
+      @user.location = test_location
+      expect(@user.country_name).to eq(test_country.name)
+    end
+  end
+
   describe "#has_no_location?" do
     it "returns true if the user has no location" do
       expect(@user.has_no_location?).to eq(true)
@@ -117,20 +129,6 @@ describe User do
       # This will create the associated city and country objects when given a valid location name.
       @user.location = Location.create(name: "New York, NY")
       expect(@user.has_no_country?).to eq(false)
-    end
-  end
-
-
-
-  describe "#country_name" do
-    it "should return the name of the associated City object" do
-      test_location = Location.create(name: " ")
-      test_city = City.create(name: "Test City")
-      test_country = Country.create(name: "Test Country")
-      test_city.country = test_country
-      test_location.city = test_city
-      @user.location = test_location
-      expect(@user.country_name).to eq(test_country.name)
     end
   end
 
