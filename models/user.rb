@@ -8,21 +8,23 @@ class User < ActiveRecord::Base
   # Validations
   validates :username, presence: true, uniqueness: true
 
+  # Delegations
+  delegate :city, to: :location
+  delegate :name, to: :city, prefix: true
+  delegate :country, to: :city
+  delegate :name, to: :country, prefix: true
+
   # Instance methods
   def has_no_location?
     location == nil
   end
 
+  def has_no_city?
+    has_no_location? || city == nil
+  end
+
   def has_no_country?
-    location.city == nil || location.city.country == nil
-  end
-
-  def city_name
-    location.city.name
-  end
-
-  def country_name
-    location.city.country.name
+    has_no_city? || country == nil
   end
 
 end
