@@ -1,16 +1,14 @@
-class GithubRepositoryService
+class GithubRepositoryService < GithubService
   attr_reader :db_repo, :repo_name
 
-  @@octokit_client = Octokit::Client.new(:login => "flatiron-001",
-                                         :password => "flatiron001")
-
   def initialize(repo_name)
+    super()
     @repo_name = repo_name
     @db_repo = Repository.find_by_case_insensitve_name(repo_name) || create_repository
   end
 
   def github_repository
-    @github_repository ||= @@octokit_client.repo(repo_name) rescue nil
+    @github_repository ||= client.repo(repo_name) rescue nil
   end
 
   def update_database_based_upon_github

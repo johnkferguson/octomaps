@@ -3,9 +3,11 @@ PADRINO_ENV  = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'development'  unless 
 PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 
 # Define Octokit Constants
-
-LOGIN = "flatiron-001"
-PASSWORD = "flatiron001"
+# The following constants must be defined with your Github username and password,
+# so youn can make authenticated requests with Github. These constants are used throughout the app
+# to authenticate. Once update, copy this file and rename it as boot.rb
+# LOGIN = "github account username"
+# PASSWORD = "github account password"
 
 # Load our dependencies
 require 'rubygems' unless defined?(Gem)

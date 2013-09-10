@@ -4,6 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
 RSpec.configure do |conf|
   conf.mock_with :mocha
   conf.include Rack::Test::Methods
+  # conf.extend VCR::RSpec::Macros
 
   conf.before(:suite) do
     DatabaseCleaner.strategy = :transaction
