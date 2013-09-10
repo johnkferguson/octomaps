@@ -49,7 +49,7 @@ class GithubRepositoryService < GithubService
     end
 
     def github_contributors
-      @github_contributors ||= @@octokit_client.contribs(repo_name) rescue nil
+      @github_contributors ||= client.contribs(repo_name) rescue nil
     end
 
     def github_contributors_count
