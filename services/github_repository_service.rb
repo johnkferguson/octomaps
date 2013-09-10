@@ -4,7 +4,7 @@ class GithubRepositoryService < GithubService
   def initialize(repo_name)
     super()
     @repo_name = repo_name
-    @db_repo = Repository.find_by_case_insensitve_name(repo_name) || create_repository
+    @db_repo = Repository.find_by_case_insensitve_name(repo_name)
   end
 
   def github_repository
@@ -12,6 +12,7 @@ class GithubRepositoryService < GithubService
   end
 
   def update_database_based_upon_github
+    create_repository unless repository_in_database?
     associate_or_create_contributors if missing_contributors?  
   end
 
@@ -30,6 +31,10 @@ class GithubRepositoryService < GithubService
         description: github_repository["description"],
         html_url: github_repository["homepage"]
         )
+    end
+
+    def repository_in_database?
+      true if db_repo
     end
 
     def missing_contributors?
