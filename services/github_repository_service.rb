@@ -26,7 +26,7 @@ class GithubRepositoryService < GithubService
     end
 
     def create_repository
-      Repository.create(
+      @db_repo = Repository.create(
         full_name: github_repository["full_name"],
         description: github_repository["description"],
         html_url: github_repository["homepage"]
