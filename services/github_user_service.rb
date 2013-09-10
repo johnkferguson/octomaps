@@ -7,7 +7,7 @@ class GithubUserService < GithubService
     @username = attributes["login"]
     @gravatar_id = attributes["gravatar_id"]
     @email = attributes["email"]
-    @location = attributes["location"].downcase
+    @location = attributes["location"].downcase if attributes["location"]
     @db_user = create_user
   end
 
