@@ -1,8 +1,8 @@
-class GithubRepositoryService < GithubService
+class GithubRepositoryService
+  include GithubConnection
   attr_reader :db_repo, :repo_name
 
   def initialize(repo_name)
-    super()
     @repo_name = repo_name
     @db_repo = Repository.find_by_case_insensitve_name(repo_name)
   end
