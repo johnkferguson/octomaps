@@ -21,7 +21,7 @@ gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'pg'
 
 # Padrino Stable Gem
-gem 'padrino', '0.11.3'
+gem 'padrino', '0.11.4'
 
 # Other Gems
 gem 'octokit'
