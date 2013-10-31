@@ -23,22 +23,11 @@ module Octomaps
 		git_repo = GithubRepositoryService.new(repo_name)
 		if git_repo.github_repository
 			git_repo.update_database_based_upon_github
-			@repo = git_repo.db_repo
-			if params[:city]
-				@location_count_hash = @repo.hash_of_cities_and_count
-				opts = { :displayMode => 'markers', :region => 'world', :legend => 'none',
-              :colors => ['FF8F86', 'C43512']}
-			elsif params[:country]
-				@location_count_hash = @repo.hash_of_countries_and_count
-				opts = { :displayMode => 'region', :region => 'world', :legend => 'none',
-             :colors => ['FF8F86', 'C43512']}
-			end
-			markers = Map.new(@location_count_hash).markers
-     	@chart_markers = GoogleVisualr::Interactive::GeoChart.new(markers, opts)
-     	@list = @location_count_hash.sort_by{|location, contributors| contributors}.reverse
-			@repo.reload
+			repo = git_repo.db_repo
+			@map = Map.new(repo, params)
+			@map.repository.reload
 			render 'public/map'
-		else 
+		else
 			redirect_to :notfound
 		end
 	end

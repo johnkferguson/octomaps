@@ -1,30 +1,30 @@
-- @title = "Octomaps: #{@repo.full_name}"
+- @title = "Octomaps: #{@map.repository_name}"
 %body.map
   #left
     %header
       %h1 Great success!
       %h2
-        %strong= @repo.contributions_count
+        %strong= @map.contributions_count
         contributors in
         %br
-        %strong= @location_count_hash.size
-        - if params[:city]
+        %strong= @map.number_of_locations
+        - if @map.is_of_cities?
           locations for
-        - elsif params[:country]
+        - elsif @map.is_of_countries?
           countries for
         %br
-        %strong= @repo.full_name
+        %strong= @map.repository_name
       #twitter
         %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
         %script
           !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     #table
       %ul
-        - @list.each do |location, count|
+        - @map.sorted_list.each do |location, count|
           %li
             = "#{count} in #{location}"
     #query_form
-      %p 
+      %p
         Enter a GitHub repository owner and name to generate another map.
         Repository Owner:
       = partial 'public/form'
@@ -41,6 +41,6 @@
           %a{:href => "http://www.twitter.com/jkestler"} Justin Kestler
         %li
           Students at the
-          %a{:href => "http://www.flatironschool.com"} Flatiron School.          
+          %a{:href => "http://www.flatironschool.com"} Flatiron School.
   #chart_markers
-    != @chart_markers.to_js('chart_markers')
+    != @map.google_visualr_chart_markers.to_js('chart_markers')
