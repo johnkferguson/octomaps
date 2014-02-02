@@ -22,7 +22,9 @@ gem 'pg'
 
 # Padrino Stable Gem
 gem 'padrino', '0.11.4'
-gem 'dotenv'
+group :development, :test, :production do
+  gem 'dotenv'
+end
 
 # Other Gems
 gem 'octokit'
