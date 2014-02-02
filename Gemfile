@@ -22,6 +22,7 @@ gem 'pg'
 
 # Padrino Stable Gem
 gem 'padrino', '0.11.4'
+gem 'dotenv'
 
 # Other Gems
 gem 'octokit'

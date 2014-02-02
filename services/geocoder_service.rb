@@ -7,7 +7,8 @@ class GeocoderService
     @results = Geocoder.search(location_name)
     if results.first
       @country = results.first.country
-      @city = results.first.formatted_address
+      puts results.first
+      @city = results.first.formatted_address if results.first
     end
   end
 

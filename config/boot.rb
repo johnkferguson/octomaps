@@ -2,9 +2,13 @@
 PADRINO_ENV  = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'development'  unless defined?(PADRINO_ENV)
 PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 
+# Use Dotenv
+require 'dotenv'
+Dotenv.load ".env"
+
 # Define Octokit Constants
-LOGIN = "flatiron-001"
-PASSWORD = "flatiron001"
+LOGIN = ENV['GITHUB_LOGIN']
+PASSWORD = ENV['GITHUB_PASSWORD']
 
 # Load our dependencies
 require 'rubygems' unless defined?(Gem)

@@ -10,3 +10,4 @@ db/*.db
 config/config.yml
 .ruby-gemset
 /config/database.rb
+.env
