@@ -7,13 +7,13 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-# Use Dotenv
-require 'dotenv'
-Dotenv.load ".env"
+# # Use Dotenv
+# require 'dotenv'
+# Dotenv.load ".env"
 
 # Define Octokit Constants
-LOGIN = ENV['GITHUB_LOGIN']
-PASSWORD = ENV['GITHUB_PASSWORD']
+LOGIN = 'octomaps-app'
+PASSWORD = 'NRobMpb3LmYs2eqJ'
 
 ##
 # ## Enable devel logging
