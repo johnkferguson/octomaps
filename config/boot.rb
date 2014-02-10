@@ -11,10 +11,6 @@ Bundler.require(:default, PADRINO_ENV)
 # require 'dotenv'
 # Dotenv.load ".env"
 
-# Define Octokit Constants
-LOGIN = 'octomaps-app'
-PASSWORD = 'NRobMpb3LmYs2eqJ'
-
 ##
 # ## Enable devel logging
 #
