@@ -1,0 +1,11 @@
+common: &common
+  adapter: postgresql
+
+development:
+  <<: *common
+  database: octomaps_dev
+
+test:
+  <<: *common
+  database: octomaps_test
+
