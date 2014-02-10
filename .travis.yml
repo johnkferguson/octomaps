@@ -1,0 +1,12 @@
+language: ruby
+
+cache: bundler
+
+rvm:
+  - 2.0.0
+
+before_script:
+  - psql -c 'create database octomaps_test;' -U postgres
+  - "PADRINO_ENV=test bundle exec rake db:migrate"
+
+bundler_args: --without development
