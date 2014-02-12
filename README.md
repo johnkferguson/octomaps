@@ -3,11 +3,11 @@ Octomaps
 
 [![Code Climate](https://codeclimate.com/github/JohnKellyFerguson/octomaps.png)](https://codeclimate.com/github/JohnKellyFerguson/octomaps)
 
-Octomaps plots the locations of contributors to any open-source project on a map. 
+Octomaps plots the locations of contributors to any open-source project on a map.
 
 Check out Octomaps in action here: [http://www.octomaps.com](http://www.octomaps.com)
 
-	
+
 ##Octomaps' Key Components
 Octomaps is built with [Ruby](http://www.ruby-lang.org/en/) and uses the [Sinatra](http://www.sinatrarb.com/) web framework.
 
@@ -30,8 +30,7 @@ For a much more granular perspective on how Octomaps' code works, check out [A S
 `
 ENV['DATABASE_URL'] ||= 'postgres://your_host_name_here@localhost/name_of_your_db_here'
 `
-5. Within the repoclass.rb file, adjust the login and password for Octokit to reflect your information.
-6. Start playing with Octomaps!
+5. Start playing with Octomaps!
 
 ##Contributing to Octomaps
 If you'd like to contribute to octomaps, fork our repository and submit a pull request. Also, be sure to check out [our issues page](https://github.com/JohnKellyFerguson/octomaps/issues?state=open) for a list of things we are working on.
