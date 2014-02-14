@@ -21,7 +21,7 @@ gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'pg'
 
 # Padrino Stable Gem
-gem 'padrino', '0.11.4'
+gem 'padrino', '0.12.0'
 group :development, :test, :production do
   gem 'dotenv'
 end
