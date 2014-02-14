@@ -22,7 +22,8 @@ gem 'pg'
 
 # Padrino Stable Gem
 gem 'padrino', '0.12.0'
-group :development, :test, :production do
+
+group :development, :test do
   gem 'dotenv'
 end
 

@@ -8,8 +8,11 @@ require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
 # # Use Dotenv
-# require 'dotenv'
-# Dotenv.load '.env'
+unless PADRINO_ENV == 'production'
+  require 'dotenv'
+  Dotenv.load '.env'
+end
+
 
 ##
 # ## Enable devel logging
