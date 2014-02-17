@@ -24,29 +24,29 @@ describe Map do
   end
 
   describe "instance methods" do
-    let(:repo) { Repository.create(full_name: "johnkellyferguson/octomaps") }
+    let(:john) do
+      double("user", :has_no_city? => false, city_name: "New York, NY, USA",
+        :has_no_country? => false, country_name: "United States")
+    end
+
+    let(:masha) do
+      double("user", :has_no_city? => true, :has_no_country? => true)
+    end
+
+    let(:justin) do
+      double("user", :has_no_city? => false, city_name: "New Jersey, USA",
+        :has_no_country? => false, country_name: "United States")
+    end
+
+    let(:repo) do
+      double("repo", full_name: "johnkellyferguson/octomaps",
+        users: [john, masha, justin], contributions_count: 3)
+    end
+
     let(:country_params) { {"owner"=>"johnkellyferguson", "repo"=>"octomaps", "country"=>"Map by Country"} }
     let(:city_params) { {"owner"=>"johnkellyferguson", "repo"=>"octomaps", "city"=>"Map by City*"} }
     let(:country_map) { Map.new(repo, country_params) }
     let(:city_map) { Map.new(repo, city_params) }
-
-    before do
-      # Establish users to be utilized as contributors
-      john = User.new(username: "johnkellyferguson")
-      john.location = Location.create(name: "New York City")
-      john.save
-      justin = User.new(username: "meowist")
-      justin.location = Location.create(name: "New Jersey")
-      justin.save
-      # User with no location
-      masha = User.create(username: "mrikhter")
-
-      # Add Contributors
-      [john, justin, masha].each do |u|
-        Contribution.create(repository_id: repo.id, user_id: u.id)
-      end
-
-    end
 
     describe "public methods" do
 
@@ -66,7 +66,6 @@ describe Map do
 
       describe "#contributions_count" do
         it "should return the correct contributions count" do
-          repo.reload.contributions_count
           expect(country_map.contributions_count).to eq(3)
         end
       end
