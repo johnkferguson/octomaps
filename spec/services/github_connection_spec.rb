@@ -5,24 +5,18 @@ class BlankClass
 end
 
 describe GithubConnection do
-  before(:each) do
-    @connetion = BlankClass.new
-  end
-
-  subject { @connetion }
-
-  it { should respond_to(:client) }
+  let(:connection) { BlankClass.new }
 
   describe "#client" do
     it "is an instance of Octokit::Client" do
-      expect(@connetion.client.class).to eq(Octokit::Client)
+      expect(connection.client.class).to eq(Octokit::Client)
     end
   end
 
   describe "#rate_limit_remaining" do
     it "returns a fixnum" do
-      expect(@connetion.rate_limit_remaining.class).to eq(Fixnum)
+      expect(connection.rate_limit_remaining.class).to eq(Fixnum)
     end
   end
- 
+
 end
