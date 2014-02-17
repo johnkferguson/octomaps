@@ -10,12 +10,11 @@ describe Location do
   it { should validate_uniqueness_of(:name) }
 
   describe "when the name is entered with capital letters" do
-    before do
-      Location.any_instance.stub(:geocode_location).and_return(nil)
-      location.save
-    end
+    before { Location.any_instance.stub(:geocode_location).and_return(nil) }
+
     it "should save as lowercase" do
-      expect(location.name).to eq("new york, ny")
+      expect { location.save }.to change { location.name }
+        .from("New York, NY").to("new york, ny")
     end
   end
 
