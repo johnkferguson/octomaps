@@ -43,8 +43,15 @@ describe Map do
         users: [john, masha, justin], contributions_count: 3)
     end
 
-    let(:country_params) { {"owner"=>"johnkellyferguson", "repo"=>"octomaps", "country"=>"Map by Country"} }
-    let(:city_params) { {"owner"=>"johnkellyferguson", "repo"=>"octomaps", "city"=>"Map by City*"} }
+    let(:country_params) do
+      {"owner"=>"johnkellyferguson", "repo"=>"octomaps",
+       "country"=>"Map by Country"}
+    end
+
+    let(:city_params) do
+      {"owner"=>"johnkellyferguson", "repo"=>"octomaps", "city"=>"Map by City*"}
+    end
+
     let(:country_map) { Map.new(repo, country_params) }
     let(:city_map) { Map.new(repo, city_params) }
 

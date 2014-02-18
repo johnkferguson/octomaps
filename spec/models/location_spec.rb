@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Location do
+  before { Location.any_instance.stub(:geocode_location).and_return(nil) }
   let(:location) { Location.new(name: "New York, NY") }
 
   it { should respond_to(:name) }
@@ -10,8 +11,6 @@ describe Location do
   it { should validate_uniqueness_of(:name) }
 
   describe "when the name is entered with capital letters" do
-    before { Location.any_instance.stub(:geocode_location).and_return(nil) }
-
     it "should save as lowercase" do
       expect { location.save }.to change { location.name }
         .from("New York, NY").to("new york, ny")
