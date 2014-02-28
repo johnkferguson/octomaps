@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem "neo4j", "3.0.0.alpha.3"
+gem "neo4j", github: 'andreasronge/neo4j'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml'
