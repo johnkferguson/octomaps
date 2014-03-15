@@ -6,5 +6,5 @@ class Person
 
     property :username, :type => String
 
-
+    has_n(:contributed_to).to(Repository)
 end
