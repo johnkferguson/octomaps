@@ -24,4 +24,5 @@ class Person
   validates_uniqueness_of :github_id, :github_username
 
   has_n(:contributed_to).to(Repository)
+  # has_n(:created_repository).to(Repository)
 end

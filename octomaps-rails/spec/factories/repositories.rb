@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :repository do
     full_name { "#{Faker::Name.first_name}/#{name}" }
-    github_id { Random.new.rand(1..100) }
+    sequence(:github_id) { |n| n }
     name { "#{Faker::Lorem.word}" }
     description { Faker::Company.catch_phrase }
     homepage { Faker::Internet.http_url }
