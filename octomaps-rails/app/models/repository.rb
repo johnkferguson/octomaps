@@ -18,6 +18,9 @@ class Repository
   property :github_updated_at, type: DateTime
   property :github_pushed_at, type: DateTime
 
+  validates :github_id, :full_name, presence: true
+  validates_uniqueness_of :github_id, :full_name
+
   has_n(:contributors).from(Person, :contributed_to)
   # has_one(:creator).from(Person, :created_repository)
 end
