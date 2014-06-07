@@ -3,7 +3,6 @@ class Repository
 
   property :created_at
   property :updated_at
-  property :etag, type: String
   property :owner, type: String
   property :name, type: String
   property :full_name, type: String

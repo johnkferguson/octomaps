@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :repository do
-    etag { Faker::Lorem.characters(20) }
     owner { "#{Faker::Internet.user_name}" }
     name { "#{Faker::Lorem.word}" }
     full_name { "#{owner}/#{name}" }
