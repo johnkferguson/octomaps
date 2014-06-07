@@ -1,6 +1,8 @@
 class Repository
   include Neo4j::ActiveNode
 
+  property :created_at
+  property :updated_at
   property :etag, type: String
   property :owner, type: String
   property :name, type: String
@@ -9,10 +11,8 @@ class Repository
   property :forks_count, type: Integer
   property :stargazers_count, type: Integer
   property :watchers_count, type: Integer
-  property :fork, type: Boolean
+  property :forked, type: Boolean
 
-  # has_n :people
-  # has_n(:contributions).from(:repositories)
   has_n(:contributors).from(Person, :contributed_to)
 end
 
