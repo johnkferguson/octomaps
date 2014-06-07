@@ -19,6 +19,8 @@ class Person
   property :github_created_at, type: DateTime
   property :github_updated_at, type: DateTime
 
+  validates :github_username, presence: true
+  validates_uniqueness_of :github_username
 
   has_n(:contributed_to).to(Repository)
 end
