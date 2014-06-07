@@ -17,3 +17,6 @@
 
 # Ignore Guardfile
 Guardfile
+
+# Github Yaml
+/config/github.yml
