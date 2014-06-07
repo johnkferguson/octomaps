@@ -10,7 +10,7 @@ class Repository
   property :homepage, type: String
   property :size, type: Integer
   property :forked, type: Boolean
-  property :github_forks_count, type: Integer #github_forks_count
+  property :github_forks_count, type: Integer # forks_count
   property :github_stargazers_count, type: Integer # stargazers_count
   property :github_watchers_count, type: Integer # watchers_count
   property :github_subscribers_count, type: Integer # subscribers_count
