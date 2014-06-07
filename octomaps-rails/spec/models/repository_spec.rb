@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Repository do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'has a valid factory' do
+    expect(build(:repository)).to be_valid
+  end
 end

@@ -1,12 +1,13 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :repository do
-    full_name "MyString"
-    description "MyString"
-    forks_count 1
-    stargazers_count 1
-    watchers_count 1
-    fork false
+    etag { Faker::Lorem.characters(20) }
+    owner { "#{Faker::Lorem.word}" }
+    name { "#{Faker::Lorem.word}" }
+    full_name { "#{owner}/#{name}" }
+    description { Faker::Company.catch_phrase }
+    forks_count { Random.new.rand(0..100) }
+    stargazers_count { Random.new.rand(0..100) }
+    watchers_count { Random.new.rand(0..100) }
+    forked false
   end
 end
