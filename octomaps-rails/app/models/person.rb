@@ -3,9 +3,10 @@ class Person
 
   property :created_at
   property :updated_at
+  property :github_username, type: String # username
+  property :github_id, type: Integer
   property :name, type: String
   property :email, type: String
-  property :github_username, type: String # username
   property :avatar_url, type: String
   property :gravatar_id, type: String
   property :company, type: String
@@ -19,8 +20,8 @@ class Person
   property :github_created_at, type: DateTime
   property :github_updated_at, type: DateTime
 
-  validates :github_username, presence: true
-  validates_uniqueness_of :github_username
+  validates :github_id, :github_username, presence: true
+  validates_uniqueness_of :github_id, :github_username
 
   has_n(:contributed_to).to(Repository)
 end

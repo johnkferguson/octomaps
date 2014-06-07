@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :person do
     name { Faker::Name.name }
     email { Faker::Internet.email }
+    github_id { Random.new.rand(1..100) }
     github_username { Faker::Internet.user_name }
     avatar_url { Faker::Internet.http_url }
     gravatar_id { Faker::Lorem.characters(20) }
