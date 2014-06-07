@@ -8,5 +8,14 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 RSpec.configure do |config|
   config.order = "random"
   config.include FactoryGirl::Syntax::Methods
+  config.include Neo4jDatabaseHelpers
   config.infer_base_class_for_anonymous_controllers = false
+
+  config.before(:all) do
+    prepare_database
+  end
+
+  config.before(:each) do
+    prepare_database unless current_session
+  end
 end
