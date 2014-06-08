@@ -27,7 +27,7 @@ describe Person do
     end
   end
 
-  describe '.persisted_usernames_from(usernames_array)' do
+  describe '.persisted_usernames_from(usernames_array)', :neo4j do
     it 'returns only the usernames that have already been persisted' do
       joe = create(:person, github_username: 'joe')
       carl = create(:person, github_username: 'carl')

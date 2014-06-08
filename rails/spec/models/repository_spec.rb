@@ -27,7 +27,7 @@ describe Repository do
     end
   end
 
-  describe '#needs_update?' do
+  describe '#needs_update?', :neo4j do
     let(:persisted_repo) { create(:repository, github_updated_at: 1.weeks.ago) }
 
     context 'when the repo is persisted but has a different github_updated_at' do
