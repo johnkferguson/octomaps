@@ -10,17 +10,6 @@ module Github
       @attributes ||= client.repo(full_repo_name).to_h rescue {}
     end
 
-    def contributors
-      @contributors ||=
-        client.contribs(full_name).map do |contrib_attrs|
-          Github::Contributor.new(contrib_attrs)
-        end
-    end
-
-    def owner
-      @owner ||= Github::Owner.new(attributes.fetch(:owner))
-    end
-
     [
       :full_name,
       :id,
@@ -38,6 +27,17 @@ module Github
       :pushed_at
     ].each do |key|
       define_method(key) { attributes.fetch(key) }
+    end
+
+    def owner
+      @owner ||= Github::Owner.new(attributes.fetch(:owner))
+    end
+
+    def contributors
+      @contributors ||=
+        client.contribs(full_name).map do |contrib_attrs|
+          Github::Contributor.new(contrib_attrs)
+        end
     end
   end
 end
