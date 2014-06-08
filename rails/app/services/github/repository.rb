@@ -17,6 +17,10 @@ module Github
         end
     end
 
+    def owner
+      @owner ||= Github::Owner.new(attributes.fetch(:owner))
+    end
+
     [
       :full_name,
       :id,
