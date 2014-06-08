@@ -1,42 +1,17 @@
-# Repository full name
-# Is it in already in the database?
-  # YES/NO: Update the database with the info of the repository
-
-  # Are any of the contributors in the database
-    # YES: Create the relationship between the contributors and the database
-    # NO: Do nothing
-  # Are there any contributors who are not in the database?
-    # YES: Create each of the missing contributors along with their relationship
-    # to the repository
-    # NO: Do nothing
-
-
-
-class ContributionSyncer < Github::Connection
+class ContributionSyncer
   def initialize(full_repo_name)
     @github_repository = Github::Repository.new(full_repo_name)
   end
 
-  def create_contributed_relationships_for_existing_users
-    matching_contributors_by(persisted_contributor_usernames).each do |contributor|
-      create_contributed_relationship(contributor, persisted_repository)
-    end
-  end
-
   def update_database_based_upon_github
+    update_or_create_repository
+    create_needed_contributed_to_relationships_for_existing_users
+    create_new_persons_and_relationships
   end
 
   private
 
   attr_reader :github_repository
-
-  def persisted_repository
-    @persisted_repository ||= RepositoryUpdater.new(github_repository).perform
-  end
-
-  def repository_name
-    persisted_repository.full_name
-  end
 
   def github_contributors
     github_repository.contributors
@@ -46,21 +21,56 @@ class ContributionSyncer < Github::Connection
     github_contributors.collect { |contributor| contributor.login }
   end
 
+  def persisted_repository
+    @persisted_repository ||= RepositoryUpdater.new(github_repository).perform
+  end
+  alias_method :update_or_create_repository, :persisted_repository
+
+  def repository_name
+    persisted_repository.full_name
+  end
+
   def persisted_contributor_usernames
     Person.persisted_usernames_in(github_contributor_usernames)
   end
 
-  def matching_contributors_by(usernames)
-    @matching_contributors ||= github_contributors.select do |contributor|
-      usernames.include?(contributor.login)
+  def create_needed_contributed_to_relationships_for_existing_users
+    persisted_contributors_lacking_relationship.each do |contributor|
+      create_contributed_to_relationship(contributor)
     end
   end
 
-  def create_contributed_relationship(contributor, repository)
+  def persisted_contributors_lacking_relationship
+    @persisted_contributors_lacking_relationship ||=
+      github_contributors.select do |contributor|
+        persisted_contributor_usernames.include?(contributor.login)
+      end
+  end
+
+  def unpersisted_contributors
+    @unpersisted_contributors ||=
+      github_contributors - persisted_contributors_lacking_relationship
+  end
+
+  def create_contributed_to_relationship(contributor)
     Neo4j::Session.query("
     MATCH (person:Person {github_username: '#{contributor.login}'})
-    MATCH (repo:Repository {full_name: '#{repository.full_name}'})
-    CREATE UNIQUE (person)-[:contributed_to {commits: #{contributor.contributions}}]->(repo);
+    MATCH (repo:Repository {full_name: '#{persisted_repository.full_name}'})
+    CREATE UNIQUE (person)-[:`Person#contributed_to` {commits: #{contributor.contributions}}]->(repo);
     ")
+  end
+
+  def create_new_persons_and_relationships
+    unpersisted_contributors.each do |contributor|
+      Neo4j::Session.query("
+        MATCH (repo:Repository {full_name: '#{persisted_repository.full_name}'})
+        CREATE (person:Person {
+          github_username: '#{contributor.login}',
+          github_id: '#{contributor.id}',
+          avatar_url: '#{contributor.avatar_url}',
+          gravatar_id: '#{contributor.gravatar_id}'
+        })-[:`Person#contributed_to` {commits: #{contributor.contributions}}]->(repo);
+      ")
+    end
   end
 end
