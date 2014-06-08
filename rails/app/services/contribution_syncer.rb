@@ -22,7 +22,8 @@ class ContributionSyncer
   end
 
   def persisted_repository
-    @persisted_repository ||= RepositoryUpdater.new(github_repository).perform
+    @persisted_repository ||=
+      Neo4jConnection::RepositoryUpdater.new(github_repository).perform
   end
   alias_method :update_or_create_repository, :persisted_repository
 
