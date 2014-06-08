@@ -1,5 +1,5 @@
 module Github
-  class Connection
+  class APIConnection
     def client
       @client ||= begin
         config_file = File.expand_path(File.join(__FILE__, "../../../../config/github.yml"))

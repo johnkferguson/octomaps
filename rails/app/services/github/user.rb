@@ -1,5 +1,5 @@
 module Github
-  class User < Connection
+  class User < APIConnection
     attr_reader :username
 
     def initialize(username)

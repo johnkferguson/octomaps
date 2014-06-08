@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Github::Connection do
+describe Github::APIConnection do
   let(:connection) { described_class.new }
 
   describe '#client' do

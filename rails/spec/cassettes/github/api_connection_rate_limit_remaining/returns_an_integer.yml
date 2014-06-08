@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Sun, 08 Jun 2014 17:41:58 GMT
+      - Sun, 08 Jun 2014 22:13:38 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,7 +33,7 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '4999'
       X-Ratelimit-Reset:
-      - '1402252168'
+      - '1402266096'
       Cache-Control:
       - no-cache
       X-Github-Media-Type:
@@ -52,7 +52,7 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Github-Request-Id:
-      - 6C1ED235:4C63:104BD59:5394A066
+      - 6C1ED235:4C67:E1549A:5394E012
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -60,10 +60,10 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Served-By:
-      - 132026e9262a0093e437f99db5f1e499
+      - 6d7de9e645814cac34ea2a8d72ba3141
     body:
       encoding: UTF-8
-      string: '{"resources":{"core":{"limit":5000,"remaining":4999,"reset":1402252168},"search":{"limit":30,"remaining":30,"reset":1402249378}},"rate":{"limit":5000,"remaining":4999,"reset":1402252168}}'
+      string: '{"resources":{"core":{"limit":5000,"remaining":4999,"reset":1402266096},"search":{"limit":30,"remaining":30,"reset":1402265678}},"rate":{"limit":5000,"remaining":4999,"reset":1402266096}}'
     http_version: 
-  recorded_at: Sun, 08 Jun 2014 17:41:58 GMT
+  recorded_at: Sun, 08 Jun 2014 22:13:38 GMT
 recorded_with: VCR 2.9.2

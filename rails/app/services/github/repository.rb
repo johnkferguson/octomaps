@@ -1,5 +1,5 @@
 module Github
-  class Repository < Connection
+  class Repository < APIConnection
     attr_reader :full_repo_name
 
     def initialize(full_repo_name)
