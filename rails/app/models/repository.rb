@@ -27,13 +27,13 @@ class Repository
   has_n(:contributors).from(Person, :contributed_to)
   # has_one(:creator).from(Person, :created_repository)
 
-  def needs_update?(updated_datetime)
-    !persisted? || out_of_sync_with_github?(updated_datetime)
+  def needs_update?(github_updated_datetime:)
+    !persisted? || out_of_sync_with_github?(github_updated_datetime)
   end
 
   private
 
-  def out_of_sync_with_github?(updated_datetime)
-    github_updated_at != updated_datetime
+  def out_of_sync_with_github?(github_updated_datetime)
+    github_updated_at != github_updated_datetime
   end
 end

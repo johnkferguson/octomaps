@@ -4,7 +4,7 @@ class RepositoryUpdater
   end
 
   def perform
-    if target_repository.needs_update?(updated_at)
+    if target_repository.needs_update?(github_updated_datetime: updated_at)
       target_repository.update!(
         name: name,
         description: description,
