@@ -31,7 +31,7 @@ class ContributionSyncer
   end
 
   def persisted_contributor_usernames
-    Person.persisted_usernames_in(github_contributor_usernames)
+    Person.persisted_usernames_from(usernames_array: github_contributor_usernames)
   end
 
   def create_needed_contributed_to_relationships_for_existing_users
