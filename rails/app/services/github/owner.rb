@@ -1,4 +1,3 @@
 module Github
-  class Owner < RepositoryMember
-  end
+  class Owner < RepositoryMember; end
 end

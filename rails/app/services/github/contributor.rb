@@ -1,5 +1,7 @@
 module Github
   class Contributor < RepositoryMember
-    define_method(:contributions) { attributes.fetch(key) }
+    def contributions
+      attributes.fetch(:contributions)
+    end
   end
 end
