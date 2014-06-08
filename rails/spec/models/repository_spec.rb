@@ -6,14 +6,15 @@ describe Repository do
   end
 
   describe 'validations' do
+    let(:original) { create(:repository) }
+
     it 'validates presence of github_id' do
       expect(build(:repository, github_id: nil)).to_not be_valid
     end
 
     it 'validates uniqueness of github_id' do
-      original = create(:repository)
-      expect(build(:repository, github_id: original.github_id))
-        .to have(1).errors_on(:github_id)
+      duplicate = build(:repository, github_id: original.github_id)
+      expect(duplicate).to_not be_valid
     end
 
     it 'validates presence of full_name' do
@@ -21,9 +22,8 @@ describe Repository do
     end
 
     it 'validates uniqueness of full_name' do
-      original = create(:repository)
-      expect(build(:repository, full_name: original.full_name))
-        .to have(1).errors_on(:full_name)
+      duplicate = build(:repository, full_name: original.full_name)
+      expect(duplicate).to_not be_valid
     end
   end
 end
