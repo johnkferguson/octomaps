@@ -18,6 +18,9 @@ class Repository
   property :github_updated_at, type: DateTime
   property :github_pushed_at, type: DateTime
 
+  index :github_id
+  index :full_name
+
   validates :github_id, :full_name, presence: true
   validates_uniqueness_of :github_id, :full_name
 

@@ -20,6 +20,9 @@ class Person
   property :github_created_at, type: DateTime
   property :github_updated_at, type: DateTime
 
+  index :github_id
+  index :github_username
+
   validates :github_id, :github_username, presence: true
   validates_uniqueness_of :github_id, :github_username
 
