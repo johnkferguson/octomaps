@@ -23,7 +23,14 @@ class Repository
 
   has_n(:contributors).from(Person, :contributed_to)
   # has_one(:creator).from(Person, :created_repository)
-end
 
-# repo2.contributors.create(joe, commits: 11)
-# joe.rels.each { |rel| puts rel.props[:commits] }
+  def needs_update?(updated_datetime)
+    !persisted? || out_of_sync_with_github?(updated_datetime)
+  end
+
+  private
+
+  def out_of_sync_with_github?(updated_datetime)
+    github_updated_at != updated_datetime
+  end
+end
