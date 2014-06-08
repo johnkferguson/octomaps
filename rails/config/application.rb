@@ -15,6 +15,9 @@ Bundler.require(:default, Rails.env)
 module Octomaps
   class Application < Rails::Application
 
+    # Silence locale warnings
+    I18n.enforce_available_locales = false
+
     config.generators do |g|
       g.orm             :neo4j
     end
