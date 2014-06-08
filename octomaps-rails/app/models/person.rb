@@ -25,4 +25,12 @@ class Person
 
   has_n(:contributed_to).to(Repository)
   # has_n(:created_repository).to(Repository)
+
+  def self.persisted_usernames_in(usernames_array)
+    Neo4j::Session.query("
+    MATCH (persons:Person)
+    WHERE persons.github_username IN #{usernames_array}
+    RETURN persons.github_username;
+    ").to_a.flat_map(&:values)
+  end
 end
