@@ -10,6 +10,13 @@ module Github
       @attributes ||= client.repo(full_repo_name).to_h rescue {}
     end
 
+    def contributors
+      @contributors ||=
+        client.contribs(full_name).map do |contrib_attrs|
+          Github::Contributor.new(contrib_attrs)
+        end
+    end
+
     [
       :full_name,
       :id,
