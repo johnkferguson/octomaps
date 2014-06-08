@@ -5,3 +5,5 @@ stack = Faraday::RackBuilder.new do |builder|
 end
 
 Octokit.middleware = stack
+Octokit.auto_paginate = true
+

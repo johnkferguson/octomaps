@@ -4,7 +4,6 @@ module Github
 
     def initialize(full_repo_name)
       @full_repo_name = full_repo_name
-      Octokit.auto_paginate = true
     end
 
     def attributes
