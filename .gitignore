@@ -7,6 +7,6 @@ vendor/gems/*
 .sass-cache/*
 db/*.db
 .*.sw*
-config/config.yml
+/padring/config/config.yml
 .ruby-gemset
 .env
