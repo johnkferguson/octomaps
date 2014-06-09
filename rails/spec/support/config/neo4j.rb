@@ -23,7 +23,7 @@ def current_session
 end
 
 def delete_database
-  Neo4j::Session.current._query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
+  current_session._query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
 end
 
 private
