@@ -1,4 +1,4 @@
-class ContributionSyncer
+class ContributionImportCoordinator
   def initialize(full_repo_name)
     @github_repository = Github::Repository.new(full_repo_name)
   end
