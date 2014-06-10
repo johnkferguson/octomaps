@@ -5,8 +5,10 @@ class ContributionImportCoordinator
 
   def update_database_based_upon_github
     update_or_create_repository
-    create_needed_contributed_to_relationships_for_existing_users
-    create_new_persons_and_relationships
+    Neo4j::Transaction.run do
+      create_needed_contributed_to_relationships_for_existing_users
+      create_new_persons_and_relationships
+    end
   end
 
   private
@@ -19,7 +21,7 @@ class ContributionImportCoordinator
   end
 
   def create_needed_contributed_to_relationships_for_existing_users
-    persisted_contributors_lacking_relationship.each do |contributor|
+    unconnected_persisted_contributors.each do |contributor|
       Neo4jConnection::ContributionConnector.new(
         contributor: contributor, repository_name: repository_name
       ).perform
@@ -27,23 +29,23 @@ class ContributionImportCoordinator
   end
 
   def create_new_persons_and_relationships
-    unpersisted_contributors.each do |contributor|
-      Neo4jConnection::ContributorPersister.new(
-        contributor: contributor,
-        repository_name: repository_name
-      ).perform
+      unpersisted_contributors.each do |contributor|
+        Neo4jConnection::ContributorPersister.new(
+          contributor: contributor,
+          repository_name: repository_name
+        ).perform
     end
   end
 
-  def persisted_contributors_lacking_relationship
-    @persisted_contributors_lacking_relationship ||=
+  def unconnected_persisted_contributors
+    @unconnected_persisted_contributors ||=
       github_contributors.select do |contributor|
         persisted_contributor_usernames.include?(contributor.login)
       end
   end
 
   def github_contributors
-    github_repository.contributors
+    @github_contributors ||= github_repository.contributors
   end
 
   def persisted_contributor_usernames
@@ -53,7 +55,7 @@ class ContributionImportCoordinator
   end
 
   def github_contributor_usernames
-    github_contributors.collect { |contributor| contributor.login }
+    github_contributors.map { |contributor| contributor.login }
   end
 
   def repository_name
@@ -62,6 +64,6 @@ class ContributionImportCoordinator
 
   def unpersisted_contributors
     @unpersisted_contributors ||=
-      github_contributors - persisted_contributors_lacking_relationship
+      github_contributors - unconnected_persisted_contributors
   end
 end
