@@ -17,7 +17,7 @@ describe Neo4jConnection::RepositoryUpdater do
   describe '#perform', :neo4j do
     before do
       allow(github_repository).to receive(:attributes).and_return(
-        {
+        OpenStruct.new({
           full_name: 'JohnKellyFerguson/octomaps',
           id: 1,
           name: 'octomaps',
@@ -32,7 +32,7 @@ describe Neo4jConnection::RepositoryUpdater do
           created_at: "2013-02-22T20:50:57Z",
           updated_at: "2014-03-15T20:17:22Z",
           pushed_at: "2014-03-15T20:17:22Z"
-        }
+        })
       )
     end
 
