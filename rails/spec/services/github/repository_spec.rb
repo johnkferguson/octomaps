@@ -6,7 +6,7 @@ describe Github::Repository do
 
   subject { described_class.new('JohnKellyFerguson/octomaps') }
 
-  its(:attributes) { is_expected.to be_a(Hash) }
+  its(:attributes) { is_expected.to be_a(Sawyer::Resource) }
   its(:full_name) { is_expected.to be_a(String) }
   its(:id) { is_expected.to be_a(Integer) }
   its(:name) { is_expected.to be_a(String) }
@@ -21,14 +21,14 @@ describe Github::Repository do
   its(:created_at) { is_expected.to be_a(Time) }
   its(:updated_at) { is_expected.to be_a(Time) }
   its(:pushed_at) { is_expected.to be_a(Time) }
-  its(:owner) { is_expected.to be_a(Github::Owner) }
+  its(:owner) { is_expected.to be_a(Sawyer::Resource) }
 
   describe '#contributors' do
     its(:contributors) { is_expected.to be_a(Array) }
 
     it 'contains Github::Contributors' do
       subject.contributors.each do |contributor|
-        expect(contributor).to be_a(Github::Contributor)
+        expect(contributor).to be_a(Sawyer::Resource)
       end
     end
   end

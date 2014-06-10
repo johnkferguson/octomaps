@@ -7,37 +7,20 @@ module Github
     end
 
     def attributes
-      @attributes ||= client.repo(full_repo_name).to_h rescue {}
+      @attributes ||= client.repo(full_repo_name) rescue nil
     end
 
-    [
-      :full_name,
-      :id,
-      :name,
-      :description,
-      :homepage,
-      :size,
-      :fork,
-      :forks_count,
-      :stargazers_count,
-      :watchers_count,
-      :subscribers_count,
-      :created_at,
-      :updated_at,
-      :pushed_at
-    ].each do |key|
-      define_method(key) { attributes.fetch(key) }
-    end
+    delegate  :full_name, :id, :name, :description, :homepage, :size, :fork,
+              :forks_count, :stargazers_count, :watchers_count,
+              :subscribers_count, :created_at, :updated_at, :pushed_at,
+              to: :attributes
 
     def owner
-      @owner ||= Github::Owner.new(attributes.fetch(:owner))
+      @owner ||= attributes.owner
     end
 
     def contributors
-      @contributors ||=
-        client.contribs(full_name).map do |contrib_attrs|
-          Github::Contributor.new(contrib_attrs)
-        end
+      @contributors ||= client.contribs(full_name)
     end
   end
 end
