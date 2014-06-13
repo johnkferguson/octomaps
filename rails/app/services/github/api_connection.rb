@@ -11,5 +11,11 @@ module Github
     def rate_limit_remaining
       client.rate_limit.remaining
     end
+
+    private
+
+    def not_found
+      @not_found ||= NullObject.new
+    end
   end
 end
