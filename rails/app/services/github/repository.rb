@@ -7,7 +7,11 @@ module Github
     end
 
     def attributes
-      @attributes ||= client.repo(full_repo_name) rescue nil
+      @attributes ||= client.repo(full_repo_name) rescue not_found
+    end
+
+    def exists?
+      attributes != not_found
     end
 
     delegate  :full_name, :id, :name, :description, :homepage, :size, :fork,
@@ -20,7 +24,7 @@ module Github
     end
 
     def contributors
-      @contributors ||= client.contribs(full_name)
+      @contributors ||= client.contribs(full_name) rescue not_found
     end
   end
 end
