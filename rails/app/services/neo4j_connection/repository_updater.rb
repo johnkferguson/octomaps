@@ -5,6 +5,7 @@ module Neo4jConnection
     end
 
     def perform
+      return if github_repository.not_found?
       if target_repository.needs_update?(github_updated_datetime: updated_at)
         target_repository.update!(
           name: name,

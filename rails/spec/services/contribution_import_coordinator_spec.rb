@@ -29,7 +29,8 @@ describe ContributionImportCoordinator do
       created_at: "2013-02-22T20:50:57Z",
       updated_at: "2014-03-15T20:17:22Z",
       pushed_at: "2014-03-15T20:17:22Z",
-      contributors: [contributor]
+      contributors: [contributor],
+      not_found?: false
     )
   end
 
@@ -65,18 +66,16 @@ describe ContributionImportCoordinator do
         )
 
         expect { coordinator.update_database_based_upon_github }
-          .to change { unconnected_person.contributed_to.count }
-          .from(0).to(1)
+          .to change { connected_relationship_count }
+          .from(nil).to(1)
       end
     end
 
     context 'when there are contributors that are not in the database' do
       it 'creates each person and their contributed to relationship' do
-        expect(connected_relationship_count).to be_nil
-
-        coordinator.update_database_based_upon_github
-
-        expect(connected_relationship_count).to eq(1)
+        expect { coordinator.update_database_based_upon_github }
+          .to change { connected_relationship_count }
+          .from(nil).to(1)
       end
     end
 

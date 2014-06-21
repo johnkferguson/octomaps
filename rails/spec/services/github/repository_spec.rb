@@ -25,7 +25,7 @@ describe Github::Repository do
     its(:pushed_at) { is_expected.to be_a(Time) }
     its(:owner) { is_expected.to be_a(Sawyer::Resource) }
 
-    its(:exists?) { is_expected.to be_truthy }
+    its(:not_found?) { is_expected.to be_falsey }
 
     describe '#contributors' do
       its(:contributors) { is_expected.to be_a(Array) }
@@ -66,7 +66,7 @@ describe Github::Repository do
     its(:pushed_at) { is_expected.to be_nil }
     its(:owner) { is_expected.to be_nil }
 
-    its(:exists?) { is_expected.to be_falsey }
+    its(:not_found?) { is_expected.to be_truthy }
 
     describe '#contributors' do
       it 'is a NullObject' do

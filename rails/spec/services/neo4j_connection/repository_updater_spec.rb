@@ -36,8 +36,17 @@ describe Neo4jConnection::RepositoryUpdater do
       )
     end
 
+    context 'when the repository was not found on github' do
+      before { allow(github_repository).to receive(:not_found?) { true } }
+
+      it 'does not create a new repository' do
+        expect { updater.perform }.to_not change { Repository.count }
+      end
+    end
+
     context 'when a pre-existing repository needs an update' do
       before(:each) do
+        allow(github_repository).to receive(:not_found?) { false }
         allow(pre_existing_repo).to receive(:needs_update?).and_return(true)
         updater.perform
       end
@@ -89,9 +98,12 @@ describe Neo4jConnection::RepositoryUpdater do
     end
 
     context 'when a pre-existing repository does not need an update' do
-      it 'does not update the repository' do
+      before do
+        allow(github_repository).to receive(:not_found?) { false }
         allow(pre_existing_repo).to receive(:needs_update?).and_return(false)
+      end
 
+      it 'does not update the repository' do
         updater.perform
 
         expect(pre_existing_repo).to_not receive(:update!)
@@ -99,6 +111,8 @@ describe Neo4jConnection::RepositoryUpdater do
     end
 
     context 'when there is no pre-existing repository' do
+      before { allow(github_repository).to receive(:not_found?) { false } }
+
       it 'creates a new repository' do
         expect { updater.perform }.to change { Repository.count }.from(0).to(1)
       end

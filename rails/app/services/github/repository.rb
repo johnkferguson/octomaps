@@ -10,8 +10,8 @@ module Github
       @attributes ||= client.repo(full_repo_name) rescue not_found
     end
 
-    def exists?
-      attributes != not_found
+    def not_found?
+      attributes == not_found
     end
 
     delegate  :full_name, :id, :name, :description, :homepage, :size, :fork,
