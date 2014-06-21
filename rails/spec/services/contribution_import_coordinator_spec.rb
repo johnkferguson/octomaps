@@ -66,25 +66,33 @@ describe ContributionImportCoordinator do
         )
 
         expect { coordinator.update_database_based_upon_github }
-          .to change { connected_relationship_count }
-          .from(nil).to(1)
+          .to change {
+            contributed_to_relationship_count_between(
+              person_name: 'JohnKellyFerguson',
+              repo_name: 'JohnKellyFerguson/octomaps'
+            )
+          }.from(nil).to(1)
       end
     end
 
     context 'when there are contributors that are not in the database' do
       it 'creates each person and their contributed to relationship' do
         expect { coordinator.update_database_based_upon_github }
-          .to change { connected_relationship_count }
-          .from(nil).to(1)
+          .to change {
+            contributed_to_relationship_count_between(
+              person_name: 'JohnKellyFerguson',
+              repo_name: 'JohnKellyFerguson/octomaps'
+            )
+          }.from(nil).to(1)
       end
     end
 
-    def connected_relationship_count
+    def contributed_to_relationship_count_between(person_name:, repo_name:)
       Neo4j::Session.current._query("
         MATCH path=
-        (repo:Repository {full_name: 'JohnKellyFerguson/octomaps'})
+        (repo:Repository {full_name: '#{repo_name}'})
         <-[:`Person#contributed_to`]-
-        (person:Person { github_username: 'JohnKellyFerguson' })
+        (person:Person { github_username: '#{person_name}' })
         RETURN length(path)
       ").data.flatten.first
     end
