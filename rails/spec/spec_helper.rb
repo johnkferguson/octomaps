@@ -12,4 +12,7 @@ RSpec.configure do |config|
   config.order = 'random'
   config.include FactoryGirl::Syntax::Methods
   config.infer_spec_type_from_file_location!
+  config.expect_with :rspec do
+    |c| c.syntax = :expect
+  end
 end
