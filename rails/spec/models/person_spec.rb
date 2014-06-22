@@ -28,7 +28,7 @@ describe Person do
       create(:person, github_username: 'joe')
       create(:person, github_username: 'carl')
 
-      expect(Person.persisted_usernames_from(
+      expect(described_class.persisted_usernames_from(
         usernames_array: %w(joe carl john))
       ).to contain_exactly('joe', 'carl')
     end

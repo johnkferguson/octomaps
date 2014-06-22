@@ -17,7 +17,6 @@ gem 'uglifier', '>= 1.3.0'
 group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'rubocop'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -32,6 +31,8 @@ group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'pry-byebug'
   gem 'pry-coolline'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
 end
 
 group :test do
