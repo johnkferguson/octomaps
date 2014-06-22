@@ -26,14 +26,6 @@ GIT
       pry-stack_explorer (~> 0.4.9)
       railties (>= 3.0, < 5.0)
 
-GIT
-  remote: git://github.com/thekompanee/fuubar.git
-  revision: 04742082befd60210ef55e84fa689f420ff26175
-  specs:
-    fuubar (2.0.0.rc1)
-      rspec (~> 3.0.rc1)
-      ruby-progressbar (~> 1.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -319,7 +311,6 @@ DEPENDENCIES
   factory_girl_rails
   faraday-http-cache
   ffaker
-  fuubar!
   guard
   guard-bundler
   guard-rails
