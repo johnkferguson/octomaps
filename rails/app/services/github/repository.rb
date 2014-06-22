@@ -7,24 +7,28 @@ module Github
     end
 
     def attributes
-      @attributes ||= client.repo(full_repo_name) rescue not_found
+      @attributes ||= client.repo(full_repo_name)
+    rescue Octokit::NotFound
+      not_found
     end
 
     def not_found?
       attributes == not_found
     end
 
-    delegate  :full_name, :id, :name, :description, :homepage, :size, :fork,
-              :forks_count, :stargazers_count, :watchers_count,
-              :subscribers_count, :created_at, :updated_at, :pushed_at,
-              to: :attributes
+    delegate :full_name, :id, :name, :description, :homepage, :size, :fork,
+             :forks_count, :stargazers_count, :watchers_count,
+             :subscribers_count, :created_at, :updated_at, :pushed_at,
+             to: :attributes
 
     def owner
       @owner ||= attributes.owner
     end
 
     def contributors
-      @contributors ||= client.contribs(full_name) rescue not_found
+      @contributors ||= client.contribs(full_name)
+    rescue Octokit::NotFound
+      not_found
     end
   end
 end

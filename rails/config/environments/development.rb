@@ -1,5 +1,6 @@
 Octomaps::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -18,7 +19,6 @@ Octomaps::Application.configure do
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
-
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

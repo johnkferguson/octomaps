@@ -24,7 +24,7 @@ class Person
   index :github_username
 
   validates :github_id, :github_username, presence: true
-  validates_uniqueness_of :github_id, :github_username
+  validates :github_id, :github_username, uniqueness: true
 
   has_n(:contributed_to).to(Repository)
   # has_n(:created_repository).to(Repository)

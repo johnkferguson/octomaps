@@ -1,0 +1,26 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - vendor/**/**
+    - bin/**
+    - config/initializers/session_store.rb
+    - config/initializers/secret_token.rb
+
+  RunRailsCops: true
+
+# Indent private/protected/public as deep as method definitions
+Style/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/LineLength:
+  Max: 80
+
+Style/MethodLength:
+  Max: 20
+
+

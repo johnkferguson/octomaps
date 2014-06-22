@@ -41,10 +41,9 @@ module Neo4jConnection
       Repository.new(github_id: id, full_name: full_name)
     end
 
-    delegate  :full_name, :id, :name, :description, :homepage, :size, :fork,
-              :forks_count, :stargazers_count, :watchers_count,
-              :subscribers_count, :created_at, :updated_at, :pushed_at,
-              to: :github_repository
-
+    delegate :full_name, :id, :name, :description, :homepage, :size, :fork,
+             :forks_count, :stargazers_count, :watchers_count,
+             :subscribers_count, :created_at, :updated_at, :pushed_at,
+             to: :github_repository
   end
 end

@@ -28,21 +28,8 @@ class PersonFactory
 
   attr_reader :github_user
 
-  delegate  :login,
-            :id,
-            :name,
-            :email,
-            :avatar_url,
-            :gravatar_id,
-            :company,
-            :blog,
-            :hireable,
-            :bio,
-            :public_repos,
-            :public_gists,
-            :followers,
-            :following,
-            :created_at,
-            :updated_at,
-            to: :github_user
+  delegate :login, :id, :name, :email, :avatar_url, :gravatar_id, :company,
+           :blog, :hireable, :bio, :public_repos, :public_gists, :followers,
+           :following, :created_at, :updated_at,
+           to: :github_user
 end

@@ -29,11 +29,11 @@ class ContributionImportCoordinator
   end
 
   def create_new_persons_and_relationships
-      unpersisted_contributors.each do |contributor|
-        Neo4jConnection::ContributorPersister.new(
-          contributor: contributor,
-          repository_name: repository_name
-        ).perform
+    unpersisted_contributors.each do |contributor|
+      Neo4jConnection::ContributorPersister.new(
+        contributor: contributor,
+        repository_name: repository_name
+      ).perform
     end
   end
 

@@ -6,4 +6,3 @@ end
 
 Octokit.middleware = stack
 Octokit.auto_paginate = true
-

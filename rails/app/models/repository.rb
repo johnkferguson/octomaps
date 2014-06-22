@@ -22,7 +22,7 @@ class Repository
   index :full_name
 
   validates :github_id, :full_name, presence: true
-  validates_uniqueness_of :github_id, :full_name
+  validates :github_id, :full_name, uniqueness: true
 
   has_n(:contributors).from(Person, :contributed_to)
   # has_one(:creator).from(Person, :created_repository)

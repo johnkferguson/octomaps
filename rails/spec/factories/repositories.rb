@@ -5,7 +5,7 @@ FactoryGirl.define do
     name { "#{Faker::Lorem.word}" }
     description { Faker::Company.catch_phrase }
     homepage { Faker::Internet.http_url }
-    size { Random.new.rand(0..10000) }
+    size { Random.new.rand(0..10_000) }
     forked false
     github_forks_count { Random.new.rand(0..100) }
     github_stargazers_count { Random.new.rand(0..100) }

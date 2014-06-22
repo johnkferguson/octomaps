@@ -61,9 +61,7 @@ describe ContributionImportCoordinator do
 
     context 'when there are contributors in the db not connected to the repo' do
       it 'creates a contributed_to relationship between the person and repo' do
-        unconnected_person = Person.create(
-          github_username: 'JohnKellyFerguson', github_id: 1
-        )
+        Person.create(github_username: 'JohnKellyFerguson', github_id: 1)
 
         expect { coordinator.update_database_based_upon_github }
           .to change {
