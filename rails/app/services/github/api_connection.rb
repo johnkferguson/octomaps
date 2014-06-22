@@ -24,7 +24,7 @@ module Github
     end
 
     def config_file
-      File.expand_path(File.join(__FILE__, "../../../../config/github.yml"))
+      File.expand_path(File.join(__FILE__, '../../../../config/github.yml'))
     end
   end
 end

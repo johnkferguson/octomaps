@@ -29,9 +29,9 @@ describe Neo4jConnection::RepositoryUpdater do
           stargazers_count: 13,
           watchers_count: 13,
           subscribers_count: 13,
-          created_at: "2013-02-22T20:50:57Z",
-          updated_at: "2014-03-15T20:17:22Z",
-          pushed_at: "2014-03-15T20:17:22Z"
+          created_at: '2013-02-22T20:50:57Z',
+          updated_at: '2014-03-15T20:17:22Z',
+          pushed_at: '2014-03-15T20:17:22Z'
         )
       )
     end
@@ -79,19 +79,19 @@ describe Neo4jConnection::RepositoryUpdater do
         it do
           changes(
             :github_created_at,
-            from: nil, to: DateTime.parse("2013-02-22T20:50:57Z")
+            from: nil, to: DateTime.parse('2013-02-22T20:50:57Z')
           )
         end
         it do
           changes(
             :github_updated_at,
-            from: nil, to: DateTime.parse("2014-03-15T20:17:22Z")
+            from: nil, to: DateTime.parse('2014-03-15T20:17:22Z')
           )
         end
         it do
           changes(
             :github_pushed_at,
-            from: nil, to: DateTime.parse("2014-03-15T20:17:22Z")
+            from: nil, to: DateTime.parse('2014-03-15T20:17:22Z')
           )
         end
       end

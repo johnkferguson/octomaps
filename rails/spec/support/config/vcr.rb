@@ -13,5 +13,5 @@ VCR.configure do |config|
 end
 
 def paths_and_filename(description)
-  description.split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
+  description.split(/\s+/, 2).join('/').underscore.gsub(/[^\w\/]+/, '_')
 end

@@ -26,9 +26,9 @@ describe ContributionImportCoordinator do
       stargazers_count: 13,
       watchers_count: 13,
       subscribers_count: 13,
-      created_at: "2013-02-22T20:50:57Z",
-      updated_at: "2014-03-15T20:17:22Z",
-      pushed_at: "2014-03-15T20:17:22Z",
+      created_at: '2013-02-22T20:50:57Z',
+      updated_at: '2014-03-15T20:17:22Z',
+      pushed_at: '2014-03-15T20:17:22Z',
       contributors: [contributor],
       not_found?: false
     )

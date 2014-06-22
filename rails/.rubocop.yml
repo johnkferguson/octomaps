@@ -23,4 +23,5 @@ Style/LineLength:
 Style/MethodLength:
   Max: 20
 
-
+Style/StringLiterals:
+  Enabled: false
