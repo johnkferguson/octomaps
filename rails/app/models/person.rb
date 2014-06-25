@@ -7,12 +7,12 @@ class Person
   property :github_id, type: Integer
   property :name, type: String
   property :email, type: String
+  property :github_location, type: String
   property :avatar_url, type: String
   property :gravatar_id, type: String
   property :company, type: String
   property :blog, type: String
   property :hireable, type: Boolean
-  property :bio, type: String
   property :github_public_repos_count, type: Integer
   property :github_public_gists_count, type: Integer
   property :github_followers_count, type: Integer
@@ -27,7 +27,6 @@ class Person
   validates :github_id, :github_username, uniqueness: true
 
   has_n(:contributed_to).to(Repository)
-  # has_n(:created_repository).to(Repository)
 
   def self.persisted_usernames_from(usernames_array:)
     Neo4j::Session.query("
