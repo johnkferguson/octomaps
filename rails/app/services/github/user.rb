@@ -7,28 +7,18 @@ module Github
     end
 
     def attributes
-      @attributes ||= client.user(username).to_h
+      @attributes ||= client.user(username)
+    rescue Octokit::NotFound
+      not_found
     end
 
-    [
-      :login,
-      :id,
-      :name,
-      :email,
-      :avatar_url,
-      :gravatar_id,
-      :company,
-      :blog,
-      :hireable,
-      :bio,
-      :public_repos,
-      :public_gists,
-      :followers,
-      :following,
-      :created_at,
-      :updated_at
-    ].each do |key|
-      define_method(key) { attributes.fetch(key) }
+    def not_found?
+      attributes == not_found
     end
+
+    delegate :login, :id, :name, :email, :location, :avatar_url, :gravatar_id,
+             :company, :blog, :hireable, :public_repos, :public_gists,
+             :followers, :following, :created_at, :updated_at,
+             to: :attributes
   end
 end

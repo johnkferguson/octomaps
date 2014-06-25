@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/JohnKellyFerguson?client_id=239033c633c34e2f714a&client_secret=e797e7290ad5be1840184be2bc4f7a2769abd2fa
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 25 Jun 2014 17:01:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4999'
+      X-Ratelimit-Reset:
+      - '1403719319'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Wed, 25 Jun 2014 16:59:07 GMT
+      Etag:
+      - '"eafad98abde3a978512de4bb1cdcb401"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 4A71A6CA:4109:11A39185:53AB0087
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - c046d59f93ede9ab52d5ac29f1ed70f7
+    body:
+      encoding: UTF-8
+      string: '{"login":"JohnKellyFerguson","id":2823694,"avatar_url":"https://avatars.githubusercontent.com/u/2823694?","gravatar_id":"b58b357a352eda178941fd2dfd5c6d5d","url":"https://api.github.com/users/JohnKellyFerguson","html_url":"https://github.com/JohnKellyFerguson","followers_url":"https://api.github.com/users/JohnKellyFerguson/followers","following_url":"https://api.github.com/users/JohnKellyFerguson/following{/other_user}","gists_url":"https://api.github.com/users/JohnKellyFerguson/gists{/gist_id}","starred_url":"https://api.github.com/users/JohnKellyFerguson/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/JohnKellyFerguson/subscriptions","organizations_url":"https://api.github.com/users/JohnKellyFerguson/orgs","repos_url":"https://api.github.com/users/JohnKellyFerguson/repos","events_url":"https://api.github.com/users/JohnKellyFerguson/events{/privacy}","received_events_url":"https://api.github.com/users/JohnKellyFerguson/received_events","type":"User","site_admin":false,"name":"John","company":"AlphaSights","blog":"johnwritecode.com","location":"New
+        York, NY","email":"hello@johnkellyferguson.com","hireable":false,"bio":null,"public_repos":18,"public_gists":9,"followers":22,"following":60,"created_at":"2012-11-17T21:55:55Z","updated_at":"2014-06-25T16:59:07Z"}'
+    http_version: 
+  recorded_at: Wed, 25 Jun 2014 17:01:59 GMT
+recorded_with: VCR 2.9.2
