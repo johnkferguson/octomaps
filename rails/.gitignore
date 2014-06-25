@@ -18,5 +18,8 @@
 # Ignore Guardfile
 Guardfile
 
+# Ignore env variables
+.env
+
 # Github Yaml
 /config/github.yml
