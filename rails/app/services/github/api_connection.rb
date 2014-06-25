@@ -1,12 +1,8 @@
 module Github
+  class AuthenticationError < StandardError; end
   class APIConnection
     def client
-      @client ||= begin
-        Octokit::Client.new(
-          client_id: config['client_id'],
-          client_secret: config['client_secret']
-        )
-      end
+      @client ||= Octokit::Client.new(authentication_credentials)
     end
 
     def rate_limit_remaining
@@ -19,12 +15,35 @@ module Github
       @not_found ||= NullObject.new
     end
 
-    def config
-      @config ||= YAML.load(ERB.new(File.read(config_file)).result)
+    def authentication_credentials
+      if application_auth?
+        application_auth_credentials
+      elsif basic_auth?
+        basic_auth_credentials
+      else
+        raise Github::AuthenticationError,
+              'Please configure your correct Github authentication details '\
+              'in your .env file'
+      end
     end
 
-    def config_file
-      File.expand_path(File.join(__FILE__, '../../../../config/github.yml'))
+    def application_auth?
+      ENV['GITHUB_CLIENT_ID'] && ENV['GITHUB_CLIENT_SECRET']
+    end
+
+    def application_auth_credentials
+      {
+        client_id: ENV['GITHUB_CLIENT_ID'],
+        client_secret: ENV['GITHUB_CLIENT_SECRET']
+      }
+    end
+
+    def basic_auth?
+      ENV['GITHUB_USERNAME'] && ENV['GITHUB_PASSWORD']
+    end
+
+    def basic_auth_credentials
+      { login: ENV['GITHUB_USERNAME'], password: ENV['GITHUB_PASSWORD'] }
     end
   end
 end
