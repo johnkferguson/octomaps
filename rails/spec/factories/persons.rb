@@ -8,11 +8,10 @@ FactoryGirl.define do
     gravatar_id { Faker::Lorem.characters(20) }
     company { Faker::Company.name }
     hireable false
-    bio { Faker::Lorem.paragraph(3) }
-    github_public_repos_count { Random.new.rand(0..100) }
-    github_public_gists_count { Random.new.rand(0..100) }
-    github_followers_count { Random.new.rand(0..100) }
-    github_following_count { Random.new.rand(0..100) }
+    github_public_repos_count { Random.new.rand(0..10_000) }
+    github_public_gists_count { Random.new.rand(0..10_000) }
+    github_followers_count { Random.new.rand(0..10_000) }
+    github_following_count { Random.new.rand(0..10_000) }
     github_created_at { DateTime.new }
     github_updated_at { DateTime.new }
   end
