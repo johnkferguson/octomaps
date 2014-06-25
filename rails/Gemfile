@@ -4,6 +4,8 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.1'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'coffee-rails', '~> 4.0.1'
 gem 'faraday-http-cache'
 gem 'haml'
