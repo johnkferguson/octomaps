@@ -39,7 +39,7 @@ describe Github::User do
         expect(subject.attributes.class).to eq(NullObject)
       end
     end
-    
+
     its(:login) { is_expected.to be_nil }
     its(:id) { is_expected.to be_nil }
     its(:name) { is_expected.to be_nil }
